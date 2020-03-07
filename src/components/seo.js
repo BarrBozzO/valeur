@@ -11,21 +11,15 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
+  const { site } = {
+    site: {
+      siteMetadata: {
+        title: "awd",
+      },
+    },
+  }
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description /* || site.siteMetadata.description*/
 
   return (
     <Helmet
