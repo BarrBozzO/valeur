@@ -7,6 +7,11 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  * {
+    position: relative;
+    box-sizing: border-box;
+  }
 }
 article,
 aside,
@@ -40,8 +45,7 @@ template {
   display: none;
 }
 a {
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
+  text-decoration: none;
 }
 a:active,
 a:hover {
@@ -59,10 +63,6 @@ strong {
 }
 dfn {
   font-style: italic;
-}
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
 }
 mark {
   background-color: #ff0;
