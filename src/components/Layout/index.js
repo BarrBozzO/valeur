@@ -6,7 +6,7 @@ import Navigation from "../Navigation";
 
 import styles from "./Layout.module.scss";
 
-const Layout = ({ children }) => {
+const Layout = ({ withFooter, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -22,11 +22,13 @@ const Layout = ({ children }) => {
       <Navigation />
       <div className={styles["layout__content"]}>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        {withFooter && (
+          <footer>
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          </footer>
+        )}
       </div>
     </div>
   );
@@ -34,6 +36,11 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  withFooter: PropTypes.bool,
+};
+
+Layout.defaultProps = {
+  withFooter: true,
 };
 
 export default Layout;

@@ -1,15 +1,28 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
 
-import Layout from "../components/Layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from "../components/Layout";
+import Video from "../components/Video";
+import Button from "../components/Button";
+import SEO from "../components/seo";
+
+import vFile from "../assets/videos/test.mp4";
+
+import styles from "./Home.module.scss";
 
 const IndexPage = () => (
-  <Layout>
+  <>
     <SEO title="Home" />
-    <h1>Valour - мастерская</h1>
-  </Layout>
-)
+    <Layout withFooter={false}>
+      <div className={styles["home"]}>
+        <Video className={styles["home__background-video"]} source={vFile} />
+        <h1>Valour - мастерская</h1>
+        <div>
+          <p>Blalbalblablalbalbalballlbalbl alb alblalb lablalba</p>
+          <Button label="Заказать" />
+        </div>
+      </div>
+    </Layout>
+  </>
+);
 
-export default IndexPage
+export default IndexPage;
