@@ -3,8 +3,8 @@
 
 .layout {
   &__content {
-    margin-left: $navigation-w;
     height: 100%;
+    margin-left: $navigation-w;
 
     @include desktop-down {
       margin-left: 0;
