@@ -1,16 +1,16 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
 
-import Layout from "../components/layout"
+import Layout from "components/Layout";
 
-function post({ pageContext: { post } }) {
+function Post({ pageContext: { post } }) {
   return (
     <Layout>
       <h1>{post.title}</h1>
       <div>{post.slug}</div>
       <Link to="/">Go home</Link>
     </Layout>
-  )
+  );
 }
 
-export default post
+export default Post;
