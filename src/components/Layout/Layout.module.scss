@@ -1,0 +1,14 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.layout {
+  &__content {
+    height: 100%;
+    margin-left: $navigation-w;
+
+    @include desktop-down {
+      margin-left: 0;
+      margin-top: $topbar-h;
+    }
+  }
+}

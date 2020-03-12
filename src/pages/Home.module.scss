@@ -1,0 +1,14 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.home {
+  height: 100vh;
+  color: $primary-white;
+  background-color: rgba(0, 0, 0, 0.06);
+
+  &__background-video {
+    & > video {
+      width: auto;
+    }
+  }
+}

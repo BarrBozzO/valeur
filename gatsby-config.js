@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV === "development") {
-  require("dotenv").config()
+  require("dotenv").config();
 }
 
 module.exports = {
@@ -9,7 +9,22 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
-    "gatsby-plugin-sass",
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        cssLoaderOptions: {
+          camelCase: false,
+        },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: `${__dirname}/src/assets/`,
+        },
+      },
+    },
     `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-typography`,
@@ -18,13 +33,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `/src/images`,
+    //   },
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -35,4 +50,4 @@ module.exports = {
       },
     },
   ],
-}
+};
