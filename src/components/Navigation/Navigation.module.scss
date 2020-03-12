@@ -1,0 +1,103 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+
+  width: $navigation-w;
+  height: 100vh;
+  overflow: hidden;
+  padding: $padding;
+
+  background-color: $primary-white;
+
+  z-index: 1;
+
+  @include desktop-down {
+    top: $topbar-h;
+
+    width: 100%;
+    height: calc(100vh - #{$topbar-h});
+
+    &--collapsed {
+      display: none;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+
+    flex: 1 0 auto;
+
+    &-item {
+      &--active {
+        color: black;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__logo {
+    width: 200px;
+    height: 200px;
+    margin: 100px auto 0;
+
+    background-color: gray;
+    border-radius: 999px;
+
+    @include desktop-down {
+      display: none;
+    }
+  }
+
+  &__external {
+    @include desktop-down {
+      display: none;
+    }
+
+    &-dev-by {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 100;
+    }
+  }
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: $topbar-h;
+
+  padding: $padding;
+
+  @include desktop {
+    display: none;
+  }
+
+  &__logo {
+    // awd
+  }
+
+  &__toggle-nav {
+    &--close {
+      color: red;
+    }
+  }
+}

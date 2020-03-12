@@ -1,7 +1,19 @@
-const path = require("path")
+const path = require("path");
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        styles: path.resolve(__dirname, "src/styles"),
+        assets: path.resolve(__dirname, "src/assets"),
+        components: path.resolve(__dirname, "src/components"),
+      },
+    },
+  });
+};
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   const result = await graphql(
     `
@@ -26,14 +38,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
     `
-  )
+  );
 
   if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
+    return;
   }
 
-  const postTemplate = path.resolve(`src/templates/post.js`)
+  const postTemplate = path.resolve(`src/templates/post.js`);
   result.data.allContentfulPost.edges.forEach(({ node }) => {
     createPage({
       path: `posts/${node.slug}`,
@@ -43,6 +55,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           ...node,
         },
       },
-    })
-  })
-}
+    });
+  });
+};

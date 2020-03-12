@@ -1,0 +1,16 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.primary-button {
+  width: 100px;
+  height: 28px;
+  font-size: 14px;
+  line-height: 1;
+
+  background-color: coral;
+  border: 1px solid coral;
+
+  &--secondary {
+    border-color: $primary-white;
+  }
+}
