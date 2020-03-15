@@ -1,0 +1,49 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.posts {
+  padding: $page-padding;
+
+  &__list {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    &-item {
+      & + & {
+        margin-top: $padding * 2;
+        padding-top: $padding;
+        border-top: 1px solid $gray-0;
+      }
+    }
+  }
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: auto;
+
+  &__cover {
+    flex: 1 0 50%;
+    min-width: 300px;
+  }
+
+  &__content {
+    flex: 1 0 50%;
+
+    &-title {
+    }
+
+    &-created {
+      color: $gray-2;
+    }
+
+    &-description {
+    }
+  }
+}
