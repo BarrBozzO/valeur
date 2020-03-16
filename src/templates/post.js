@@ -3,9 +3,9 @@ import { Link } from "gatsby";
 
 import Layout from "components/Layout";
 
-function Post({ pageContext: { post } }) {
+function Post({ pageContext: { post }, location }) {
   return (
-    <Layout>
+    <Layout location={location}>
       <h1>{post.title}</h1>
       <div>{post.slug}</div>
       <Link to="/">Go home</Link>

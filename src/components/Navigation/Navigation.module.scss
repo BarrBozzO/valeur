@@ -65,11 +65,53 @@
       display: none;
     }
 
+    &-socials {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      &-link {
+        margin: 8px;
+      }
+
+      &-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
     &-dev-by {
+      width: 100%;
+      display: none;
+
       font-size: 12px;
       text-transform: uppercase;
       font-weight: 100;
     }
+  }
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  &--opened {
+    color: red;
+  }
+
+  &__title {
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 }
 

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import cx from "classnames";
 import { Link } from "gatsby";
 import Logo from "./Logo";
 import External from "./External";
 import TopBar from "./TopBar";
+import SubMenu from "./SubMenu";
 
 import styles from "./Navigation.module.scss";
 
-function Navigation() {
+function Navigation({ location }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
@@ -23,6 +25,21 @@ function Navigation() {
       >
         <Logo />
         <nav className={styles["navigation__menu"]}>
+          <SubMenu
+            title="Портфолио"
+            classNames={{
+              "active-item": styles["navigation__menu-item--active"],
+            }}
+            items={{
+              "/portfolio/online-invitations": {
+                label: "Электронные пригласительные",
+              },
+              "/portfolio/invitaion-packages": {
+                label: "Комплекты пригласительных",
+              },
+            }}
+            path={location.pathname}
+          />
           <Link
             to="/about"
             activeClassName={styles["navigation__menu-item--active"]}
@@ -47,5 +64,13 @@ function Navigation() {
     </>
   );
 }
+
+SubMenu.propTypes = {
+  location: PropTypes.object.isRequired,
+};
+
+SubMenu.defaultProps = {
+  location: {},
+};
 
 export default Navigation;

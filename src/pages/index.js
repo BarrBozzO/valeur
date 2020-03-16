@@ -9,10 +9,10 @@ import vFile from "../assets/videos/test.mp4";
 
 import styles from "./Home.module.scss";
 
-const IndexPage = () => (
+const IndexPage = ({ location }) => (
   <>
     <SEO title="Home" />
-    <Layout withFooter={false}>
+    <Layout withFooter={false} location={location}>
       <div className={styles["home"]}>
         <Video className={styles["home__background-video"]} source={vFile} />
         <h1>Valour - мастерская</h1>

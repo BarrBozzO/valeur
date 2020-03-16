@@ -6,8 +6,8 @@ import SEO from "components/seo";
 
 import styles from "./About.module.scss";
 
-const AboutPage = () => (
-  <Layout>
+const AboutPage = ({ location }) => (
+  <Layout location={location}>
     <SEO title="About" />
     <div className={styles["about-page"]}>
       <h1>About us</h1>

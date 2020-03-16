@@ -5,7 +5,7 @@ import { graphql } from "gatsby";
 import Layout from "components/Layout";
 import SEO from "components/seo";
 
-const Posts = ({ data }) => {
+const Posts = ({ data, location }) => {
   const renderPosts = () => {
     return (
       <ul>
@@ -19,7 +19,7 @@ const Posts = ({ data }) => {
   };
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title="Posts" />
       <h1>Posts</h1>
       {renderPosts()}
