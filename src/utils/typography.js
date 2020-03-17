@@ -1,7 +1,9 @@
-import Typography from "typography"
-import fairyGateTheme from "typography-theme-fairy-gates"
-
-const typography = new Typography(fairyGateTheme)
-
-export const { scale, rhythm, options } = typography
-export default typography
+import Typography from "typography";
+const typography = new Typography({
+  baseFontSize: "18px",
+  baseLineHeight: 1.5,
+  scale: 2,
+  headerFontFamily: ["Arial", "sans-serif"],
+  bodyFontFamily: ["Arial", "serif"],
+});
+export default typography;
