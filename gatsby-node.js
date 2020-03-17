@@ -7,6 +7,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         styles: path.resolve(__dirname, "src/styles"),
         assets: path.resolve(__dirname, "src/assets"),
         components: path.resolve(__dirname, "src/components"),
+        utils: path.resolve(__dirname, "src/utils"),
       },
     },
   });
@@ -33,6 +34,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               }
               title
               slug
+              createdAt
             }
           }
         }
