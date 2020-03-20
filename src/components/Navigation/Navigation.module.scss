@@ -135,6 +135,10 @@
 
   padding: $padding;
 
+  background-color: $primary-white;
+
+  z-index: 1;
+
   @include desktop {
     display: none;
   }
@@ -143,6 +147,8 @@
   }
 
   &__toggle-nav {
+    cursor: pointer;
+
     &--close {
       color: red;
     }
