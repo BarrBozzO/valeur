@@ -4,11 +4,11 @@ import moment from "moment";
 
 import Layout from "components/Layout";
 
-function Post({ pageContext: { post } }) {
+function Post({ pageContext: { post }, location }) {
   const { title, slug, article, createdAt } = post;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <h1>{title}</h1>
       <div>{slug}</div>
       <div>{getRichText(article)}</div>

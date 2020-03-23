@@ -5,6 +5,11 @@
   height: 100vh;
   color: $primary-white;
   background-color: rgba(0, 0, 0, 0.06);
+  padding: $page-padding;
+
+  @include desktop-down {
+    margin-top: $topbar-h;
+  }
 
   &__background-video {
     & > video {

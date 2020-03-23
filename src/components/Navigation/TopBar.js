@@ -1,13 +1,16 @@
 import React from "react";
 import cx from "classnames";
 import PropTypes from "prop-types";
+import { Link } from "gatsby";
 
 import styles from "./Navigation.module.scss";
 
 function TopBar({ onClick, isCollapsed }) {
   return (
     <div className={styles["topbar"]}>
-      <div>logo</div>
+      <div className={cx(styles["topbar__logo"])}>
+        <Link to="/">logo</Link>
+      </div>
       <div
         className={cx(styles["topbar__toggle-nav"], {
           [styles["topbar__toggle-nav--close"]]: !isCollapsed,

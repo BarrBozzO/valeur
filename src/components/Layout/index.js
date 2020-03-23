@@ -6,7 +6,7 @@ import Navigation from "../Navigation";
 
 import styles from "./Layout.module.scss";
 
-const Layout = ({ withFooter, children }) => {
+const Layout = ({ withFooter, location, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -19,7 +19,7 @@ const Layout = ({ withFooter, children }) => {
 
   return (
     <div className={styles["layout"]}>
-      <Navigation />
+      <Navigation location={location} />
       <div className={styles["layout__content"]}>
         <main>{children}</main>
         {withFooter && (

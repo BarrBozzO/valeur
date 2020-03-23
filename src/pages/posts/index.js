@@ -10,7 +10,7 @@ import SEO from "components/seo";
 
 import styles from "./Posts.module.scss";
 
-const Posts = ({ data }) => {
+const Posts = ({ data, location }) => {
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
@@ -53,7 +53,7 @@ const Posts = ({ data }) => {
   };
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title="Posts" />
       <div className={styles["posts"]}>
         <h1>Posts</h1>
