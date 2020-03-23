@@ -6,7 +6,7 @@ import cx from "classnames";
 import { getRichText } from "utils";
 
 import Layout from "components/Layout";
-import SEO from "components/seo";
+import SEO from "components/Seo";
 
 import styles from "./Posts.module.scss";
 
