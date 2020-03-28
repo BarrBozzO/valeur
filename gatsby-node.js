@@ -34,7 +34,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               }
               title
               slug
-              createdAt
+              createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
+              image {
+                file {
+                  url
+                }
+              }
             }
           }
         }
@@ -47,8 +52,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const postTemplate = path.resolve(`src/templates/post.js`);
-  result.data.allContentfulPost.edges.forEach(({ node }) => {
+  const postTemplate = path.resolve(`src/templates/Post/index.js`);
+  result.data.allContentfulPost.edges.forEach(({ node }, index, posts) => {
+    const next = index > 0 ? posts[index - 1].node : null;
+    const prev = index + 1 < posts.length ? posts[index + 1].node : null;
+
     createPage({
       path: `posts/${node.slug}`,
       component: postTemplate,
@@ -56,6 +64,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         post: {
           ...node,
         },
+        next: next ? { slug: next.slug, title: next.title } : null,
+        prev: prev ? { slug: prev.slug, title: prev.title } : null,
       },
     });
   });

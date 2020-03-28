@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "gatsby";
+import { navigate } from "@reach/router";
 import { graphql } from "gatsby";
-import moment from "moment";
 import cx from "classnames";
-import { getRichText } from "utils";
 
 import Layout from "components/Layout";
 import SEO from "components/seo";
+import Button from "components/Button";
 
 import styles from "./Posts.module.scss";
 
@@ -26,24 +26,32 @@ const Posts = ({ data, location }) => {
     return null;
   };
 
+  const onClick = slug => {
+    return () => navigate(`posts/${slug}`);
+  };
+
   const renderPosts = () => {
     return (
       <div className={styles["posts__list"]}>
         {data.allContentfulPost.nodes.map(
-          ({ id, slug, title, image, createdAt, article }) => (
+          ({ id, slug, title, image, createdAt, description }) => (
             <div
               className={cx(styles["posts__list-item"], styles["post"])}
               key={id}
             >
+              <Link to={`/posts/${slug}`}>
+                <h2 className={styles["post__title"]}>{title}</h2>
+              </Link>
+              <div className={styles["post__created"]}>{createdAt}</div>
+
               {renderImageCover(image)}
-              <div className={styles["post__content"]}>
-                <Link to={`/posts/${slug}`}>
-                  <h2 className={styles["post__content-title"]}>{title}</h2>
-                </Link>
-                <div className={styles["post__content-created"]}>
-                  {moment(createdAt).format("HH:MM DD-MM-YYYY")}
-                </div>
-                <div>{getRichText(article)}</div>
+              <div className={styles["post__description"]}>
+                {description &&
+                  description.internal &&
+                  description.internal.content}
+              </div>
+              <div className={styles["post__read"]}>
+                <Button onClick={onClick(slug)}>Читать далее</Button>
               </div>
             </div>
           )
@@ -56,7 +64,7 @@ const Posts = ({ data, location }) => {
     <Layout location={location}>
       <SEO title="Posts" />
       <div className={styles["posts"]}>
-        <h1>Posts</h1>
+        <h1 className={styles["posts__header"]}>Блог</h1>
         {renderPosts()}
       </div>
     </Layout>
@@ -67,7 +75,7 @@ export default Posts;
 
 export const query = graphql`
   {
-    allContentfulPost {
+    allContentfulPost(sort: { order: DESC, fields: createdAt }) {
       nodes {
         id
         slug
@@ -81,7 +89,12 @@ export const query = graphql`
             }
           }
         }
-        createdAt
+        description {
+          internal {
+            content
+          }
+        }
+        createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
           file {
             url
