@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { getRichText } from "utils";
+import cx from "classnames";
 
 import Layout from "components/Layout";
 
@@ -33,18 +34,37 @@ function Post({ pageContext: { post, prev, next }, location }) {
         <div className={styles["post__article"]}>{getRichText(article)}</div>
 
         <div className={styles["post__nav"]}>
-          {prev && (
-            <div>
-              <Link to={`/posts/${prev.slug}`}>Prev</Link>
-              {prev.title}
-            </div>
-          )}
-          {next && (
-            <div>
-              <Link to={`/posts/${next.slug}`}>Next</Link>
-              {next.title}
-            </div>
-          )}
+          <div
+            className={cx(
+              styles["post__nav-item"],
+              styles["post__nav-item--prev"]
+            )}
+          >
+            {prev && (
+              <>
+                <Link to={`/posts/${prev.slug}`}>
+                  <span>Предыдущий</span>
+                  <div className={styles["post__nav-title"]}>{prev.title}</div>
+                </Link>
+              </>
+            )}
+          </div>
+          <div className={styles["post__nav-divider"]} />
+          <div
+            className={cx(
+              styles["post__nav-item"],
+              styles["post__nav-item--next"]
+            )}
+          >
+            {next && (
+              <>
+                <Link to={`/posts/${next.slug}`}>
+                  <span>Следующий</span>
+                  <div className={styles["post__nav-title"]}>{next.title}</div>
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </Layout>
