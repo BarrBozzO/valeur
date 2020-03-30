@@ -34,6 +34,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               }
               title
               slug
+              metaDescription
               createdAt
             }
           }

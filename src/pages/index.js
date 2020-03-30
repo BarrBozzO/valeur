@@ -1,17 +1,17 @@
 import React from "react";
 
-import Layout from "../components/Layout";
-import Video from "../components/Video";
-import Button from "../components/Button";
-import SEO from "../components/seo";
+import Layout from "components/Layout";
+import Video from "components/Video";
+import Button from "components/Button";
+import SEO from "components/Seo";
 
-import vFile from "../assets/videos/test.mp4";
+import vFile from "assets/videos/test.mp4";
 
 import styles from "./Home.module.scss";
 
 const IndexPage = ({ location }) => (
   <>
-    <SEO title="Home" />
+    <SEO title="Главная" />
     <Layout withFooter={false} location={location}>
       <div className={styles["home"]}>
         <Video className={styles["home__background-video"]} source={vFile} />
