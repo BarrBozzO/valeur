@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "gatsby";
-import { getRichText } from "utils";
 import cx from "classnames";
 
 import Layout from "components/Layout";
+import Article from "./Article";
 
 import styles from "./Post.module.scss";
 
@@ -31,8 +31,7 @@ function Post({ pageContext: { post, prev, next }, location }) {
         <h1 className={styles["post__header"]}>{title}</h1>
         <div className={styles["post__createdAt"]}>{createdAt}</div>
         {renderImageCover(image)}
-        <div className={styles["post__article"]}>{getRichText(article)}</div>
-
+        <Article className={styles["post__article"]} data={article} />
         <div className={styles["post__nav"]}>
           <div
             className={cx(

@@ -29,7 +29,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   content {
                     value
                     nodeType
+                    marks {
+                      type
+                    }
+                    content {
+                      nodeType
+                      content {
+                        value
+                        nodeType
+                      }
+                    }
                   }
+                  nodeType
                 }
               }
               title

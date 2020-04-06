@@ -69,3 +69,21 @@
     }
   }
 }
+
+.article {
+  &__paragraph {
+    &-item {
+      &--bold {
+        font-weight: 600;
+      }
+
+      &--underline {
+        text-decoration: underline;
+      }
+
+      &--italic {
+        font-style: italic;
+      }
+    }
+  }
+}
