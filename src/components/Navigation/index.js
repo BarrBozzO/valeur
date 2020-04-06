@@ -6,23 +6,24 @@ import Logo from "./Logo";
 import External from "./External";
 import TopBar from "./TopBar";
 import SubMenu from "./SubMenu";
+import ToggleButton from "./ToggleButton";
 
 import styles from "./Navigation.module.scss";
 
-function Navigation({ location }) {
-  const [isCollapsed, setIsCollapsed] = useState(true);
-
+function Navigation({ location, isCollapsed, onToggle }) {
   return (
     <>
-      <TopBar
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        isCollapsed={isCollapsed}
-      />
+      <TopBar onClick={onToggle} isCollapsed={isCollapsed} />
       <div
         className={cx(styles["navigation"], {
           [styles["navigation--collapsed"]]: isCollapsed,
         })}
       >
+        <ToggleButton
+          className={styles["navigation__toggle-button"]}
+          isCollapsed={isCollapsed}
+          onClick={onToggle}
+        />
         <Logo />
         <nav className={styles["navigation__menu"]}>
           <SubMenu

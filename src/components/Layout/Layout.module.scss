@@ -6,6 +6,12 @@
     height: 100%;
     margin-left: $navigation-w;
 
+    transition: margin ease-in-out $transition-navigation-width-duration;
+
+    &--collapsed {
+      margin-left: $navigation-collapsed-w;
+    }
+
     @include desktop-down {
       margin-left: 0;
       margin-top: $topbar-h;
