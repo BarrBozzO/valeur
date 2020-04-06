@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+import cx from "classnames";
 
 import Navigation from "../Navigation";
 
@@ -17,10 +18,20 @@ const Layout = ({ withFooter, location, children }) => {
     }
   `);
 
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
   return (
     <div className={styles["layout"]}>
-      <Navigation location={location} />
-      <div className={styles["layout__content"]}>
+      <Navigation
+        isCollapsed={isCollapsed}
+        onToggle={() => setIsCollapsed(!isCollapsed)}
+        location={location}
+      />
+      <div
+        className={cx(styles["layout__content"], {
+          [styles["layout__content--collapsed"]]: isCollapsed,
+        })}
+      >
         <main>{children}</main>
         {withFooter && (
           <footer>

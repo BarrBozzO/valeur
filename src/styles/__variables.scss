@@ -2,10 +2,11 @@ $tablet-width: 768px;
 $desktop-width: 1024px;
 $wide-desktop-width: 1280px;
 
-$transition-default-duration: 300ms;
+$transition-default-duration: 250ms;
+$transition-navigation-width-duration: 400ms;
 
 $navigation-w: 400px;
-$navigation-collapsed-w: 20px;
+$navigation-collapsed-w: 100px;
 $topbar-h: 60px;
 
 $padding: 16px;
