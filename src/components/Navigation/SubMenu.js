@@ -34,6 +34,7 @@ function SubMenu({ classNames, title, path, items }) {
             <Link
               key={key}
               to={key}
+              className={styles["submenu__item"]}
               activeClassName={classNames["active-item"]}
             >
               {items[key].label}

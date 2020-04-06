@@ -43,18 +43,21 @@ function Navigation({ location, isCollapsed, onToggle }) {
           />
           <Link
             to="/about"
+            className={styles["navigation__menu-item"]}
             activeClassName={styles["navigation__menu-item--active"]}
           >
             О проекте
           </Link>
           <Link
             to="/posts"
+            className={styles["navigation__menu-item"]}
             activeClassName={styles["navigation__menu-item--active"]}
           >
             Блог
           </Link>
           <Link
             to="/contacts"
+            className={styles["navigation__menu-item"]}
             activeClassName={styles["navigation__menu-item--active"]}
           >
             Контакты

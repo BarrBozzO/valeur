@@ -19,7 +19,7 @@
     &--#{$j}.submenu__items-transition-enter-active,
     &--#{$j}.submenu__items-transition-enter-done,
     &--#{$j}.submenu__items-transition-exit {
-      height: 27px * $j;
+      height: 27px * $j + $padding;
     }
   }
 }
