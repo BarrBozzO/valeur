@@ -7,7 +7,7 @@ import Article from "./Article";
 
 import styles from "./Post.module.scss";
 
-function Post({ pageContext: { post, prev, next }, location }) {
+function Post({ pageContext: { post, prev, next, assetsMap }, location }) {
   const { title, article, image, createdAt } = post;
 
   const renderImageCover = image => {
@@ -31,7 +31,11 @@ function Post({ pageContext: { post, prev, next }, location }) {
         <h1 className={styles["post__header"]}>{title}</h1>
         <div className={styles["post__createdAt"]}>{createdAt}</div>
         {renderImageCover(image)}
-        <Article className={styles["post__article"]} data={article} />
+        <Article
+          className={styles["post__article"]}
+          data={article}
+          assets={assetsMap}
+        />
         <div className={styles["post__nav"]}>
           <div
             className={cx(

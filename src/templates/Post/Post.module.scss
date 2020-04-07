@@ -71,6 +71,10 @@
 }
 
 .article {
+  &__hr {
+    height: 1px;
+  }
+
   &__paragraph {
     &-item {
       &--bold {
@@ -83,6 +87,27 @@
 
       &--italic {
         font-style: italic;
+      }
+
+      &--code {
+        display: inline-block;
+        border-radius: $radius;
+        font-size: 14px;
+        background-color: $gray-0;
+        border: 1px solid $gray-2;
+        padding: 0 8px;
+        color: red;
+      }
+    }
+  }
+
+  @for $j from 1 to 7 {
+    &__heading#{$j} {
+      margin-bottom: $padding;
+
+      span {
+        font-size: 18px + 18 - $j * 2;
+        font-weight: 600;
       }
     }
   }
