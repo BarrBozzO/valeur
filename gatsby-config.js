@@ -24,6 +24,7 @@ module.exports = {
         omitGoogleFont: true,
       },
     },
+    `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
     // {
     //   resolve: `gatsby-source-filesystem`,

@@ -2,20 +2,22 @@ import React from "react";
 import { getRichText } from "utils";
 import moment from "moment";
 
-import Layout from "components/Layout";
 import Seo from "components/Seo";
+import Layout from "components/Layout";
 
-function Post({ pageContext: { post }, location }) {
+function Post({ pageContext: { post }, location, mount }) {
   const { title, slug, article, createdAt, metaDescription } = post;
 
   return (
-    <Layout location={location}>
+    <>
       <Seo title={title} description={metaDescription} />
-      <h1>{title}</h1>
-      <div>{slug}</div>
-      <div>{getRichText(article)}</div>
-      <div>{moment(createdAt).format("HH:MM DD-MM-YYYY")}</div>
-    </Layout>
+      <Layout mount={mount} location={location}>
+        <h1>{title}</h1>
+        <div>{slug}</div>
+        <div>{getRichText(article)}</div>
+        <div>{moment(createdAt).format("HH:MM DD-MM-YYYY")}</div>
+      </Layout>
+    </>
   );
 }
 
