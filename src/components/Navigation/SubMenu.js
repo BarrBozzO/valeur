@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import { CSSTransition } from "react-transition-group";
-import { Link } from "gatsby";
+import TransitionLink from "gatsby-plugin-transition-link";
 
 import styles from "./Navigation.module.scss";
 import "./NavigationTransition.scss";
 
 const ANIMATION_DURATION = 300;
+const TRANSITION_LENGTH = 1.5;
 
 function isSubLinkSelected(path, items) {
   return Object.keys(items).includes(path);
@@ -31,13 +32,19 @@ function SubMenu({ classNames, title, path, items }) {
           )}
         >
           {Object.keys(items).map(key => (
-            <Link
+            <TransitionLink
               key={key}
               to={key}
               activeClassName={classNames["active-item"]}
+              exit={{
+                length: TRANSITION_LENGTH,
+              }}
+              entry={{
+                delay: TRANSITION_LENGTH,
+              }}
             >
               {items[key].label}
-            </Link>
+            </TransitionLink>
           ))}
         </div>
       </CSSTransition>

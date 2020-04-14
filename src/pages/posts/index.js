@@ -1,16 +1,16 @@
 import React from "react";
-import { Link } from "gatsby";
+import TransitionLink from "gatsby-plugin-transition-link";
 import { graphql } from "gatsby";
 import moment from "moment";
 import cx from "classnames";
 import { getRichText } from "utils";
 
-import Layout from "components/Layout";
 import SEO from "components/Seo";
+import Layout from "components/Layout";
 
 import styles from "./Posts.module.scss";
 
-const Posts = ({ data, location }) => {
+const Posts = ({ data, mount, location }) => {
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
@@ -37,9 +37,13 @@ const Posts = ({ data, location }) => {
             >
               {renderImageCover(image)}
               <div className={styles["post__content"]}>
-                <Link to={`/posts/${slug}`}>
+                <TransitionLink
+                  entry={{ delay: 0.4 }}
+                  exit={{ length: 0.4 }}
+                  to={`/posts/${slug}`}
+                >
                   <h2 className={styles["post__content-title"]}>{title}</h2>
-                </Link>
+                </TransitionLink>
                 <div className={styles["post__content-created"]}>
                   {moment(createdAt).format("HH:MM DD-MM-YYYY")}
                 </div>
@@ -53,7 +57,7 @@ const Posts = ({ data, location }) => {
   };
 
   return (
-    <Layout location={location}>
+    <Layout location={location} mount={mount}>
       <SEO title="Posts" />
       <div className={styles["posts"]}>
         <h1>Posts</h1>

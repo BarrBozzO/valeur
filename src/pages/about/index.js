@@ -1,12 +1,12 @@
 import React from "react";
 
-import Layout from "components/Layout";
 import SEO from "components/Seo";
+import Layout from "components/Layout";
 
 import styles from "./About.module.scss";
 
-const AboutPage = ({ location }) => (
-  <Layout location={location}>
+const AboutPage = ({ mount, location }) => (
+  <Layout mount={mount} location={location}>
     <SEO title="О проекте" />
     <div className={styles["about-page"]}>
       <h1>О проекте</h1>
