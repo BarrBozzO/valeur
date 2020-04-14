@@ -58,6 +58,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 }
               }
               title
+              metaDescription
               slug
               createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
               image {

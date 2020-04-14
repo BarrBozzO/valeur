@@ -3,12 +3,17 @@ import { Link } from "gatsby";
 import cx from "classnames";
 
 import Layout from "components/Layout";
+import Seo from "components/Seo";
 import Article from "./Article";
 
 import styles from "./Post.module.scss";
 
-function Post({ pageContext: { post, prev, next, assetsMap }, location }) {
-  const { title, article, image, createdAt } = post;
+function Post({
+  pageContext: { post, prev, next, assetsMap },
+  location,
+  mount,
+}) {
+  const { title, article, image, createdAt, metaDescription } = post;
 
   const renderImageCover = image => {
     if (image) {
@@ -26,7 +31,8 @@ function Post({ pageContext: { post, prev, next, assetsMap }, location }) {
   };
 
   return (
-    <Layout location={location}>
+    <Layout location={location} mount={mount}>
+      <Seo title={title} description={metaDescription} />
       <div className={styles["post"]}>
         <h1 className={styles["post__header"]}>{title}</h1>
         <div className={styles["post__createdAt"]}>{createdAt}</div>

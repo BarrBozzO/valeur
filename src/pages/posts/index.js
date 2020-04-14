@@ -1,5 +1,6 @@
 import React from "react";
 import { navigate } from "@reach/router";
+import { Link } from "gatsby";
 import TransitionLink from "gatsby-plugin-transition-link";
 import { graphql } from "gatsby";
 import cx from "classnames";

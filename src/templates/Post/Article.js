@@ -13,7 +13,6 @@ function Article({ data, className, assets }) {
   if (!data) return null;
 
   const textData = getRichText(data);
-  console.log(textData);
 
   const renderByType = value => {
     const type = value.nodeType;
@@ -115,7 +114,7 @@ function Article({ data, className, assets }) {
   const renderLink = l => {
     const content = l.content || [];
     const uri = (l.data && l.data.uri) || "";
-    console.log(l);
+
     return (
       <a target="_blank" href={uri}>
         {content.map(item => renderByType(item))}
