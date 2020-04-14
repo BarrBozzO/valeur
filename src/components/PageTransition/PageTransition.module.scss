@@ -1,0 +1,47 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+$page-transition_duration: 400ms;
+
+.page {
+  &__transition {
+    &--appear {
+      opacity: 0;
+    }
+
+    &--appear-active {
+      opacity: 1;
+      transition: opacity $page-transition_duration;
+    }
+
+    &--appear-done {
+      opacity: 1;
+    }
+
+    &--enter {
+      opacity: 0;
+    }
+
+    &--enter-active {
+      opacity: 1;
+      transition: opacity $page-transition_duration;
+    }
+
+    &--enter-done {
+      opacity: 1;
+    }
+
+    &--exit {
+      opacity: 1;
+    }
+
+    &--exit-active {
+      opacity: 0;
+      transition: opacity $page-transition_duration;
+    }
+
+    &--exit-done {
+      opacity: 0;
+    }
+  }
+}

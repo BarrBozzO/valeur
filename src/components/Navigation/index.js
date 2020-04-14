@@ -1,28 +1,48 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
-import { Link } from "gatsby";
+
+import { GlobalDispatchProvider } from "context/GlobalContextProvider";
 import Logo from "./Logo";
 import External from "./External";
 import TopBar from "./TopBar";
 import SubMenu from "./SubMenu";
+import ToggleButton from "./ToggleButton";
+import TransitionLink from "gatsby-plugin-transition-link";
 
 import styles from "./Navigation.module.scss";
 
-function Navigation({ location }) {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+const TRANSITION_LENGTH = 0.4;
+
+function Navigation({ location, isCollapsed }) {
+  const dispatch = useContext(GlobalDispatchProvider);
+
+  const exitTransition = {
+    length: TRANSITION_LENGTH,
+  };
+  const entryTransition = {
+    delay: TRANSITION_LENGTH,
+  };
+
+  const onToggle = () => {
+    return dispatch({
+      type: "TOGGLE_NAVIGATION",
+    });
+  };
 
   return (
     <>
-      <TopBar
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        isCollapsed={isCollapsed}
-      />
+      <TopBar onClick={onToggle} isCollapsed={isCollapsed} />
       <div
         className={cx(styles["navigation"], {
           [styles["navigation--collapsed"]]: isCollapsed,
         })}
       >
+        <ToggleButton
+          className={styles["navigation__toggle-button"]}
+          isCollapsed={isCollapsed}
+          onClick={onToggle}
+        />
         <Logo />
         <nav className={styles["navigation__menu"]}>
           <SubMenu
@@ -40,24 +60,30 @@ function Navigation({ location }) {
             }}
             path={location.pathname}
           />
-          <Link
+          <TransitionLink
+            exit={exitTransition}
+            entry={entryTransition}
             to="/about"
             activeClassName={styles["navigation__menu-item--active"]}
           >
             О проекте
-          </Link>
-          <Link
+          </TransitionLink>
+          <TransitionLink
             to="/posts"
+            exit={exitTransition}
+            entry={entryTransition}
             activeClassName={styles["navigation__menu-item--active"]}
           >
             Блог
-          </Link>
-          <Link
+          </TransitionLink>
+          <TransitionLink
             to="/contacts"
+            exit={exitTransition}
+            entry={entryTransition}
             activeClassName={styles["navigation__menu-item--active"]}
           >
             Контакты
-          </Link>
+          </TransitionLink>
         </nav>
         <External />
       </div>

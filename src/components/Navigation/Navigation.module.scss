@@ -2,6 +2,8 @@
 @import "~styles/__mixins";
 
 .navigation {
+  $this: &;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -17,8 +19,20 @@
   padding: $padding;
 
   background-color: $primary-white;
+  transition: width ease-in-out $transition-navigation-width-duration;
 
   z-index: 1;
+
+  &--collapsed {
+    width: $navigation-collapsed-w;
+
+    #{$this}__logo,
+    #{$this}__menu,
+    #{$this}__external {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
 
   @include desktop-down {
     top: $topbar-h;
@@ -26,8 +40,10 @@
     width: 100%;
     height: calc(100vh - #{$topbar-h});
 
+    padding: 0;
+
     &--collapsed {
-      display: none;
+      width: 0;
     }
   }
 
@@ -38,6 +54,9 @@
     justify-content: stretch;
 
     flex: 1 0 auto;
+
+    transition: opacity ease-in-out $transition-default-duration,
+      visibility ease-in-out $transition-default-duration;
 
     &-item {
       &--active {
@@ -55,6 +74,9 @@
     background-color: gray;
     border-radius: 999px;
 
+    transition: opacity ease-in-out $transition-default-duration,
+      visibility ease-in-out $transition-default-duration;
+
     a {
       display: block;
       width: 100%;
@@ -66,10 +88,83 @@
     }
   }
 
+  &__toggle-button {
+    @include desktop-down {
+      display: none;
+    }
+
+    width: 32px;
+    height: 26px;
+    position: absolute;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+
+    top: 26px;
+    right: 16px;
+
+    span {
+      display: block;
+      position: absolute;
+      height: 5px;
+      width: 100%;
+      background: $black-1;
+      border-radius: 5px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
+    }
+
+    span:nth-child(1) {
+      top: 0px;
+    }
+
+    span:nth-child(2),
+    span:nth-child(3) {
+      top: 10px;
+    }
+
+    span:nth-child(4) {
+      top: 20px;
+    }
+
+    &.toggle-button--opened {
+      span:nth-child(1) {
+        top: 10px;
+        width: 0%;
+        left: 50%;
+      }
+
+      span:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      span:nth-child(4) {
+        top: 10px;
+        width: 0%;
+        left: 50%;
+      }
+    }
+  }
+
+  &--collapsed {
+    #{$this}__toggle-button {
+      right: 34px;
+    }
+  }
+
   &__external {
     @include desktop-down {
       display: none;
     }
+
+    transition: opacity ease-in-out $transition-default-duration,
+      visibility ease-in-out $transition-default-duration;
 
     &-socials {
       display: flex;
@@ -96,6 +191,14 @@
       font-weight: 100;
     }
   }
+
+  &__trigger {
+    cursor: pointer;
+
+    @include desktop-down {
+      display: none;
+    }
+  }
 }
 
 .submenu {
@@ -118,10 +221,14 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    overflow: hidden;
   }
 }
 
 .topbar {
+  $this: &;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -143,14 +250,67 @@
     display: none;
   }
 
-  &__logo {
-  }
-
   &__toggle-nav {
     cursor: pointer;
 
     &--close {
       color: red;
+    }
+  }
+
+  &__toggle-button {
+    width: 26px;
+    height: 20px;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+
+    span {
+      display: block;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: $black-1;
+      border-radius: 4px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
+    }
+
+    span:nth-child(1) {
+      top: 0px;
+    }
+
+    span:nth-child(2),
+    span:nth-child(3) {
+      top: 8px;
+    }
+
+    span:nth-child(4) {
+      top: 16px;
+    }
+
+    &.toggle-button--opened {
+      span:nth-child(1) {
+        top: 8px;
+        width: 0%;
+        left: 50%;
+      }
+
+      span:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      span:nth-child(4) {
+        top: 8px;
+        width: 0%;
+        left: 50%;
+      }
     }
   }
 }

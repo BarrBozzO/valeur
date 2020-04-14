@@ -1,16 +1,16 @@
 import React from "react";
-import { Link } from "gatsby";
 import { navigate } from "@reach/router";
+import TransitionLink from "gatsby-plugin-transition-link";
 import { graphql } from "gatsby";
 import cx from "classnames";
 
+import SEO from "components/Seo";
 import Layout from "components/Layout";
-import SEO from "components/seo";
 import Button from "components/Button";
 
 import styles from "./Posts.module.scss";
 
-const Posts = ({ data, location }) => {
+const Posts = ({ data, mount, location }) => {
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
@@ -61,7 +61,7 @@ const Posts = ({ data, location }) => {
   };
 
   return (
-    <Layout location={location}>
+    <Layout location={location} mount={mount}>
       <SEO title="Posts" />
       <div className={styles["posts"]}>
         <h1 className={styles["posts__header"]}>Блог</h1>
