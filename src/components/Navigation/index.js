@@ -8,21 +8,12 @@ import External from "./External";
 import TopBar from "./TopBar";
 import SubMenu from "./SubMenu";
 import ToggleButton from "./ToggleButton";
-import TransitionLink from "gatsby-plugin-transition-link";
+import Link from "components/Link";
 
 import styles from "./Navigation.module.scss";
 
-const TRANSITION_LENGTH = 0.4;
-
 function Navigation({ location, isCollapsed }) {
   const dispatch = useContext(GlobalDispatchProvider);
-
-  const exitTransition = {
-    length: TRANSITION_LENGTH,
-  };
-  const entryTransition = {
-    delay: TRANSITION_LENGTH,
-  };
 
   const onToggle = () => {
     return dispatch({
@@ -60,30 +51,24 @@ function Navigation({ location, isCollapsed }) {
             }}
             path={location.pathname}
           />
-          <TransitionLink
-            exit={exitTransition}
-            entry={entryTransition}
+          <Link
             to="/about"
             activeClassName={styles["navigation__menu-item--active"]}
           >
             О проекте
-          </TransitionLink>
-          <TransitionLink
+          </Link>
+          <Link
             to="/posts"
-            exit={exitTransition}
-            entry={entryTransition}
             activeClassName={styles["navigation__menu-item--active"]}
           >
             Блог
-          </TransitionLink>
-          <TransitionLink
+          </Link>
+          <Link
             to="/contacts"
-            exit={exitTransition}
-            entry={entryTransition}
             activeClassName={styles["navigation__menu-item--active"]}
           >
             Контакты
-          </TransitionLink>
+          </Link>
         </nav>
         <External />
       </div>
