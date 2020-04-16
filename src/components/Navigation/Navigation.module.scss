@@ -31,6 +31,8 @@
     #{$this}__external {
       opacity: 0;
       visibility: hidden;
+
+      transition-delay: 0ms;
     }
   }
 
@@ -50,18 +52,37 @@
   &__menu {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: stretch;
+
+    padding: 0 $padding * 3;
 
     flex: 1 0 auto;
 
-    transition: opacity ease-in-out $transition-default-duration,
-      visibility ease-in-out $transition-default-duration;
+    transition: opacity $transition-default-duration
+        $transition-navigation-width-duration,
+      visibility $transition-default-duration
+        $transition-navigation-width-duration;
 
     &-item {
+      font-size: 24px;
+      line-height: 1;
+      color: $black-1;
+      text-align: right;
+      overflow: hidden;
+      white-space: nowrap;
+
+      padding: $padding / 2 0;
+
       &--active {
-        color: black;
-        text-decoration: underline;
+      }
+    }
+
+    @include desktop-down {
+      padding-top: $padding;
+
+      &-item {
+        text-align: left;
       }
     }
   }
@@ -208,13 +229,18 @@
   align-items: stretch;
 
   &--opened {
-    color: red;
   }
 
   &__title {
-    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
     user-select: none;
-    text-align: center;
+    text-align: right;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+
+    padding: $padding / 2 0;
   }
 
   &__items {
@@ -223,6 +249,22 @@
     justify-content: flex-start;
 
     overflow: hidden;
+  }
+
+  &__item {
+    line-height: 1;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+
+    padding: $padding / 4 0;
+  }
+
+  @include desktop-down {
+    &__item,
+    &__title {
+      text-align: left;
+    }
   }
 }
 
