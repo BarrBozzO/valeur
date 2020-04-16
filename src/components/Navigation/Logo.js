@@ -1,7 +1,10 @@
 import React from "react";
-import { Link } from "gatsby";
+
+import Link from "components/Link";
 
 import styles from "./Navigation.module.scss";
+
+const TRANSITION_LENGTH = 1;
 
 function Logo() {
   return (

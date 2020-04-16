@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
-import { Link } from "gatsby";
+
+import { GlobalDispatchProvider } from "context/GlobalContextProvider";
 import Logo from "./Logo";
 import External from "./External";
 import TopBar from "./TopBar";
 import SubMenu from "./SubMenu";
 import ToggleButton from "./ToggleButton";
+import Link from "components/Link";
 
 import styles from "./Navigation.module.scss";
 
-function Navigation({ location, isCollapsed, onToggle }) {
+function Navigation({ location, isCollapsed }) {
+  const dispatch = useContext(GlobalDispatchProvider);
+
+  const onToggle = () => {
+    return dispatch({
+      type: "TOGGLE_NAVIGATION",
+    });
+  };
+
   return (
     <>
       <TopBar onClick={onToggle} isCollapsed={isCollapsed} />

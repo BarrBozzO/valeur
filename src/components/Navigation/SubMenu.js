@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import { CSSTransition } from "react-transition-group";
-import { Link } from "gatsby";
+import Link from "components/Link";
 
 import styles from "./Navigation.module.scss";
 import "./NavigationTransition.scss";
