@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "gatsby";
 import cx from "classnames";
 
 import Layout from "components/Layout";
 import Seo from "components/Seo";
+import Link from "components/Link";
+
 import Article from "./Article";
 
 import styles from "./Post.module.scss";

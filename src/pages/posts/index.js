@@ -1,17 +1,28 @@
 import React from "react";
 import { navigate } from "@reach/router";
-import { Link } from "gatsby";
-import TransitionLink from "gatsby-plugin-transition-link";
 import { graphql } from "gatsby";
 import cx from "classnames";
 
 import SEO from "components/Seo";
 import Layout from "components/Layout";
 import Button from "components/Button";
+import Link from "components/Link";
+import { useTriggerTransition } from "gatsby-plugin-transition-link";
 
 import styles from "./Posts.module.scss";
 
+const TRANSITION_LENGTH = 0.4;
+
 const Posts = ({ data, mount, location }) => {
+  const triggerTransition = useTriggerTransition({
+    exit: {
+      length: TRANSITION_LENGTH,
+    },
+    entry: {
+      delay: TRANSITION_LENGTH,
+    },
+  });
+
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
@@ -28,7 +39,7 @@ const Posts = ({ data, mount, location }) => {
   };
 
   const onClick = slug => {
-    return () => navigate(`posts/${slug}`);
+    return () => triggerTransition({ to: `posts/${slug}` });
   };
 
   const renderPosts = () => {
