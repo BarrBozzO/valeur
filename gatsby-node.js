@@ -40,6 +40,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        allContentfulOnlineInvitation {
+          edges {
+            node {
+              id
+              description {
+                internal {
+                  content
+                }
+              }
+              title
+              slug
+              metaDescription
+              createdAt
+              image {
+                file {
+                  url
+                }
+              }
+            }
+          }
+        }
       }
     `
   );
@@ -61,4 +82,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     });
   });
+
+  const onlineInvitationTemplate = path.resolve(
+    `src/templates/OnlineInvitation/index.js`
+  );
+  result.data.allContentfulOnlineInvitation.edges.forEach(
+    ({ node }, index, invitations) => {
+      const next = index > 0 ? invitations[index - 1].node : null;
+      const prev =
+        index + 1 < invitations.length ? invitations[index + 1].node : null;
+
+      createPage({
+        path: `portfolio/online-invitations/${node.slug}`,
+        component: onlineInvitationTemplate,
+        context: {
+          invitation: {
+            ...node,
+          },
+          next: next ? { slug: next.slug, title: next.title } : null,
+          prev: prev ? { slug: prev.slug, title: prev.title } : null,
+        },
+      });
+    }
+  );
 };
