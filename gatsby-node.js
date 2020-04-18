@@ -30,13 +30,54 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   content {
                     value
                     nodeType
+                    marks {
+                      type
+                    }
+                    content {
+                      value
+                      nodeType
+                      content {
+                        value
+                        nodeType
+                      }
+                    }
+                    data {
+                      uri
+                    }
+                  }
+                  nodeType
+                  data {
+                    target {
+                      sys {
+                        type
+                        id
+                        contentful_id
+                      }
+                    }
                   }
                 }
               }
               title
-              slug
               metaDescription
-              createdAt
+              slug
+              createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
+              image {
+                file {
+                  url
+                }
+              }
+            }
+          }
+        }
+        allContentfulAsset {
+          edges {
+            node {
+              file {
+                url
+                fileName
+                contentType
+              }
+              contentful_id
             }
           }
         }
@@ -49,8 +90,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const postTemplate = path.resolve(`src/templates/post.js`);
-  result.data.allContentfulPost.edges.forEach(({ node }) => {
+  const postTemplate = path.resolve(`src/templates/Post/index.js`);
+  const assetsMap = result.data.allContentfulAsset.edges.reduce(
+    (accum, { node }) => ({
+      ...accum,
+      [node.contentful_id]: { ...node.file },
+    }),
+    {}
+  );
+  result.data.allContentfulPost.edges.forEach(({ node }, index, posts) => {
+    const next = index > 0 ? posts[index - 1].node : null;
+    const prev = index + 1 < posts.length ? posts[index + 1].node : null;
+
     createPage({
       path: `posts/${node.slug}`,
       component: postTemplate,
@@ -58,6 +109,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         post: {
           ...node,
         },
+        assetsMap,
+        next: next ? { slug: next.slug, title: next.title } : null,
+        prev: prev ? { slug: prev.slug, title: prev.title } : null,
       },
     });
   });

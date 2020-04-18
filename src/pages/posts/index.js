@@ -1,16 +1,28 @@
 import React from "react";
-import TransitionLink from "gatsby-plugin-transition-link";
+import { navigate } from "@reach/router";
 import { graphql } from "gatsby";
-import moment from "moment";
 import cx from "classnames";
-import { getRichText } from "utils";
 
 import SEO from "components/Seo";
 import Layout from "components/Layout";
+import Button from "components/Button";
+import Link from "components/Link";
+import { useTriggerTransition } from "gatsby-plugin-transition-link";
 
 import styles from "./Posts.module.scss";
 
+const TRANSITION_LENGTH = 0.4;
+
 const Posts = ({ data, mount, location }) => {
+  const triggerTransition = useTriggerTransition({
+    exit: {
+      length: TRANSITION_LENGTH,
+    },
+    entry: {
+      delay: TRANSITION_LENGTH,
+    },
+  });
+
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
@@ -26,28 +38,32 @@ const Posts = ({ data, mount, location }) => {
     return null;
   };
 
+  const onClick = slug => {
+    return () => triggerTransition({ to: `posts/${slug}` });
+  };
+
   const renderPosts = () => {
     return (
       <div className={styles["posts__list"]}>
         {data.allContentfulPost.nodes.map(
-          ({ id, slug, title, image, createdAt, article }) => (
+          ({ id, slug, title, image, createdAt, description }) => (
             <div
               className={cx(styles["posts__list-item"], styles["post"])}
               key={id}
             >
+              <Link to={`/posts/${slug}`}>
+                <h2 className={styles["post__title"]}>{title}</h2>
+              </Link>
+              <div className={styles["post__created"]}>{createdAt}</div>
+
               {renderImageCover(image)}
-              <div className={styles["post__content"]}>
-                <TransitionLink
-                  entry={{ delay: 0.4 }}
-                  exit={{ length: 0.4 }}
-                  to={`/posts/${slug}`}
-                >
-                  <h2 className={styles["post__content-title"]}>{title}</h2>
-                </TransitionLink>
-                <div className={styles["post__content-created"]}>
-                  {moment(createdAt).format("HH:MM DD-MM-YYYY")}
-                </div>
-                <div>{getRichText(article)}</div>
+              <div className={styles["post__description"]}>
+                {description &&
+                  description.internal &&
+                  description.internal.content}
+              </div>
+              <div className={styles["post__read"]}>
+                <Button onClick={onClick(slug)}>Читать далее</Button>
               </div>
             </div>
           )
@@ -60,7 +76,7 @@ const Posts = ({ data, mount, location }) => {
     <Layout location={location} mount={mount}>
       <SEO title="Posts" />
       <div className={styles["posts"]}>
-        <h1>Posts</h1>
+        <h1 className={styles["posts__header"]}>Блог</h1>
         {renderPosts()}
       </div>
     </Layout>
@@ -71,7 +87,7 @@ export default Posts;
 
 export const query = graphql`
   {
-    allContentfulPost {
+    allContentfulPost(sort: { order: DESC, fields: createdAt }) {
       nodes {
         id
         slug
@@ -85,7 +101,12 @@ export const query = graphql`
             }
           }
         }
-        createdAt
+        description {
+          internal {
+            content
+          }
+        }
+        createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
           file {
             url
