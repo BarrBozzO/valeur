@@ -15,12 +15,10 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
       const cover = Array.isArray(image) ? image[0] : image;
       if (cover.file && cover.file.url) {
         return (
-          <div className={styles["o-invitation__cover"]}>
-            <img
-              src={cover.file.url}
-              className={styles["o-invitation__image"]}
-            />
-          </div>
+          <div
+            className={styles["o-invitation__cover"]}
+            style={{ backgroundImage: `url('${cover.file.url}')` }}
+          />
         );
       }
     }
@@ -34,27 +32,19 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
         {data.allContentfulOnlineInvitation.nodes.map(
           ({ id, slug, title, image, createdAt, description }) => (
             <div
-              className={cx(
-                styles["online-invitations__grid-item"],
+              className={
+                // styles["online-invitations__grid-item"],
                 styles["o-invitation"]
-              )}
+              }
               key={id}
             >
-              {renderImageCover(image)}
               <div className={styles["o-invitation__content"]}>
                 <Link to={`/portfolio/online-invitations/${slug}`}>
+                  {renderImageCover(image)}
                   <h2 className={styles["o-invitation__content-title"]}>
                     {title}
                   </h2>
                 </Link>
-                <div className={styles["o-invitation__content-created"]}>
-                  {moment(createdAt).format("HH:MM DD-MM-YYYY")}
-                </div>
-                <div>
-                  {description &&
-                    description.internal &&
-                    description.internal.content}
-                </div>
               </div>
             </div>
           )
