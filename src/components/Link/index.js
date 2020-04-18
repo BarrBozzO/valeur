@@ -11,12 +11,13 @@ const entryTransition = {
   delay: TRANSITION_LENGTH,
 };
 
-function Link({ children, activeClassName, to }) {
+function Link({ children, className, activeClassName, to }) {
   return (
     <TransitionLink
       exit={exitTransition}
       entry={entryTransition}
       to={to}
+      className={className}
       activeClassName={activeClassName}
     >
       {children}
