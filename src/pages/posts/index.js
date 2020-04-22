@@ -1,12 +1,13 @@
 import React from "react";
-import { navigate } from "@reach/router";
 import { graphql } from "gatsby";
 import cx from "classnames";
+import Img from "gatsby-image";
 
 import SEO from "components/Seo";
 import Layout from "components/Layout";
 import Button from "components/Button";
 import Link from "components/Link";
+// import Img from "components/Image";
 import { useTriggerTransition } from "gatsby-plugin-transition-link";
 
 import styles from "./Posts.module.scss";
@@ -26,10 +27,20 @@ const Posts = ({ data, mount, location }) => {
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
-      if (cover.file && cover.file.url) {
+      if (cover.fluid) {
+        const {
+          details: {
+            image: { height, width },
+          },
+        } = cover.file;
+        console.log(width, height, cover.fluid.aspectRatio);
         return (
           <div className={styles["post__cover"]}>
-            <img src={cover.file.url} className={styles["post__image"]} />
+            <Img
+              style={{ maxWidth: width <= 1024 ? width : 1024 }}
+              fluid={cover.fluid}
+              className={styles["post__cover-image"]}
+            />
           </div>
         );
       }
@@ -108,8 +119,16 @@ export const query = graphql`
         }
         createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
+          fluid(maxWidth: 1024, quality: 100) {
+            ...GatsbyContentfulFluid_tracedSVG
+          }
           file {
-            url
+            details {
+              image {
+                height
+                width
+              }
+            }
           }
         }
       }

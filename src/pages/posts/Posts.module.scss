@@ -35,14 +35,13 @@
   min-height: 300px;
 
   &__cover {
-    display: flex;
-    justify-content: center;
+    picture {
+      position: static;
+    }
 
-    img {
-      max-width: 100%;
-      height: auto;
+    &-image {
       max-height: 800px;
-      object-fit: contain;
+      margin: 0 auto;
     }
   }
 
