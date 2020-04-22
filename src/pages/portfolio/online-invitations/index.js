@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import cx from "classnames";
-import moment from "moment";
 
 import Link from "components/Link";
 import SEO from "components/Seo";
@@ -15,10 +14,12 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
       const cover = Array.isArray(image) ? image[0] : image;
       if (cover.file && cover.file.url) {
         return (
-          <div
-            className={styles["o-invitation__cover"]}
-            style={{ backgroundImage: `url('${cover.file.url}')` }}
-          />
+          <div className={styles["o-invitation__cover"]}>
+            <img
+              className={styles["o-invitation__cover-image"]}
+              src={cover.file.url}
+            />
+          </div>
         );
       }
     }
@@ -32,20 +33,27 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
         {data.allContentfulOnlineInvitation.nodes.map(
           ({ id, slug, title, image, createdAt, description }) => (
             <div
-              className={
-                // styles["online-invitations__grid-item"],
+              className={cx(
+                styles["online-invitations__grid-item"],
                 styles["o-invitation"]
-              }
+              )}
               key={id}
             >
-              <div className={styles["o-invitation__content"]}>
-                <Link to={`/portfolio/online-invitations/${slug}`}>
+              <Link to={`/portfolio/online-invitations/${slug}`}>
+                <div className={styles["o-invitation__content"]}>
                   {renderImageCover(image)}
-                  <h2 className={styles["o-invitation__content-title"]}>
-                    {title}
-                  </h2>
-                </Link>
-              </div>
+                  <div className={styles["o-invitation__content-hover"]}>
+                    <h2 className={styles["o-invitation__content-title"]}>
+                      {title}
+                    </h2>
+                    <span className={styles["o-invitation__content-created"]}>
+                      {createdAt}
+                    </span>
+                    {/* <br /> */}
+                    {/* <p>{description}</p> */}
+                  </div>
+                </div>
+              </Link>
             </div>
           )
         )}
@@ -78,7 +86,7 @@ export const query = graphql`
             content
           }
         }
-        createdAt
+        createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
           file {
             url

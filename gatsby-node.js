@@ -52,7 +52,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               title
               slug
               metaDescription
-              createdAt
+              createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
               image {
                 file {
                   url

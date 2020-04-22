@@ -11,3 +11,9 @@
     @content;
   }
 }
+
+@mixin wide-desktop {
+  @media only screen and (min-width: ($wide-desktop-width)) {
+    @content;
+  }
+}
