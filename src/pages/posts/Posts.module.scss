@@ -2,48 +2,67 @@
 @import "~styles/__mixins";
 
 .posts {
-  padding: $page-padding;
+  @include page;
+
+  &__header {
+    text-align: center;
+  }
 
   &__list {
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
+    max-width: $desktop-width;
+
+    margin: 0 auto;
 
     &-item {
+      display: flex;
+      flex-direction: column;
+
+      &:not(:last-child) {
+        padding-bottom: $padding * 3;
+        border-bottom: 1px solid lighten($color: $gray-2, $amount: 30%);
+      }
+
       & + & {
-        margin-top: $padding * 2;
-        padding-top: $padding;
-        border-top: 1px solid $gray-0;
+        margin-top: $padding * 3;
       }
     }
   }
 }
 
 .post {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-
-  width: 100%;
-  height: auto;
+  min-height: 300px;
 
   &__cover {
-    flex: 1 0 50%;
-    min-width: 300px;
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      max-height: 800px;
+      object-fit: contain;
+    }
   }
 
-  &__content {
-    flex: 1 0 50%;
+  &__title {
+    text-align: center;
+  }
 
-    &-title {
-    }
+  &__created {
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: $padding;
+    color: $gray-2;
+    text-transform: capitalize;
+  }
 
-    &-created {
-      color: $gray-2;
-    }
+  &__description {
+    padding: $padding;
+  }
 
-    &-description {
-    }
+  &__read {
+    margin: 0 auto;
   }
 }

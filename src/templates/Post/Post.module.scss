@@ -1,0 +1,114 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.post {
+  @include page;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  max-width: $desktop-width;
+
+  &__header {
+    text-align: center;
+  }
+
+  &__article {
+    padding: $padding;
+  }
+
+  &__cover {
+    margin: 0 auto;
+
+    img {
+      width: auto;
+      max-height: 800px;
+    }
+  }
+
+  &__createdAt {
+    text-transform: capitalize;
+    font-size: 14px;
+    color: $gray-2;
+    padding-bottom: $padding;
+    text-align: center;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    width: 100%;
+    padding-top: $padding * 2;
+
+    &-divider {
+      margin: 0 $padding;
+      width: 1px;
+      background-color: lighten($color: $gray-2, $amount: 30%);
+    }
+
+    &-item {
+      flex: 1 0 auto;
+
+      max-width: 250px;
+
+      &:first-child {
+        text-align: right;
+      }
+
+      &:last-child {
+        text-align: left;
+      }
+    }
+
+    &-title {
+      font-size: 14px;
+      line-height: 1;
+    }
+  }
+}
+
+.article {
+  &__hr {
+    height: 1px;
+  }
+
+  &__paragraph {
+    &-item {
+      &--bold {
+        font-weight: 600;
+      }
+
+      &--underline {
+        text-decoration: underline;
+      }
+
+      &--italic {
+        font-style: italic;
+      }
+
+      &--code {
+        display: inline-block;
+        border-radius: $radius;
+        font-size: 14px;
+        background-color: $gray-0;
+        border: 1px solid $gray-2;
+        padding: 0 8px;
+        color: red;
+      }
+    }
+  }
+
+  @for $j from 1 to 7 {
+    &__heading#{$j} {
+      margin-bottom: $padding;
+
+      span {
+        font-size: 18px + 18 - $j * 2;
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -34,11 +34,13 @@ const Layout = ({ location, children, mount }) => {
       >
         <PageTransition mount={mount}>
           <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
+          {false && (
+            <footer>
+              © {new Date().getFullYear()}, Built with
+              {` `}
+              <a href="https://www.gatsbyjs.org">Gatsby</a>
+            </footer>
+          )}
         </PageTransition>
       </div>
     </div>

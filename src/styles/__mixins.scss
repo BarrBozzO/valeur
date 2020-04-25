@@ -1,13 +1,13 @@
 @import "~styles/__variables.scss";
 
 @mixin desktop {
-  @media only screen and (min-width: $desktop-width) {
+  @media only screen and (min-width: $desktop-width + 1px) {
     @content;
   }
 }
 
 @mixin desktop-down {
-  @media only screen and (max-width: ($desktop-width - 1px)) {
+  @media only screen and (max-width: ($desktop-width)) {
     @content;
   }
 }
@@ -15,5 +15,19 @@
 @mixin wide-desktop {
   @media only screen and (min-width: ($wide-desktop-width)) {
     @content;
+  }
+}
+
+@mixin tablet-down {
+  @media only screen and (max-width: ($tablet-width)) {
+    @content;
+  }
+}
+
+@mixin page {
+  padding: $page-padding;
+
+  @include tablet-down {
+    padding: $tablet-page-padding;
   }
 }
