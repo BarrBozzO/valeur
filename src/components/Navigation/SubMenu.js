@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import { CSSTransition } from "react-transition-group";
+import { TransitionState } from "gatsby-plugin-transition-link";
 import Link from "components/Link";
 
 import styles from "./Navigation.module.scss";
@@ -13,8 +14,19 @@ function isSubLinkSelected(path, items) {
   return Object.keys(items).includes(path);
 }
 
-function SubMenu({ classNames, title, path, items }) {
+function SubMenu({ classNames, title, path, items, transitionProps }) {
   const [isOpened, setIsOpened] = useState(isSubLinkSelected(path, items));
+
+  useEffect(() => {
+    if (
+      !transitionProps.mount &&
+      transitionProps.transitionStatus === "exiting" &&
+      isOpened &&
+      !isSubLinkSelected(transitionProps.exit.state.next, items)
+    ) {
+      setIsOpened(false);
+    }
+  }, [transitionProps.mount]);
 
   const renderItems = () => {
     return (
@@ -51,9 +63,13 @@ function SubMenu({ classNames, title, path, items }) {
         [styles["submenu--opened"]]: !!isOpened,
         [classNames["submenu"]]: Boolean(classNames["submenu"]),
       })}
-      onClick={() => setIsOpened(!isOpened)}
     >
-      <div className={styles["submenu__title"]}>{title}</div>
+      <div
+        className={styles["submenu__title"]}
+        onClick={() => setIsOpened(!isOpened)}
+      >
+        {title}
+      </div>
       {renderItems()}
     </div>
   );
@@ -64,4 +80,17 @@ SubMenu.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default SubMenu;
+// as component
+const withTransitionState = Component => {
+  return props => {
+    return (
+      <TransitionState>
+        {transitionProps => (
+          <Component {...props} transitionProps={transitionProps} />
+        )}
+      </TransitionState>
+    );
+  };
+};
+
+export default withTransitionState(SubMenu);

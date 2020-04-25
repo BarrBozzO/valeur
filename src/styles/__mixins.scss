@@ -12,6 +12,12 @@
   }
 }
 
+@mixin wide-desktop {
+  @media only screen and (min-width: ($wide-desktop-width)) {
+    @content;
+  }
+}
+
 @mixin tablet-down {
   @media only screen and (max-width: ($tablet-width)) {
     @content;

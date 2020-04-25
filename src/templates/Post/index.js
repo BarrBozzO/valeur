@@ -1,5 +1,7 @@
 import React from "react";
 import cx from "classnames";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 import Layout from "components/Layout";
 import Seo from "components/Seo";
@@ -13,16 +15,29 @@ function Post({
   pageContext: { post, prev, next, assetsMap },
   location,
   mount,
+  data: { contentfulPost },
 }) {
-  const { title, article, image, createdAt, metaDescription } = post;
+  const { title, article, createdAt, metaDescription } = post;
+  const { image } = contentfulPost;
 
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
-      if (cover.file && cover.file.url) {
+      if (cover.fluid) {
+        const {
+          details: {
+            image: { width },
+          },
+        } = cover.file;
+
         return (
           <div className={styles["post__cover"]}>
-            <img src={cover.file.url} className={styles["post__image"]} />
+            <Img
+              style={{ maxWidth: width <= 1024 ? width : 1024 }}
+              imgStyle={{ objectFit: "contain" }}
+              fluid={cover.fluid}
+              className={styles["post__cover-image"]}
+            />
           </div>
         );
       }
@@ -82,3 +97,23 @@ function Post({
 }
 
 export default Post;
+
+export const query = graphql`
+  query SinglePost($slug: String!) {
+    contentfulPost(slug: { eq: $slug }) {
+      image {
+        fluid(maxWidth: 1024, quality: 100) {
+          ...GatsbyContentfulFluid_tracedSVG
+        }
+        file {
+          details {
+            image {
+              height
+              width
+            }
+          }
+        }
+      }
+    }
+  }
+`;

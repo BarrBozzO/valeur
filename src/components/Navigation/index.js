@@ -45,7 +45,7 @@ function Navigation({ location, isCollapsed }) {
               "/portfolio/online-invitations": {
                 label: "Электронные пригласительные",
               },
-              "/portfolio/invitaion-packages": {
+              "/portfolio/invitation-kits": {
                 label: "Комплекты пригласительных",
               },
             }}
