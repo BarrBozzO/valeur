@@ -14,8 +14,18 @@ const entryTransition = {
 function Link({ children, className, activeClassName, to }) {
   return (
     <TransitionLink
-      exit={exitTransition}
-      entry={entryTransition}
+      exit={{
+        ...exitTransition,
+        state: {
+          next: to,
+        },
+      }}
+      entry={{
+        ...entryTransition,
+        state: {
+          prev: to,
+        },
+      }}
       to={to}
       className={className}
       activeClassName={activeClassName}
