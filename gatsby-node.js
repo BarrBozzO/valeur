@@ -61,11 +61,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               metaDescription
               slug
               createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
-              image {
-                file {
-                  url
-                }
-              }
             }
           }
         }
@@ -130,6 +125,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         post: {
           ...node,
         },
+        slug: node.slug,
         assetsMap,
         next: next ? { slug: next.slug, title: next.title } : null,
         prev: prev ? { slug: prev.slug, title: prev.title } : null,
@@ -153,6 +149,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           invitation: {
             ...node,
           },
+          slug: node.slug,
           next: next ? { slug: next.slug, title: next.title } : null,
           prev: prev ? { slug: prev.slug, title: prev.title } : null,
         },

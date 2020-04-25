@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import cx from "classnames";
+import Img from "gatsby-image";
 
 import Link from "components/Link";
 import SEO from "components/Seo";
@@ -12,12 +13,13 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
-      if (cover.file && cover.file.url) {
+      if (cover.fluid) {
         return (
           <div className={styles["o-invitation__cover"]}>
-            <img
+            <Img
+              fluid={cover.fluid}
+              imgStyle={{ objectFit: "cover" }}
               className={styles["o-invitation__cover-image"]}
-              src={cover.file.url}
             />
           </div>
         );
@@ -31,7 +33,7 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
     return (
       <div className={styles["online-invitations__grid"]}>
         {data.allContentfulOnlineInvitation.nodes.map(
-          ({ id, slug, title, image, createdAt, description }) => (
+          ({ id, slug, title, image, shortDescription }) => (
             <div
               className={cx(
                 styles["online-invitations__grid-item"],
@@ -46,11 +48,11 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
                     <h2 className={styles["o-invitation__content-title"]}>
                       {title}
                     </h2>
-                    <span className={styles["o-invitation__content-created"]}>
-                      {createdAt}
+                    <span
+                      className={styles["o-invitation__content-description"]}
+                    >
+                      {shortDescription}
                     </span>
-                    {/* <br /> */}
-                    {/* <p>{description}</p> */}
                   </div>
                 </div>
               </Link>
@@ -65,7 +67,9 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
     <Layout mount={mount} location={location}>
       <SEO title="Электронные пригласительные" />
       <div className={styles["online-invitations"]}>
-        <h1>Электронные пригласительные</h1>
+        <h1 className={styles["online-invitations__header"]}>
+          Электронные пригласительные
+        </h1>
         {renderInvitations()}
       </div>
     </Layout>
@@ -81,15 +85,11 @@ export const query = graphql`
         id
         slug
         title
-        description {
-          internal {
-            content
-          }
-        }
+        shortDescription
         createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
-          file {
-            url
+          fluid(maxWidth: 1024, quality: 100) {
+            ...GatsbyContentfulFluid_tracedSVG
           }
         }
       }

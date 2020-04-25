@@ -2,7 +2,13 @@
 @import "~styles/__mixins";
 
 .online-invitation {
-  padding: $page-padding;
+  @include page;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  max-width: $desktop-width;
 
   &__header {
     text-align: center;
@@ -10,5 +16,20 @@
 
   &__description {
     text-align: center;
+    padding: $padding;
+  }
+
+  &__cover {
+    width: 100%;
+
+    picture {
+      position: static;
+    }
+
+    &-image {
+      width: auto;
+      margin: 0 auto;
+      max-height: 800px;
+    }
   }
 }

@@ -1,28 +1,39 @@
 import React from "react";
 import cx from "classnames";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 import Layout from "components/Layout";
 import Seo from "components/Seo";
-import Link from "components/Link";
 
 import styles from "./OnlineInvitation.module.scss";
 
 function OnlineInvitation({
-  pageContext: { invitation, prev, next },
+  pageContext: { invitation },
   location,
   mount,
+  data: { contentfulOnlineInvitation },
 }) {
-  const { title, description, image, createdAt, metaDescription } = invitation;
+  const { title, description, metaDescription } = invitation;
+  const { image } = contentfulOnlineInvitation;
 
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
-      if (cover.file && cover.file.url) {
+      if (cover.fluid) {
+        const {
+          details: {
+            image: { width },
+          },
+        } = cover.file;
+
         return (
           <div className={styles["online-invitation__cover"]}>
-            <img
-              src={cover.file.url}
-              className={styles["online-invitation__image"]}
+            <Img
+              style={{ maxWidth: width <= 1024 ? width : 1024 }}
+              imgStyle={{ objectFit: "contain" }}
+              fluid={cover.fluid}
+              className={styles["online-invitation__cover-image"]}
             />
           </div>
         );
@@ -47,3 +58,23 @@ function OnlineInvitation({
 }
 
 export default OnlineInvitation;
+
+export const query = graphql`
+  query SingleOnlineInvitation($slug: String!) {
+    contentfulOnlineInvitation(slug: { eq: $slug }) {
+      image {
+        fluid(maxWidth: 1024, quality: 100) {
+          ...GatsbyContentfulFluid_tracedSVG
+        }
+        file {
+          details {
+            image {
+              height
+              width
+            }
+          }
+        }
+      }
+    }
+  }
+`;
