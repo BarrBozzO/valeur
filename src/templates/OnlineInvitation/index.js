@@ -37,47 +37,9 @@ function OnlineInvitation({
       <Seo title={title} description={metaDescription} />
       <div className={styles["online-invitation"]}>
         <h1 className={styles["online-invitation__header"]}>{title}</h1>
-        <div className={styles["online-invitation__createdAt"]}>
-          {createdAt}
-        </div>
         {renderImageCover(image)}
-        {description && description.internal && description.internal.content}
-        <div className={styles["online-invitation__nav"]}>
-          <div
-            className={cx(
-              styles["online-invitation__nav-item"],
-              styles["online-invitation__nav-item--prev"]
-            )}
-          >
-            {prev && (
-              <>
-                <Link to={`/portfolio/online-invitations/${prev.slug}`}>
-                  <span>Предыдущий</span>
-                  <div className={styles["online-invitation__nav-title"]}>
-                    {prev.title}
-                  </div>
-                </Link>
-              </>
-            )}
-          </div>
-          <div className={styles["online-invitation__nav-divider"]} />
-          <div
-            className={cx(
-              styles["online-invitation__nav-item"],
-              styles["online-invitation__nav-item--next"]
-            )}
-          >
-            {next && (
-              <>
-                <Link to={`/portfolio/online-invitations/${next.slug}`}>
-                  <span>Следующий</span>
-                  <div className={styles["online-invitation__nav-title"]}>
-                    {next.title}
-                  </div>
-                </Link>
-              </>
-            )}
-          </div>
+        <div className={styles["online-invitation__description"]}>
+          {description && description.internal && description.internal.content}
         </div>
       </div>
     </Layout>

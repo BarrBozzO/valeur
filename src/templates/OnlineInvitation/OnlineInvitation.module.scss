@@ -3,4 +3,12 @@
 
 .online-invitation {
   padding: $page-padding;
+
+  &__header {
+    text-align: center;
+  }
+
+  &__description {
+    text-align: center;
+  }
 }
