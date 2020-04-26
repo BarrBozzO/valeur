@@ -97,6 +97,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        allContentfulInvitationKit {
+          edges {
+            node {
+              id
+              description {
+                internal {
+                  content
+                }
+              }
+              title
+              slug
+              metaDescription
+              createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
+              image {
+                file {
+                  url
+                }
+              }
+            }
+          }
+        }
       }
     `
   );
@@ -147,6 +168,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         component: onlineInvitationTemplate,
         context: {
           invitation: {
+            ...node,
+          },
+          slug: node.slug,
+          next: next ? { slug: next.slug, title: next.title } : null,
+          prev: prev ? { slug: prev.slug, title: prev.title } : null,
+        },
+      });
+    }
+  );
+
+  const invitationKitTemplate = path.resolve(
+    "src/templates/InvitationKit/index.js"
+  );
+  result.data.allContentfulInvitationKit.edges.forEach(
+    ({ node }, index, kits) => {
+      const next = index > 0 ? kits[index - 1].node : null;
+      const prev = index + 1 < kits.length ? kits[index + 1].node : null;
+
+      createPage({
+        path: `portfolio/invitation-kits/${node.slug}`,
+        component: invitationKitTemplate,
+        context: {
+          kit: {
             ...node,
           },
           slug: node.slug,
