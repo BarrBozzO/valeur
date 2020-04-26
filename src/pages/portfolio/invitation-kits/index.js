@@ -61,7 +61,7 @@ const InvitationKitsPage = ({ data, mount, location }) => {
 
   return (
     <Layout mount={mount} location={location}>
-      <SEO title="Электронные пригласительные" />
+      <SEO title="Комплекты пригласительных" />
       <div className={styles["invitation-kits"]}>
         <h1 className={styles["invitation-kits__header"]}>
           Комплекты пригласительных
