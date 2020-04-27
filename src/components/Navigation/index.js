@@ -52,13 +52,6 @@ function Navigation({ location, isCollapsed }) {
             path={location.pathname}
           />
           <Link
-            to="/about"
-            className={styles["navigation__menu-item"]}
-            activeClassName={styles["navigation__menu-item--active"]}
-          >
-            О проекте
-          </Link>
-          <Link
             to="/posts"
             className={styles["navigation__menu-item"]}
             activeClassName={styles["navigation__menu-item--active"]}
