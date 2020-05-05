@@ -2,10 +2,22 @@
 @import "~styles/__mixins";
 
 .home {
-  height: 100vh;
-  color: $primary-white;
-  background-color: rgba(0, 0, 0, 0.06);
-  padding: $page-padding;
+  // height: 100vh;
+  // color: $primary-white;
+  // background-color: rgba(0, 0, 0, 0.06);
+  // padding: $page-padding;
+
+  &__start {
+    height: 100vh;
+  }
+
+  &__about {
+    height: 100vh;
+  }
+
+  &__reviews {
+    height: 100vh;
+  }
 
   @include desktop-down {
     margin-top: $topbar-h;
