@@ -4,6 +4,7 @@
 .submenu__items-transition {
   &-enter {
     height: 0;
+    padding-bottom: 0;
   }
 
   &-enter-active {
@@ -13,13 +14,14 @@
   &-exit-active {
     transition: height $transition-default-duration;
     height: 0 !important;
+    padding-bottom: 0;
   }
 
   @for $j from 1 to 10 {
     &--#{$j}.submenu__items-transition-enter-active,
     &--#{$j}.submenu__items-transition-enter-done,
     &--#{$j}.submenu__items-transition-exit {
-      height: 27px * $j + $padding;
+      height: 40px * $j + $padding;
     }
   }
 }

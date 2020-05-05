@@ -5,6 +5,8 @@ import Link from "components/Link";
 import styles from "./Navigation.module.scss";
 
 function Logo() {
+  return null;
+
   return (
     <div className={styles["navigation__logo"]}>
       <Link to="/" />
