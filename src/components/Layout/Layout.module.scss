@@ -10,6 +10,7 @@
 
     &--collapsed {
       margin-left: $navigation-collapsed-w;
+      margin-right: $navigation-collapsed-w;
     }
 
     @include desktop-down {

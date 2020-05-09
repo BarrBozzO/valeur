@@ -18,14 +18,24 @@ module.exports = {
         },
       },
     },
-    `gatsby-transformer-remark`,
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        pathToConfigModule: `src/utils/typography`,
-        omitGoogleFont: true,
+        fonts: [
+          {
+            family: `PT Serif`,
+            variants: [`400`, `700`],
+            subsets: [`cyrillic`, `latin`],
+          },
+          {
+            family: `Open Sans`,
+            variants: [`300`, `400`, `700`],
+            subsets: [`cyrillic`, `latin`],
+          },
+        ],
       },
     },
+    `gatsby-transformer-remark`,
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
     {

@@ -6,6 +6,8 @@ import BehanceIcon from "assets/icons/behance.svg";
 import styles from "./Navigation.module.scss";
 
 function External() {
+  return null;
+
   return (
     <div className={styles["navigation__external"]}>
       <div className={styles["navigation__external-socials"]}>
