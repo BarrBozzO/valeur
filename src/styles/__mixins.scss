@@ -13,7 +13,7 @@
 }
 
 @mixin wide-desktop {
-  @media only screen and (min-width: ($wide-desktop-width)) {
+  @media only screen and (min-width: ($wide-desktop-width + 1px)) {
     @content;
   }
 }
@@ -30,4 +30,8 @@
   @include tablet-down {
     padding: $tablet-page-padding;
   }
+}
+
+@mixin secondary-font {
+  font-family: "PT Serif", Arial, Helvetica, sans-serif;
 }

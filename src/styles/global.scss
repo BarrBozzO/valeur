@@ -154,6 +154,7 @@ select {
 button,
 html [type="button"] {
   -webkit-appearance: button;
+  outline: none;
 }
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,

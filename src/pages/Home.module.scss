@@ -12,11 +12,37 @@
   }
 
   &__about {
+    max-width: $wide-desktop-width;
     height: 100vh;
+    padding: 80px 0;
+
+    margin: 0 auto;
+
+    h2 {
+      text-align: center;
+      margin-bottom: $padding * 4;
+
+      @include desktop-down {
+        margin-bottom: $padding * 2;
+      }
+    }
   }
 
   &__reviews {
+    max-width: $wide-desktop-width + 120px;
     height: 100vh;
+    padding: 80px 0;
+
+    margin: 0 auto;
+
+    h2 {
+      text-align: center;
+      margin-bottom: $padding * 4;
+
+      @include desktop-down {
+        margin-bottom: $padding * 2;
+      }
+    }
   }
 
   @include desktop-down {
@@ -26,6 +52,171 @@
   &__background-video {
     & > video {
       width: auto;
+    }
+  }
+}
+
+.reviews {
+  @include desktop {
+    padding: 0 60px;
+  }
+
+  &__button {
+    // width: 40px;
+    // height: 40px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      display: block;
+      width: 32px;
+      height: 32px;
+      fill: $gray-2;
+    }
+
+    &--right {
+      transform: rotate(180deg);
+    }
+
+    div:hover > & {
+      svg {
+        fill: $black-1;
+      }
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: $padding 0 $padding * 2;
+  }
+
+  &__to-slide {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    opacity: 0.2;
+    cursor: pointer;
+    padding: 0;
+    border: 2px solid $black-1;
+
+    transition: transform 100ms ease-in-out;
+
+    & + & {
+      margin-left: $padding;
+    }
+
+    @include desktop {
+      &--active {
+        width: 18px;
+        border-radius: 6px;
+        background-color: $black-1;
+
+        opacity: 1;
+      }
+    }
+
+    @include desktop-down {
+      &--active {
+        transform: scale(1.8);
+        background-color: $black-1;
+
+        opacity: 1;
+      }
+
+      &--adjacent {
+        transform: scale(1.4);
+      }
+    }
+  }
+
+  &__card-wrapper {
+    padding-bottom: $padding;
+
+    @include desktop-down {
+      height: 100%;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    width: 100%;
+    min-height: 120px;
+
+    margin: 0;
+    padding: $padding * 2;
+
+    border-radius: $radius;
+    background-color: $primary-white;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 2px 4px 0 rgba(14, 30, 37, 0.12);
+
+    @media only screen and (min-width: ($desktop-width + 1px)) and (max-width: ($wide-desktop-width)) {
+      padding: $padding * 2 $padding * 1.5;
+    }
+
+    @include desktop-down {
+      height: 100%;
+    }
+
+    @include tablet-down {
+      padding: $padding * 2;
+    }
+
+    &-text {
+      margin: 0;
+
+      font-size: 18px;
+      line-height: 1.4em;
+      color: $black-1;
+      @include secondary-font;
+
+      @media only screen and (min-width: ($desktop-width + 1px)) and (max-width: ($wide-desktop-width)) {
+        font-size: 16px;
+      }
+    }
+
+    &-author {
+      margin-bottom: $padding;
+
+      font-size: 16px;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    &-name {
+      display: inline-block;
+      width: 100%;
+
+      color: $black-1;
+      font-weight: 400;
+    }
+
+    &-nickname {
+      display: inline-block;
+      width: 100%;
+      margin-top: $padding / 2;
+
+      color: $gray-2;
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    &-avatar {
+      float: left;
+      background: $primary-white;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      margin-right: $padding;
     }
   }
 }
