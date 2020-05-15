@@ -8,9 +8,12 @@
 
     transition: margin ease-in-out $transition-navigation-width-duration;
 
+    main {
+      min-height: 100vh;
+    }
+
     &--collapsed {
       margin-left: $navigation-collapsed-w;
-      margin-right: $navigation-collapsed-w;
     }
 
     &--home {
@@ -20,6 +23,122 @@
     @include desktop-down {
       margin-left: 0;
       margin-top: $topbar-h;
+    }
+  }
+}
+
+.footer {
+  background-color: #0c0c0e;
+
+  &__content {
+    display: grid;
+    grid-gap: $padding * 2;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "description pages contacts"
+      "copyright copyright developed";
+
+    max-width: $wide-desktop-width;
+    padding: $padding * 4;
+    margin: 0 auto;
+
+    color: $primary-white;
+  }
+
+  &__description {
+    grid-area: description;
+  }
+
+  &__copyright {
+    grid-area: copyright;
+
+    font-size: 0.6em;
+    text-transform: uppercase;
+    color: rgba($primary-white, 0.7);
+  }
+
+  &__developed {
+    grid-area: developed;
+
+    font-size: 0.6em;
+    text-transform: uppercase;
+    color: rgba($primary-white, 0.7);
+  }
+
+  &__contacts {
+    grid-area: contacts;
+
+    &-title {
+      font-size: 20px;
+      margin-bottom: $padding * 2;
+    }
+
+    &-email {
+      font-size: 0.8em;
+      @include secondary-font;
+
+      margin-bottom: $padding / 2;
+    }
+
+    &-socials {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &-social-icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+
+      fill: $primary-white;
+    }
+  }
+
+  &__pages {
+    grid-area: pages;
+
+    &-title {
+      font-size: 20px;
+      margin-bottom: $padding * 2;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      a {
+        color: $primary-white;
+        font-size: 0.8em;
+        border-bottom: 1px solid transparent;
+
+        padding-bottom: $padding / 4;
+        margin-bottom: $padding / 2;
+
+        transition: all $transition-default-duration;
+
+        &:hover {
+          color: $primary-white;
+          border-bottom-color: $primary-white;
+        }
+      }
+    }
+  }
+
+  @include tablet-down {
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      & > div:not(:last-child) {
+        margin-bottom: $padding * 2;
+      }
+    }
+
+    &__copyright,
+    &__developed {
+      text-align: center;
     }
   }
 }

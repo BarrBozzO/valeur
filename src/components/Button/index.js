@@ -17,7 +17,7 @@ function Button({
       className={cx(styles["primary-button"], {
         [styles["primary-button--secondary"]]: Boolean(secondary),
         [styles["primary-button--link"]]: Boolean(link),
-        className: Boolean(className),
+        [className]: Boolean(className),
       })}
       onClick={onClick}
       {...otherProps}

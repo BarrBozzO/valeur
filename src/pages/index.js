@@ -199,6 +199,18 @@ const IndexPage = ({ location, mount }) => {
             </div>
           </div>
         </div>
+        <div className={styles["home__order"]}>
+          <h2>Готовы сделать заказ?</h2>
+          <div className={styles["home__order-description"]}>
+            Let's chat about your next project.
+            <br />
+            You'll get affordable web design & SEO without monthly cost. No
+            hidden fees.
+            <br />
+            Simple and Independent - web design for your business or project.
+          </div>
+          <Button className={styles["home__order-button"]} label="Заказать" />
+        </div>
       </div>
     </Layout>
   );

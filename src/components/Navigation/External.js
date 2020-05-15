@@ -33,12 +33,7 @@ function External() {
           </a>
         </div>
       </div>
-      <div className={styles["navigation__external-dev-by"]}>
-        Developed by{" "}
-        <a href="https://github.com/BarrBozzO/velour" target="_blank">
-          BarrBozzO
-        </a>
-      </div>
+      <div className={styles["navigation__external-dev-by"]}>Developed by </div>
     </div>
   );
 }
