@@ -34,7 +34,7 @@ class Video extends Component {
 
   componentWillUnmount() {
     if (this.video) {
-      this.video.removeEventListener("loadeddata", () => {});
+      this.video.removeEventListener("loadeddata", () => undefined);
     }
   }
 

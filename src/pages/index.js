@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import ItemsCarousel from "react-items-carousel";
 import cx from "classnames";
+import Img from "gatsby-image";
 
 import Video from "components/Video";
 import Button from "components/Button";
 import SEO from "components/Seo";
 import Layout from "components/Layout";
+import Link from "components/Link";
 import { useWindowSize } from "../hooks";
 
 import ChevronIcon from "assets/icons/chevron.svg";
+import SectionBorder from "assets/icons/section-border.svg";
 import vFile from "assets/videos/test.mp4";
 
 import styles from "./Home.module.scss";
@@ -66,7 +69,7 @@ const reviews = [
   },
 ];
 
-const IndexPage = ({ location, mount }) => {
+const IndexPage = ({ data, location, mount }) => {
   const wSize = useWindowSize();
   const cardsCount = wSize.width > 1024 ? 3 : 1;
   const tabletWidth = wSize.width <= 768;
@@ -77,6 +80,16 @@ const IndexPage = ({ location, mount }) => {
   const handleSlideBtnClick = index => {
     return () => setActiveItemIndex(index);
   };
+
+  const {
+    images: { edges: imagesArr },
+  } = data;
+  const onlilneInvitationFeatureImg = imagesArr.find(({ node }) => {
+    return node.base === "macbook.png";
+  }).node.childImageSharp;
+  const blogFeatureImg = imagesArr.find(({ node }) => {
+    return node.base === "safari-window.png";
+  }).node.childImageSharp;
 
   return (
     <Layout mount={mount} location={location}>
@@ -109,11 +122,122 @@ const IndexPage = ({ location, mount }) => {
             <Button label="Заказать" />
           </div>
         </div>
-        <div className={styles["home__about"]}>
-          <h2>О проекте</h2>
+        <div
+          className={cx(
+            styles["home__section-divider"],
+            styles["home__section-divider--start"]
+          )}
+        >
+          <SectionBorder />
         </div>
-        <div className={styles["home__reviews"]}>
-          <h2>Что говорят наши клиенты</h2>
+        <section className={styles["home__about"]}>
+          <h2>О проекте</h2>
+          <div className={styles["home__about-description"]}>
+            Мы, студия «Weddings Inc.», занимается разработкой и изготовлением
+            свадебной полиграфии. Профессионализм наших художников и дизайнеров
+            поможет сделать вашу свадьбу незабываемой. Важной частью каждой
+            свадьбы являются пригласительные – именно они сообщают гостям дату,
+            время, место проведения торжества, стиль, предпочтительный стиль в
+            одежде и множество других пожеланий. На нашем сайте вы можете
+            заказать разработку индивидуального дизайна, который будет
+            соответствовать стилистике вашего торжества. Помимо приглашений, у
+            нас можно создать: посадочные карты гостей, свадебное меню, номера
+            столов, конверты и планы рассадки гостей. Мы стремимся быть одними
+            из лучших на рынке свадебной полиграфии и прикладываем для этого
+            большие усилия.. Также, вы можете проверить наш instagram{" "}
+            <a href="https://www.instagram.com/v_aleur/" target="_blank">
+              @v_aleur
+            </a>
+            <br />
+            Нам не терпится поработать с вами!
+          </div>
+        </section>
+        <section className={styles["home__features"]}>
+          <h2>Почему стоит выбрать именно нас</h2>
+          <div className={styles["features"]}>
+            <div className={styles["features__item"]}>
+              <div className={styles["features__item-text-container"]}>
+                <div className={styles["features__item-title"]}>
+                  Индивидуальные Пригласительные
+                </div>
+                <div className={styles["features__item-description"]}>
+                  <p>
+                    Valeur — это идеальный способ получить уникальные
+                    пригласительные ручной работы. Для создания по-настоящему
+                    потрясающих проектов, мы используем только люксовые
+                    материалы и современные подходы.
+                  </p>
+                  <p>
+                    Мы начнем разработку вашего дизайна с нуля, учитывая ваши
+                    идеи, тему и персональный стиль. Вы получите индивидуальное
+                    художественное оформление и по-настоящему личный опыт.
+                  </p>
+                  <br />
+                  Готовы ли вы начать работу с индивидуальным дизайном?
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Комплекты пригласительных
+                  </Link>
+                </div>
+              </div>
+              <div className={styles["features__item-image-container"]}>
+                image
+              </div>
+            </div>
+            <div className={styles["features__item"]}>
+              <div className={styles["features__item-image-container"]}>
+                <Img
+                  className={styles["features__item-image"]}
+                  fluid={onlilneInvitationFeatureImg.fluid}
+                  imgStyle={{ objectFit: "cover" }}
+                />
+              </div>
+              <div className={styles["features__item-text-container"]}>
+                <div className={styles["features__item-title"]}>
+                  Электронные пригласительные
+                </div>
+                <div className={styles["features__item-description"]}>
+                  Отправляйте вашим гостям восхитительные электронные
+                  пригласительные.
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/online-invitations"
+                  >
+                    Смотреть пригласительные
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className={styles["features__item"]}>
+              <div>
+                <div className={styles["features__item-title"]}>
+                  Присоединяйтесь к нам
+                </div>
+                <div className={styles["features__item-description"]}>
+                  В нашем Блоге мы делимся идеями, рассказываем о процессе
+                  создания проектов, поиске вдохновления и многом другом.
+                  <br />
+                  <Link className={styles["features__item-link"]} to="/posts">
+                    Читать
+                  </Link>
+                </div>
+              </div>
+              <div className={styles["features__item-image-container"]}>
+                <Img
+                  className={styles["features__item-image"]}
+                  fluid={blogFeatureImg.fluid}
+                  imgStyle={{ objectFit: "cover" }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className={styles["home__reviews"]}>
+          <h2>Что думают наши клиенты</h2>
           <div className={styles["reviews"]}>
             <ItemsCarousel
               activePosition="center"
@@ -124,7 +248,12 @@ const IndexPage = ({ location, mount }) => {
               gutter={desktopWidth ? 16 : 32}
               leftChevron={
                 !desktopWidth ? (
-                  <button className={styles["reviews__button"]}>
+                  <button
+                    className={cx(
+                      styles["reviews__button"],
+                      styles["reviews__button--left"]
+                    )}
+                  >
                     <ChevronIcon />
                   </button>
                 ) : null
@@ -198,22 +327,43 @@ const IndexPage = ({ location, mount }) => {
               })}
             </div>
           </div>
-        </div>
-        <div className={styles["home__order"]}>
-          <h2>Готовы сделать заказ?</h2>
-          <div className={styles["home__order-description"]}>
-            Let's chat about your next project.
-            <br />
-            You'll get affordable web design & SEO without monthly cost. No
-            hidden fees.
-            <br />
-            Simple and Independent - web design for your business or project.
-          </div>
-          <Button className={styles["home__order-button"]} label="Заказать" />
-        </div>
+        </section>
+        <section className={styles["home__order"]}>
+          <h2>
+            Вы готовы начать?
+            {/*
+                          Вы готовы начать работу с{" "}
+            <span style={{ whiteSpace: "nowrap" }}>
+              индивидуальным дизайном?
+            </span>
+              */}
+            <small className={styles["home__order-subheader"]}>
+              {`Давайте обсудим ваш будущий проект.
+              Вместе мы сможем создать нечто потрясающее!`}
+            </small>
+          </h2>
+          <Button className={styles["home__order-button"]} label="Начать" />
+        </section>
       </div>
     </Layout>
   );
 };
 
 export default IndexPage;
+
+export const query = graphql`
+  {
+    images: allFile(filter: { relativePath: { regex: "/features/.*/" } }) {
+      edges {
+        node {
+          base
+          childImageSharp {
+            fluid(maxWidth: 1024, quality: 100) {
+              ...GatsbyImageSharpFluid_tracedSVG
+            }
+          }
+        }
+      }
+    }
+  }
+`;

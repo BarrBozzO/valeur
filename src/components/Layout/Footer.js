@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "components/Link";
 import InstagramIcon from "assets/icons/instagram.svg";
-import FacebookIcon from "assets/icons/facebook.svg";
-import BehanceIcon from "assets/icons/behance.svg";
+import WhatsAppIcon from "assets/icons/whatsapp.svg";
+import Logo from "assets/logo/valeur.svg";
 
 import styles from "./Layout.module.scss";
 
@@ -10,9 +10,13 @@ function Footer() {
   return (
     <footer className={styles["footer"]}>
       <div className={styles["footer__content"]}>
-        <div className={styles["footer__description"]}>
-          High-quality digital resources which make your design workflow faster
-          and easier
+        <div className={styles["footer__mission"]}>
+          <Logo className={styles["footer__logo"]} />
+          {`Наша цель — создать уникальные пригласительные, которые порадуют вас
+            и ваших гостей. Мы надеемся, что вы получите удовольствие на каждом этапе
+            процесса проектирования и оформления заказа.
+
+            Если есть какие-либо проблемы с вашим заказом, пожалуйста, сообщите нам.`}
         </div>
         <div className={styles["footer__pages"]}>
           <div className={styles["footer__pages-title"]}>Карта</div>
@@ -36,6 +40,11 @@ function Footer() {
             <div className={styles["footer__contacts-socials"]}>
               <a href="https://www.instagram.com/v_aleur/" target="_blank">
                 <InstagramIcon
+                  className={styles["footer__contacts-social-icon"]}
+                />
+              </a>
+              <a href="https://wa.me/79053357749" target="_blank">
+                <WhatsAppIcon
                   className={styles["footer__contacts-social-icon"]}
                 />
               </a>
