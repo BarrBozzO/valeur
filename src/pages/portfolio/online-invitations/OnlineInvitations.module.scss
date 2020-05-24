@@ -2,10 +2,29 @@
 @import "~styles/__mixins";
 
 .online-invitations {
-  padding: $page-padding;
+  padding: 80px $navigation-collapsed-w;
+
+  @include tablet-down {
+    padding: $padding * 2 $padding;
+  }
 
   &__header {
     text-align: center;
+    font-weight: 100;
+    font-size: 2em;
+    margin-bottom: $padding * 4;
+
+    @include tablet-down {
+      margin-bottom: $padding * 2;
+    }
+
+    @include tablet-down {
+      font-size: 1.8em;
+    }
+
+    @include mobile-down {
+      font-size: 1.6em;
+    }
   }
 
   &__grid {
@@ -40,14 +59,14 @@
 .o-invitation {
   $this: &;
 
+  a {
+    display: block;
+  }
+
   &__content {
     width: 100%;
     height: 100%;
     overflow: hidden;
-
-    a {
-      display: block;
-    }
 
     &-title {
       color: $primary-white;
