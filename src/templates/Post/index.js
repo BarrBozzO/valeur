@@ -51,8 +51,8 @@ function Post({
       <Seo title={title} description={metaDescription} />
       <div className={styles["post"]}>
         <h1 className={styles["post__header"]}>{title}</h1>
-        <div className={styles["post__createdAt"]}>{createdAt}</div>
         {renderImageCover(image)}
+        <div className={styles["post__createdAt"]}>{createdAt}</div>
         <Article
           className={styles["post__article"]}
           data={article}

@@ -2,24 +2,45 @@
 @import "~styles/__mixins";
 
 .post {
-  @include page;
+  padding: 80px $navigation-collapsed-w;
+  color: $primary-text-color;
+
+  @include tablet-down {
+    padding: $padding * 2 $padding;
+  }
 
   display: flex;
   flex-direction: column;
 
   margin: 0 auto;
-  max-width: $desktop-width;
+  max-width: $wide-desktop-width;
 
   &__header {
     text-align: center;
+    font-size: 2em;
+    margin-bottom: $padding * 4;
+
+    @include tablet-down {
+      margin-bottom: $padding * 2;
+    }
+
+    @include tablet-down {
+      font-size: 1.8em;
+    }
+
+    @include mobile-down {
+      font-size: 1.6em;
+    }
   }
 
   &__article {
-    padding: $padding;
+    line-height: 1.4em;
+    @include secondary-font;
   }
 
   &__cover {
     width: 100%;
+    margin-bottom: $padding * 2;
 
     picture {
       position: static;
@@ -28,16 +49,21 @@
     &-image {
       width: auto;
       margin: 0 auto;
-      max-height: 800px;
+      max-height: 600px;
     }
   }
 
   &__createdAt {
-    text-transform: capitalize;
-    font-size: 14px;
+    text-align: left;
+    font-size: 0.8em;
     color: $gray-2;
-    padding-bottom: $padding;
-    text-align: center;
+    text-transform: uppercase;
+
+    margin-bottom: $padding * 4;
+
+    @include tablet-down {
+      margin-bottom: $padding * 2;
+    }
   }
 
   &__nav {
@@ -78,6 +104,15 @@
 .article {
   &__hr {
     height: 1px;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
   }
 
   &__paragraph {

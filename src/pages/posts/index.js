@@ -12,6 +12,7 @@ import { useTriggerTransition } from "gatsby-plugin-transition-link";
 import styles from "./Posts.module.scss";
 
 const TRANSITION_LENGTH = 0.4;
+const MAX_WIDTH = 1024;
 
 const Posts = ({ data, mount, location }) => {
   const triggerTransition = useTriggerTransition({
@@ -36,7 +37,7 @@ const Posts = ({ data, mount, location }) => {
         return (
           <div className={styles["post__cover"]}>
             <Img
-              style={{ maxWidth: width <= 1024 ? width : 1024 }}
+              style={{ maxWidth: width <= MAX_WIDTH ? width : MAX_WIDTH }}
               fluid={cover.fluid}
               className={styles["post__cover-image"]}
             />
@@ -61,19 +62,24 @@ const Posts = ({ data, mount, location }) => {
               className={cx(styles["posts__list-item"], styles["post"])}
               key={id}
             >
+              {renderImageCover(image)}
               <Link to={`/posts/${slug}`}>
                 <h2 className={styles["post__title"]}>{title}</h2>
               </Link>
               <div className={styles["post__created"]}>{createdAt}</div>
-
-              {renderImageCover(image)}
               <div className={styles["post__description"]}>
                 {description &&
                   description.internal &&
                   description.internal.content}
               </div>
               <div className={styles["post__read"]}>
-                <Button onClick={onClick(slug)}>Читать далее</Button>
+                <Button
+                  className={styles["post__read-button"]}
+                  secondary
+                  onClick={onClick(slug)}
+                >
+                  Читать далее
+                </Button>
               </div>
             </div>
           )

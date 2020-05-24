@@ -66,7 +66,11 @@ function Article({ data, className, assets }) {
     const id = get(a, "data.target.sys.contentful_id");
 
     if (id) {
-      return <img src={get(assets, `${id}.url`)} />;
+      return (
+        <div className={styles["article__image"]}>
+          <img src={get(assets, `${id}.url`)} />
+        </div>
+      );
     }
 
     return null;

@@ -12,6 +12,7 @@ import { useWindowSize } from "../hooks";
 
 import ChevronIcon from "assets/icons/chevron.svg";
 import SectionBorder from "assets/icons/section-border.svg";
+import Logo from "assets/logo/valeur.svg";
 import vFile from "assets/videos/test.mp4";
 
 import styles from "./Home.module.scss";
@@ -69,6 +70,14 @@ const reviews = [
   },
 ];
 
+const ScrollElement = () => (
+  <div className={styles["scroll-down"]}>
+    <div className={styles["scroll-down__mousey"]}>
+      <div className={styles["scroll-down__scroller"]}></div>
+    </div>
+  </div>
+);
+
 const IndexPage = ({ data, location, mount }) => {
   const wSize = useWindowSize();
   const cardsCount = wSize.width > 1024 ? 3 : 1;
@@ -95,9 +104,10 @@ const IndexPage = ({ data, location, mount }) => {
     <Layout mount={mount} location={location}>
       <SEO title="Главная" />
       <div className={styles["home"]}>
-        <div className={styles["home__start"]}>
+        <section className={styles["home__start"]}>
           <Video className={styles["home__background-video"]} source={vFile} />
-          <h1>Valeur</h1>
+          <Logo className={styles["home__start-logo"]} />
+          <h1>Valeur — свадебная полиграфия</h1>
           <div>
             <p>
               There’s a voice that keeps on calling me. Down the road, that’s
@@ -121,13 +131,15 @@ const IndexPage = ({ data, location, mount }) => {
             </p>
             <Button label="Заказать" />
           </div>
-        </div>
+          <ScrollElement />
+        </section>
         <div
           className={cx(
             styles["home__section-divider"],
             styles["home__section-divider--start"]
           )}
         >
+          <SectionBorder />
           <SectionBorder />
         </div>
         <section className={styles["home__about"]}>

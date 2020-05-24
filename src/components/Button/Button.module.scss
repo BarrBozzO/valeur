@@ -8,18 +8,32 @@
   font-size: 14px;
   line-height: 1;
 
-  background-color: $black-1;
-  border: 1px solid $black-1;
+  background-color: $primary-purple;
+  border: 1px solid $primary-purple;
+  border-radius: $radius / 2;
 
   color: $primary-white;
 
   &--secondary {
-    border-color: $primary-white;
+    color: $primary-purple;
+    border-color: inherit;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $primary-purple;
+      color: $primary-white;
+    }
   }
 
   &:hover {
-    background-color: lighten($color: $black-1, $amount: 5%);
-    border: 1px solid lighten($color: $black-1, $amount: 5%);
+    background-color: lighten($color: $primary-purple, $amount: 5%);
+    border: 1px solid lighten($color: $primary-purple, $amount: 5%);
     cursor: pointer;
   }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  transition: transform $transition-default-duration;
 }
