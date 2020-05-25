@@ -33,7 +33,7 @@ function Post({
         return (
           <div className={styles["post__cover"]}>
             <Img
-              style={{ maxWidth: width <= 1024 ? width : 1024 }}
+              style={{ maxWidth: width <= 1280 ? width : 1280 }}
               imgStyle={{ objectFit: "contain" }}
               fluid={cover.fluid}
               className={styles["post__cover-image"]}
@@ -50,8 +50,8 @@ function Post({
     <Layout location={location} mount={mount}>
       <Seo title={title} description={metaDescription} />
       <div className={styles["post"]}>
-        <h1 className={styles["post__header"]}>{title}</h1>
         {renderImageCover(image)}
+        <h1 className={styles["post__header"]}>{title}</h1>
         <div className={styles["post__createdAt"]}>{createdAt}</div>
         <Article
           className={styles["post__article"]}
@@ -102,7 +102,7 @@ export const query = graphql`
   query SinglePost($slug: String!) {
     contentfulPost(slug: { eq: $slug }) {
       image {
-        fluid(maxWidth: 1024, quality: 100) {
+        fluid(maxWidth: 1280, quality: 100) {
           ...GatsbyContentfulFluid_tracedSVG
         }
         file {

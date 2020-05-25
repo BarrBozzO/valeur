@@ -23,7 +23,8 @@ function Article({ data, className, assets }) {
       case "hr":
         return <hr className={styles["article__hr"]} />;
       case "unorderedList":
-        return renderList(value);
+      case "orderedList":
+        return renderList(type)(value);
       case "blockquote":
         return renderBlockQuote(value);
       case "hyperlink":
@@ -86,20 +87,17 @@ function Article({ data, className, assets }) {
     );
   };
 
-  const renderList = l => {
+  const renderList = listType => l => {
     const content = l.content || [];
 
     if (content.length) {
       return (
-        <ul className={styles["article__unordered-list"]}>
+        <ul className={styles[`article__${listType}`]}>
           {content.map(listItem => {
             const content = listItem.content || [];
 
             return content.map((item, index) => (
-              <li
-                key={index}
-                className={styles["article__unordered-list-item"]}
-              >
+              <li key={index} className={styles[`article__${listType}-item`]}>
                 {renderByType(item)}
               </li>
             ));
@@ -112,7 +110,11 @@ function Article({ data, className, assets }) {
   const renderBlockQuote = q => {
     const content = q.content || [];
 
-    return <blockquote>{content.map(item => renderByType(item))}</blockquote>;
+    return (
+      <blockquote className={styles["article__blockquote"]}>
+        {content.map(item => renderByType(item))}
+      </blockquote>
+    );
   };
 
   const renderLink = l => {

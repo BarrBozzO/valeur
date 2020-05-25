@@ -13,6 +13,7 @@
     text-align: center;
     font-size: 2em;
     margin-bottom: $padding * 4;
+    text-transform: uppercase;
 
     @include tablet-down {
       margin-bottom: $padding * 2;
@@ -25,12 +26,22 @@
     @include mobile-down {
       font-size: 1.6em;
     }
+
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   bottom: 0;
+    //   left: 0;
+    //   right: 0;
+    //   height: 2px;
+    //   background-color: red;
+    // }
   }
 
   &__list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: $padding * 4 $padding * 2;
+    grid-gap: $padding * 4 /*  $padding * 2 */;
 
     @include desktop-down {
       display: flex;
@@ -67,31 +78,35 @@
     }
 
     &-image {
-      max-height: 400px;
+      height: 400px;
       margin: 0;
+
+      @include mobile-down {
+        height: 360px;
+      }
     }
   }
 
   &__title {
     text-align: left;
-    font-size: 1.8em;
+    font-size: 1.6em;
     font-weight: 400;
     margin: $padding * 2 0 $padding;
     color: $primary-text-color;
 
     @include tablet-down {
-      font-size: 1.6em;
+      font-size: 1.4em;
     }
 
     @include mobile-down {
-      font-size: 1.4em;
+      font-size: 1.2em;
     }
   }
 
   &__created {
     text-align: left;
     font-size: 0.6em;
-    margin-bottom: $padding;
+    margin-bottom: $padding * 2;
     color: $gray-2;
     text-transform: uppercase;
   }
@@ -107,8 +122,8 @@
 
     &-button {
       color: $primary-text-color;
-      font-size: 0.8em;
-      height: 42px;
+      font-size: 0.68em;
+      text-transform: uppercase;
       border-width: 2px;
       border-color: $primary-purple;
     }

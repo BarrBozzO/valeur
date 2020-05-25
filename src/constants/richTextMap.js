@@ -2,6 +2,7 @@ export const nodeTypes = {
   paragraph: "paragraph",
   hr: "hr",
   "unordered-list": "unorderedList",
+  "ordered-list": "orderedList",
   blockquote: "blockquote",
   hyperlink: "hyperlink",
   text: "text",
