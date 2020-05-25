@@ -7,7 +7,7 @@
     margin-left: $navigation-w;
 
     ::selection {
-      // color: $primary-white;
+      color: $primary-text-color;
       background-color: transparentize($color: $primary-purple, $amount: 0.75);
     }
 

@@ -27,7 +27,7 @@
 
   &:hover {
     background-color: lighten($color: $primary-purple, $amount: 5%);
-    border: 1px solid lighten($color: $primary-purple, $amount: 5%);
+    border-color: lighten($color: $primary-purple, $amount: 5%);
     cursor: pointer;
   }
 
@@ -35,5 +35,5 @@
     transform: scale(0.9);
   }
 
-  transition: transform $transition-default-duration;
+  transition: all $transition-default-duration * 0.8;
 }
