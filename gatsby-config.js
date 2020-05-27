@@ -35,6 +35,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-portal`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
