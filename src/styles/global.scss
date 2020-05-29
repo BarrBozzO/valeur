@@ -210,3 +210,8 @@ textarea {
   -webkit-appearance: button;
   font: inherit;
 }
+
+[id="portal"] {
+  position: relative;
+  z-index: 999;
+}
