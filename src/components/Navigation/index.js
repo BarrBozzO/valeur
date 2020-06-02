@@ -7,8 +7,7 @@ import TopBar from "./TopBar";
 import SubMenu from "./SubMenu";
 import ToggleButton from "./ToggleButton";
 import Link from "components/Link";
-import Logo from "assets/logo/valeur.svg";
-import SubLogo from "assets/logo/wedding-polygraphy.svg";
+import Logo from "assets/logo/logo.svg";
 
 import styles from "./Navigation.module.scss";
 
@@ -43,12 +42,6 @@ function Navigation({ location, isCollapsed }) {
         <div className={cx(styles["navigation__logo"])}>
           <Link className={styles["navigation__logo-link"]} to="/">
             <Logo className={styles["navigation__logo-image"]} />
-            <SubLogo
-              className={cx(
-                styles["navigation__logo-image"],
-                styles["navigation__logo-image--secondary"]
-              )}
-            />
           </Link>
         </div>
         <nav className={styles["navigation__menu"]}>
