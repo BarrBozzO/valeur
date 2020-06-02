@@ -14,7 +14,7 @@ function isSubLinkSelected(path, items) {
   return Object.keys(items).includes(path);
 }
 
-function SubMenu({ classNames, title, path, items, transitionProps }) {
+function SubMenu({ classNames, title, path, items, transitionProps, onClose }) {
   const [isOpened, setIsOpened] = useState(isSubLinkSelected(path, items));
 
   useEffect(() => {
@@ -48,6 +48,7 @@ function SubMenu({ classNames, title, path, items, transitionProps }) {
               to={key}
               className={styles["submenu__item"]}
               activeClassName={classNames["active-item"]}
+              onClick={onClose}
             >
               {items[key].label}
             </Link>

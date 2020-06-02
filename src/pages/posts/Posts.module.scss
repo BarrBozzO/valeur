@@ -2,30 +2,58 @@
 @import "~styles/__mixins";
 
 .posts {
-  @include page;
+  padding: 80px $navigation-collapsed-w;
+  color: $primary-text-color;
+
+  @include tablet-down {
+    padding: $padding * 2 $padding;
+  }
 
   &__header {
     text-align: center;
+    font-size: 2em;
+    margin-bottom: $padding * 4;
+    text-transform: uppercase;
+
+    @include tablet-down {
+      margin-bottom: $padding * 2;
+    }
+
+    @include tablet-down {
+      font-size: 1.8em;
+    }
+
+    @include mobile-down {
+      font-size: 1.6em;
+    }
   }
 
   &__list {
-    display: flex;
-    flex-direction: column;
-    max-width: $desktop-width;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $padding * 4 /*  $padding * 2 */;
 
+    @include desktop-down {
+      display: flex;
+      flex-direction: column;
+    }
+
+    max-width: $wide-desktop-width;
     margin: 0 auto;
 
     &-item {
       display: flex;
       flex-direction: column;
 
-      &:not(:last-child) {
-        padding-bottom: $padding * 3;
-        border-bottom: 1px solid lighten($color: $gray-2, $amount: 30%);
-      }
+      @include desktop-down {
+        &:not(:last-child) {
+          padding-bottom: $padding * 3;
+          border-bottom: 1px solid lighten($color: $gray-2, $amount: 30%);
+        }
 
-      & + & {
-        margin-top: $padding * 3;
+        & + & {
+          margin-top: $padding * 3;
+        }
       }
     }
   }
@@ -40,28 +68,55 @@
     }
 
     &-image {
-      max-height: 800px;
-      margin: 0 auto;
+      height: 400px;
+      margin: 0;
+
+      @include mobile-down {
+        height: 360px;
+      }
     }
   }
 
   &__title {
-    text-align: center;
+    text-align: left;
+    font-size: 1.6em;
+    font-weight: 400;
+    margin: $padding * 2 0 $padding;
+    color: $primary-text-color;
+    @include secondary-font;
+
+    @include tablet-down {
+      font-size: 1.4em;
+    }
+
+    @include mobile-down {
+      font-size: 1.2em;
+    }
   }
 
   &__created {
-    text-align: center;
-    font-size: 14px;
-    padding-bottom: $padding;
+    text-align: left;
+    font-size: 0.6em;
+    margin-bottom: $padding * 2;
     color: $gray-2;
-    text-transform: capitalize;
+    text-transform: uppercase;
   }
 
   &__description {
-    padding: $padding;
+    font-size: 0.8em;
+    line-height: 1.4em;
+    @include secondary-font;
   }
 
   &__read {
-    margin: 0 auto;
+    margin: $padding * 2 0 0;
+
+    &-button {
+      color: $primary-text-color;
+      font-size: 0.68em;
+      text-transform: uppercase;
+      border-width: 2px;
+      border-color: $primary-purple;
+    }
   }
 }

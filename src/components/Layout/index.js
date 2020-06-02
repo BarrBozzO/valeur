@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import cx from "classnames";
 
 import Navigation from "../Navigation";
+import Footer from "./Footer";
 import PageTransition from "components/PageTransition";
 import { GlobalStateProvider } from "context/GlobalContextProvider";
 
@@ -34,14 +35,8 @@ const Layout = ({ location, children, mount }) => {
       >
         <PageTransition mount={mount}>
           <main>{children}</main>
-          {false && (
-            <footer>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
-          )}
         </PageTransition>
+        <Footer />
       </div>
     </div>
   );

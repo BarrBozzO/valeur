@@ -10,6 +10,14 @@ const reducer = (state, action) => {
           isCollapsed: !state.navigation.isCollapsed,
         },
       };
+    case "COLLAPSE_NAVIGATION":
+      return {
+        ...state,
+        navigation: {
+          ...state.navigation,
+          isCollapsed: true,
+        },
+      };
     default:
       return console.error("Wrong action type");
   }
@@ -19,6 +27,7 @@ const initialState = {
   navigation: {
     isCollapsed: true,
   },
+  portals: [],
 };
 
 export const GlobalStateProvider = createContext();

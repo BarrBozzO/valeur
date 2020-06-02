@@ -1,0 +1,32 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.portal {
+  &__content {
+    &-close {
+      position: absolute;
+      top: $padding * 2;
+      right: $padding * 2;
+      cursor: pointer;
+      z-index: 1;
+
+      svg {
+        display: block;
+        width: $padding * 1.5;
+        fill: $primary-white;
+      }
+    }
+
+    &--modal {
+      background-color: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

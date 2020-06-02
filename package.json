@@ -29,6 +29,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
+    "react-items-carousel": "^2.8.0",
     "react-swipeable-views": "^0.13.9",
     "react-swipeable-views-utils": "^0.13.9",
     "react-transition-group": "^4.3.0"

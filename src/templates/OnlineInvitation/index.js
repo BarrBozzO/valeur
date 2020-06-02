@@ -5,6 +5,7 @@ import Img from "gatsby-image";
 
 import Layout from "components/Layout";
 import Carousel from "components/Carousel";
+import Button from "components/Button";
 import Seo from "components/Seo";
 
 import styles from "./OnlineInvitation.module.scss";
@@ -32,14 +33,6 @@ function OnlineInvitation({
         maxWidth: "100%",
       };
 
-      // if (width > height) {
-      //   imgStyle.width = "100%";
-      //   imgStyle.height = "auto";
-      // } else {
-      //   imgStyle.width = "auto";
-      //   imgStyle.height = "100%";
-      // }
-
       return (
         <Img
           style={{ width: "100%", height: "100%" }}
@@ -51,8 +44,6 @@ function OnlineInvitation({
 
     return null;
   };
-
-  const openCarouselPopup = () => {};
 
   const renderImagesCarousel = () => {
     const items = Array.isArray(image) ? image : [image];
@@ -80,16 +71,19 @@ function OnlineInvitation({
     >
       <Seo title={title} description={metaDescription} />
       <div className={styles["online-invitation"]}>
+        <h1 className={styles["online-invitation__header"]}>{title}</h1>
         <div className={styles["online-invitation__content"]}>
-          <div className={styles["online-invitation__description"]}>
-            <h1 className={styles["online-invitation__header"]}>{title}</h1>
-            <small>
-              {description &&
-                description.internal &&
-                description.internal.content}
-            </small>
-          </div>
           {renderImagesCarousel()}
+          <div className={styles["online-invitation__description"]}>
+            {description &&
+              description.internal &&
+              description.internal.content}
+            <div className={styles["online-invitation__order-container"]}>
+              <Button className={styles["online-invitation__order"]} secondary>
+                Заказать
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

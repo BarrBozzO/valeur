@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 
 import { GlobalDispatchProvider } from "context/GlobalContextProvider";
-import Logo from "./Logo";
-import External from "./External";
 import TopBar from "./TopBar";
 import SubMenu from "./SubMenu";
 import ToggleButton from "./ToggleButton";
 import Link from "components/Link";
+import Logo from "assets/logo/valeur.svg";
+import SubLogo from "assets/logo/wedding-polygraphy.svg";
 
 import styles from "./Navigation.module.scss";
 
@@ -18,6 +18,12 @@ function Navigation({ location, isCollapsed }) {
   const onToggle = () => {
     return dispatch({
       type: "TOGGLE_NAVIGATION",
+    });
+  };
+
+  const onClose = () => {
+    return dispatch({
+      type: "COLLAPSE_NAVIGATION",
     });
   };
 
@@ -34,7 +40,17 @@ function Navigation({ location, isCollapsed }) {
           isCollapsed={isCollapsed}
           onClick={onToggle}
         />
-        <Logo />
+        <div className={cx(styles["navigation__logo"])}>
+          <Link className={styles["navigation__logo-link"]} to="/">
+            <Logo className={styles["navigation__logo-image"]} />
+            <SubLogo
+              className={cx(
+                styles["navigation__logo-image"],
+                styles["navigation__logo-image--secondary"]
+              )}
+            />
+          </Link>
+        </div>
         <nav className={styles["navigation__menu"]}>
           <SubMenu
             title="Портфолио"
@@ -50,11 +66,13 @@ function Navigation({ location, isCollapsed }) {
               },
             }}
             path={location.pathname}
+            onClose={onClose}
           />
           <Link
             to="/posts"
             className={styles["navigation__menu-item"]}
             activeClassName={styles["navigation__menu-item--active"]}
+            onClick={onClose}
           >
             Блог
           </Link>
@@ -62,11 +80,11 @@ function Navigation({ location, isCollapsed }) {
             to="/contacts"
             className={styles["navigation__menu-item"]}
             activeClassName={styles["navigation__menu-item--active"]}
+            onClick={onClose}
           >
             Контакты
           </Link>
         </nav>
-        <External />
       </div>
     </>
   );
