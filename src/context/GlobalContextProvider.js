@@ -27,6 +27,7 @@ const initialState = {
   navigation: {
     isCollapsed: true,
   },
+  portals: [],
 };
 
 export const GlobalStateProvider = createContext();

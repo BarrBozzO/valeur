@@ -26,16 +26,6 @@
     @include mobile-down {
       font-size: 1.6em;
     }
-
-    // &::after {
-    //   content: "";
-    //   position: absolute;
-    //   bottom: 0;
-    //   left: 0;
-    //   right: 0;
-    //   height: 2px;
-    //   background-color: red;
-    // }
   }
 
   &__list {
@@ -93,6 +83,7 @@
     font-weight: 400;
     margin: $padding * 2 0 $padding;
     color: $primary-text-color;
+    @include secondary-font;
 
     @include tablet-down {
       font-size: 1.4em;

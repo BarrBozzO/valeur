@@ -12,8 +12,10 @@ import { useWindowSize } from "../hooks";
 
 import ChevronIcon from "assets/icons/chevron.svg";
 import SectionBorder from "assets/icons/section-border.svg";
+import WaveBorder from "assets/icons/wave.svg";
+import Wave2Border from "assets/icons/wave-2.svg";
 import Logo from "assets/logo/valeur.svg";
-import vFile from "assets/videos/test.mp4";
+import vFile from "assets/videos/bg-video.mp4";
 
 import styles from "./Home.module.scss";
 
@@ -99,6 +101,9 @@ const IndexPage = ({ data, location, mount }) => {
   const blogFeatureImg = imagesArr.find(({ node }) => {
     return node.base === "safari-window.png";
   }).node.childImageSharp;
+  const invitationKitsFeature = imagesArr.find(({ node }) => {
+    return node.base === "kits.png";
+  }).node.childImageSharp;
 
   return (
     <Layout mount={mount} location={location}>
@@ -156,14 +161,13 @@ const IndexPage = ({ data, location, mount }) => {
             нас можно создать: посадочные карты гостей, свадебное меню, номера
             столов, конверты и планы рассадки гостей. Мы стремимся быть одними
             из лучших на рынке свадебной полиграфии и прикладываем для этого
-            большие усилия.. Также, вы можете проверить наш instagram{" "}
-            <a href="https://www.instagram.com/v_aleur/" target="_blank">
-              @v_aleur
-            </a>
-            <br />
+            большие усилия.. Также, вы можете проверить наш instagram <br />
             Нам не терпится поработать с вами!
           </div>
         </section>
+        <div className={cx(styles["home__wave"], styles["home__wave--top"])}>
+          <WaveBorder />
+        </div>
         <section className={styles["home__features"]}>
           <h2>Почему стоит выбрать именно нас</h2>
           <div className={styles["features"]}>
@@ -191,7 +195,11 @@ const IndexPage = ({ data, location, mount }) => {
                 </div>
               </div>
               <div className={styles["features__item-image-container"]}>
-                image
+                <Img
+                  className={styles["features__item-image"]}
+                  fluid={invitationKitsFeature.fluid}
+                  imgStyle={{ objectFit: "cover" }}
+                />
               </div>
             </div>
             <div className={styles["features__item"]}>
@@ -220,7 +228,7 @@ const IndexPage = ({ data, location, mount }) => {
               </div>
             </div>
             <div className={styles["features__item"]}>
-              <div>
+              <div className={styles["features__item-text-container"]}>
                 <div className={styles["features__item-title"]}>
                   Присоединяйтесь к нам
                 </div>
@@ -243,6 +251,9 @@ const IndexPage = ({ data, location, mount }) => {
             </div>
           </div>
         </section>
+        <div className={cx(styles["home__wave"], styles["home__wave--bottom"])}>
+          <Wave2Border />
+        </div>
         <section className={styles["home__reviews"]}>
           <h2>Что думают наши клиенты</h2>
           <div className={styles["reviews"]}>

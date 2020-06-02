@@ -67,10 +67,29 @@
 
   &__reviews {
     background-color: $primary-gray;
+    padding-top: 0 !important;
   }
 
   &__features {
-    background-color: $primary-white;
+    background-color: $primary-purple;
+    color: $primary-white;
+    padding-top: 0 !important;
+  }
+
+  &__wave {
+    overflow: hidden;
+    svg {
+      display: block;
+      fill: $primary-purple;
+    }
+    &--bottom {
+      background-color: $primary-purple;
+
+      svg {
+        fill: $primary-gray;
+        transform: scaleX(1.5);
+      }
+    }
   }
 
   &__section-divider {
@@ -178,6 +197,8 @@
 
     &-text-container {
       flex: 1 0 40%;
+      align-self: flex-start;
+      padding: $padding * 2;
 
       @include desktop-down {
         flex: 1 0 100%;
@@ -186,6 +207,7 @@
 
     &-title {
       font-size: 1.5em;
+      font-weight: 700;
       line-height: 1.4em;
       margin-bottom: $padding * 2;
       padding-bottom: $padding * 2;
@@ -203,14 +225,13 @@
     }
 
     &-description {
-      color: $primary-text-color;
+      color: $primary-white;
       font-size: 0.9em;
       line-height: 1.4em;
-      @include secondary-font;
     }
 
     &-link {
-      color: $black-1;
+      color: $primary-white;
       margin-top: $padding * 2;
       line-height: 1em;
 
@@ -222,7 +243,7 @@
         width: 100%;
         height: 1px;
         content: "";
-        background-color: $black-1;
+        background-color: $primary-white;
       }
 
       &::before {
