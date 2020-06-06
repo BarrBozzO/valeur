@@ -31,6 +31,8 @@ function ImagesCarousel({ images }) {
     return null;
   };
 
+  if (!images) return null;
+
   return (
     <div className={styles["carousel"]}>
       <Carousel
