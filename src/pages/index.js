@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ItemsCarousel from "react-items-carousel";
 import cx from "classnames";
 import Img from "gatsby-image";
+import get from "lodash/get";
+import { truncateText } from "utils";
 
 import Video from "components/Video";
 import Button from "components/Button";
@@ -12,6 +14,8 @@ import { useWindowSize } from "../hooks";
 
 import ChevronIcon from "assets/icons/chevron.svg";
 import SectionBorder from "assets/icons/section-border.svg";
+import ChatIcon from "assets/icons/chat.svg";
+import LikeIcon from "assets/icons/heart.svg";
 import WaveBorder from "assets/icons/wave.svg";
 import Wave2Border from "assets/icons/wave-2.svg";
 import Logo from "assets/logo/valeur.svg";
@@ -104,6 +108,8 @@ const IndexPage = ({ data, location, mount }) => {
   const invitationKitsFeature = imagesArr.find(({ node }) => {
     return node.base === "kits.png";
   }).node.childImageSharp;
+
+  const instagramPosts = get(data, "allInstaNode.edges", []);
 
   return (
     <Layout mount={mount} location={location}>
@@ -349,18 +355,70 @@ const IndexPage = ({ data, location, mount }) => {
         <section className={styles["home__order"]}>
           <h2>
             Вы готовы начать?
-            {/*
-                          Вы готовы начать работу с{" "}
-            <span style={{ whiteSpace: "nowrap" }}>
-              индивидуальным дизайном?
-            </span>
-              */}
             <small className={styles["home__order-subheader"]}>
               {`Давайте обсудим ваш будущий проект.
               Вместе мы сможем создать нечто потрясающее!`}
             </small>
           </h2>
           <Button className={styles["home__order-button"]} label="Начать" />
+        </section>
+        <section className={styles["home__instagram"]}>
+          <h2>
+            Мы в Instagram
+            <small className={styles["home__instagram-subheader"]}>
+              Следите за обновлениями на @v_aleur
+            </small>
+          </h2>
+          <div className={styles["instagram"]}>
+            <div className={styles["instagram__grid"]}>
+              {instagramPosts.map(({ node }) => {
+                const {
+                  id,
+                  caption,
+                  likes,
+                  comments,
+                  timestamp,
+                  localFile: { childImageSharp: image },
+                } = node;
+
+                return (
+                  <div className={styles["instagram__grid-item"]}>
+                    <a href={`https://instagram.com/p/${id}`} target="_blank">
+                      <Img
+                        style={{
+                          position: "absolute",
+                          height: "100%",
+                          width: "100%",
+                        }}
+                        className={styles["instagram__grid-item-image"]}
+                        fluid={image.fluid}
+                        imgStyle={{ objectFit: "cover" }}
+                      />
+                      <div className={styles["instagram__grid-item-hover"]}>
+                        <div className={styles["instagram__grid-item-caption"]}>
+                          {truncateText(caption)}
+                        </div>
+                        <div className={styles["instagram__grid-item-icons"]}>
+                          {!!likes && (
+                            <div>
+                              <LikeIcon />
+                              {likes}
+                            </div>
+                          )}
+                          {!!comments && (
+                            <div>
+                              <ChatIcon />
+                              {comments}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </section>
       </div>
     </Layout>
@@ -379,6 +437,36 @@ export const query = graphql`
             fluid(maxWidth: 1024, quality: 100) {
               ...GatsbyImageSharpFluid_tracedSVG
             }
+          }
+        }
+      }
+    }
+    allInstaNode {
+      edges {
+        node {
+          id
+          likes
+          comments
+          mediaType
+          preview
+          original
+          timestamp
+          caption
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 400, quality: 100) {
+                ...GatsbyImageSharpFluid_tracedSVG
+              }
+            }
+          }
+          thumbnails {
+            src
+            config_width
+            config_height
+          }
+          dimensions {
+            height
+            width
           }
         }
       }

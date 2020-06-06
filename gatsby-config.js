@@ -40,6 +40,12 @@ module.exports = {
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: `v_aleur`,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
