@@ -1,6 +1,185 @@
 @import "~styles/__variables";
 @import "~styles/__mixins";
 
-.contacts-page {
-  padding: $page-padding;
+.contacts {
+  padding: 80px $navigation-collapsed-w;
+  color: $primary-text-color;
+
+  @include tablet-down {
+    padding: $padding * 2 $padding;
+  }
+
+  &__header {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: $padding * 4;
+    text-transform: uppercase;
+
+    @include tablet-down {
+      margin-bottom: $padding * 2;
+    }
+
+    @include tablet-down {
+      font-size: 1.8em;
+    }
+
+    @include mobile-down {
+      font-size: 1.6em;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet-down {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+
+    &-item {
+      flex: 1 0 0;
+      max-width: 400px;
+
+      @include tablet-down {
+        margin: 0 auto;
+
+        &:not(:last-child) {
+          margin-bottom: $padding * 2;
+        }
+      }
+
+      &-title {
+        font-size: 1.4em;
+        text-align: center;
+        @include secondary-font;
+
+        margin-bottom: $padding * 2;
+
+        @include tablet-down {
+          margin-bottom: $padding;
+        }
+      }
+
+      &-value {
+        text-align: center;
+
+        a {
+          font-size: 0.9em;
+          letter-spacing: 2px;
+          color: transparentize($color: $primary-text-color, $amount: 0.4);
+
+          transition: color $transition-default-duration;
+
+          &:hover {
+            color: $primary-text-color;
+          }
+        }
+      }
+    }
+  }
+
+  &__form {
+    max-width: $wide-desktop-width;
+    margin: 0 auto;
+    margin-top: $padding * 3;
+
+    &::before {
+      content: "";
+      display: block;
+      margin: 0 auto;
+      margin-bottom: $padding * 3;
+      width: 30%;
+      height: 2px;
+      background-color: $gray-4;
+    }
+
+    &-title {
+      text-align: center;
+      font-weight: 300;
+
+      margin-bottom: $padding * 3;
+
+      @include desktop-down {
+        margin-bottom: $padding;
+      }
+    }
+
+    form {
+      display: block;
+    }
+
+    button {
+      display: block;
+      width: auto;
+      margin: 0 auto;
+
+      color: $primary-text-color;
+      font-size: 0.68em;
+      text-transform: uppercase;
+      border-width: 2px;
+      border-color: $primary-purple;
+    }
+
+    label {
+      font-size: 0.68em;
+      text-transform: uppercase;
+      margin-bottom: $padding / 2;
+    }
+
+    input {
+      width: 100%;
+      padding: $padding / 2;
+      font-size: 0.68em;
+
+      border: 1px solid $gray-4;
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
+
+      padding: $padding / 2;
+      font-size: 0.68em;
+
+      border: 1px solid $gray-4;
+    }
+
+    &-row {
+      width: 100%;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: stretch;
+
+      @include desktop-down {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+
+        &-cell {
+          & + & {
+            margin-top: $padding;
+          }
+        }
+      }
+
+      &-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+
+        flex: 1 0 auto;
+
+        margin: 0 $padding;
+      }
+
+      margin-bottom: $padding * 2;
+    }
+  }
 }
