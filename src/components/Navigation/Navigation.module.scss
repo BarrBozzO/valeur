@@ -261,7 +261,7 @@
   border-bottom: 1px solid #efefef;
   background-color: $primary-white;
 
-  z-index: 1;
+  z-index: 999;
 
   @include desktop {
     display: none;

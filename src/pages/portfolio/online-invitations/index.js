@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 import cx from "classnames";
 import Img from "gatsby-image";
 
-import Link from "components/Link";
 import SEO from "components/Seo";
 import Layout from "components/Layout";
 
@@ -41,10 +40,10 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
               )}
               key={id}
             >
-              <Link to={`/portfolio/online-invitations/${slug}`}>
-                <div className={styles["o-invitation__content"]}>
-                  {renderImageCover(image)}
-                  <div className={styles["o-invitation__content-hover"]}>
+              <div className={styles["o-invitation__content"]}>
+                {renderImageCover(image)}
+                <div className={styles["o-invitation__content-hover"]}>
+                  <div>
                     <h2 className={styles["o-invitation__content-title"]}>
                       {title}
                     </h2>
@@ -55,7 +54,7 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
                     </span>
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           )
         )}
