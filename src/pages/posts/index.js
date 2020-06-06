@@ -90,7 +90,7 @@ const Posts = ({ data, mount, location }) => {
 
   return (
     <Layout location={location} mount={mount}>
-      <SEO title="Posts" />
+      <SEO title="Блог" />
       <div className={styles["posts"]}>
         <h1 className={styles["posts__header"]}>Блог</h1>
         {renderPosts()}
