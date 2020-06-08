@@ -46,7 +46,10 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
             <div
               className={cx(
                 styles["online-invitations__grid-item"],
-                styles["o-invitation"]
+                styles["o-invitation"],
+                {
+                  [styles["o-invitation--active"]]: current === id,
+                }
               )}
               key={id}
             >

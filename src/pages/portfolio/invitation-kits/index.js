@@ -46,7 +46,10 @@ const InvitationKitsPage = ({ data, mount, location }) => {
             <div
               className={cx(
                 styles["invitation-kits__grid-item"],
-                styles["kit"]
+                styles["kit"],
+                {
+                  [styles["kit--active"]]: current === id,
+                }
               )}
               key={id}
             >
