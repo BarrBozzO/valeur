@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import cx from "classnames";
 import Img from "gatsby-image";
 
 import SEO from "components/Seo";
 import Layout from "components/Layout";
+import Portal from "components/Portal";
+import ImagesCarousel from "components/ImagesCarousel";
 
 import styles from "./OnlineInvitations.module.scss";
 
 const OnlineInvitationsPage = ({ data, mount, location }) => {
+  const [current, setCurrent] = useState(null);
+
+  const handleClick = id => () => setCurrent(id);
+
+  const handleCloseCarousel = () => {
+    setCurrent(null);
+  };
+
   const renderImageCover = image => {
     if (image) {
       const cover = Array.isArray(image) ? image[0] : image;
@@ -32,7 +42,7 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
     return (
       <div className={styles["online-invitations__grid"]}>
         {data.allContentfulOnlineInvitation.nodes.map(
-          ({ id, slug, title, image, shortDescription }) => (
+          ({ id, title, image, shortDescription }) => (
             <div
               className={cx(
                 styles["online-invitations__grid-item"],
@@ -40,7 +50,10 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
               )}
               key={id}
             >
-              <div className={styles["o-invitation__content"]}>
+              <div
+                className={styles["o-invitation__content"]}
+                onClick={handleClick(id)}
+              >
                 {renderImageCover(image)}
                 <div className={styles["o-invitation__content-hover"]}>
                   <div>
@@ -55,10 +68,21 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
                   </div>
                 </div>
               </div>
+              {renderPopupImages(id, image)}
             </div>
           )
         )}
       </div>
+    );
+  };
+
+  const renderPopupImages = (id, images) => {
+    if (current === null || current !== id) return null;
+
+    return (
+      <Portal isModal onClose={handleCloseCarousel}>
+        <ImagesCarousel images={Array.isArray(images) ? images : [images]} />
+      </Portal>
     );
   };
 
@@ -87,8 +111,17 @@ export const query = graphql`
         shortDescription
         createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
-          fluid(maxWidth: 1024, quality: 100) {
+          fluid(maxWidth: 1920, quality: 100) {
             ...GatsbyContentfulFluid_tracedSVG
+          }
+          file {
+            url
+            details {
+              image {
+                height
+                width
+              }
+            }
           }
         }
       }

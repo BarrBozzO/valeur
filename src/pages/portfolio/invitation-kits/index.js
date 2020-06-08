@@ -6,13 +6,18 @@ import Img from "gatsby-image";
 import SEO from "components/Seo";
 import Layout from "components/Layout";
 import Portal from "components/Portal";
-
-import ImagesCarousel from "./ImagesCarousel";
+import ImagesCarousel from "components/ImagesCarousel";
 
 import styles from "./InvitationKits.module.scss";
 
 const InvitationKitsPage = ({ data, mount, location }) => {
   const [current, setCurrent] = useState(null);
+
+  const handleClick = id => () => setCurrent(id);
+
+  const handleCloseCarousel = () => {
+    setCurrent(null);
+  };
 
   const renderImageCover = image => {
     if (image) {
@@ -33,17 +38,11 @@ const InvitationKitsPage = ({ data, mount, location }) => {
     return null;
   };
 
-  const handleClick = id => () => setCurrent(id);
-
-  const handleCloseCarousel = () => {
-    setCurrent(null);
-  };
-
   const renderKits = () => {
     return (
       <div className={styles["invitation-kits__grid"]}>
         {data.allContentfulInvitationKit.nodes.map(
-          ({ id, slug, title, image, shortDescription }) => (
+          ({ id, title, image, shortDescription }) => (
             <div
               className={cx(
                 styles["invitation-kits__grid-item"],
