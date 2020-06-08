@@ -10,6 +10,7 @@ import Button from "components/Button";
 import SEO from "components/Seo";
 import Layout from "components/Layout";
 import Link from "components/Link";
+import Order from "components/Order";
 import { useWindowSize } from "../hooks";
 
 import ChevronIcon from "assets/icons/chevron.svg";
@@ -91,9 +92,14 @@ const IndexPage = ({ data, location, mount }) => {
   const desktopWidth = wSize.width <= 1024;
 
   const [activeItemIndex, setActiveItemIndex] = useState(!desktopWidth ? 1 : 0);
+  const [displayOrder, setDisplayOrder] = useState(false);
 
   const handleSlideBtnClick = index => {
     return () => setActiveItemIndex(index);
+  };
+
+  const handleDisplayOrder = () => {
+    setDisplayOrder(true);
   };
 
   const {
@@ -115,6 +121,7 @@ const IndexPage = ({ data, location, mount }) => {
     <Layout mount={mount} location={location}>
       <SEO title="Главная" />
       <div className={styles["home"]}>
+        <Order visible={displayOrder} onClose={() => setDisplayOrder(false)} />
         <section className={styles["home__start"]}>
           <Video className={styles["home__background-video"]} source={vFile} />
           <Logo className={styles["home__start-logo"]} />
@@ -360,7 +367,11 @@ const IndexPage = ({ data, location, mount }) => {
               Вместе мы сможем создать нечто потрясающее!`}
             </small>
           </h2>
-          <Button className={styles["home__order-button"]} label="Начать" />
+          <Button
+            className={styles["home__order-button"]}
+            label="Начать"
+            onClick={handleDisplayOrder}
+          />
         </section>
         <section className={styles["home__instagram"]}>
           <h2>

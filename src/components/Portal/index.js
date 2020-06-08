@@ -30,9 +30,15 @@ function Portal(props) {
     <div
       className={cx(styles["portal__content"], {
         [styles["portal__content--modal"]]: props.isModal,
+        [props.classNames.content]: Boolean(props.classNames.content),
       })}
     >
-      <div className={styles["portal__content-close"]} onClick={handleClose}>
+      <div
+        className={cx(styles["portal__content-close"], {
+          [props.classNames.close]: Boolean(props.classNames.close),
+        })}
+        onClick={handleClose}
+      >
         <CloseIcon />
       </div>
       {props.children}
@@ -41,5 +47,9 @@ function Portal(props) {
 
   return createPortal(content, wrapper);
 }
+
+Portal.defaultProps = {
+  classNames: {},
+};
 
 export default Portal;
