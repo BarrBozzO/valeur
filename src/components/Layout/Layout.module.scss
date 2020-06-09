@@ -4,21 +4,15 @@
 .layout {
   &__content {
     height: 100%;
-    margin-left: $navigation-w;
+    margin-left: $navigation-collapsed-w;
 
     ::selection {
       color: $primary-text-color;
       background-color: transparentize($color: $primary-purple, $amount: 0.75);
     }
 
-    transition: margin ease-in-out $transition-navigation-width-duration;
-
     main {
       min-height: 100vh;
-    }
-
-    &--collapsed {
-      margin-left: $navigation-collapsed-w;
     }
 
     &--home {

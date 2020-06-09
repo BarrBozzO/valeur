@@ -12,14 +12,17 @@
   height: 100vh;
   overflow: hidden;
   padding: $padding;
+  border-right: 1px solid #efefef;
+  box-shadow: -4px 0 12px 0 rgba(14, 30, 37, 0.12);
 
   background-color: $primary-white;
-  transition: width ease-in-out $transition-navigation-width-duration;
+  transition: all ease-in-out $transition-navigation-width-duration;
 
   z-index: 999;
 
   &--collapsed {
     width: $navigation-collapsed-w;
+    box-shadow: none;
 
     #{$this}__logo,
     #{$this}__menu {
