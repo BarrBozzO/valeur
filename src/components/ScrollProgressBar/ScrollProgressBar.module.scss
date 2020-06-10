@@ -1,0 +1,16 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: $primary-purple;
+  z-index: 1000;
+  transition: width 250ms ease-in-out;
+
+  @include desktop-down {
+    display: none;
+  }
+}
