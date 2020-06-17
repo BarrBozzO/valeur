@@ -50,7 +50,7 @@ const Posts = ({ data, mount, location }) => {
   };
 
   const onClick = slug => {
-    return () => triggerTransition({ to: `posts/${slug}` });
+    return () => triggerTransition({ to: `/posts/${slug}` });
   };
 
   const renderPosts = () => {

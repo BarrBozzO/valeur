@@ -38,6 +38,18 @@
     height: 100vh;
     color: $primary-white;
 
+    font-size: 1.6em;
+    line-height: 1.2em;
+    text-align: center;
+
+    @include tablet-down {
+      font-size: 1.4em;
+    }
+
+    @include mobile-down {
+      font-size: 1.2em;
+    }
+
     h1 {
       visibility: hidden;
     }
@@ -58,22 +70,55 @@
   }
 
   &__about {
-    height: 100vh;
     padding: 80px 0;
 
     margin: 0 auto;
     background-color: #f8f8f6;
+
+    &-content {
+      width: 100%;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-description {
+      padding: $padding;
+
+      font-size: 0.9em;
+      line-height: 1.4em;
+    }
+
+    &-services {
+      margin-top: $padding * 4;
+    }
+
+    &-intro {
+      flex: 1 0 50%;
+      max-width: 750px;
+    }
+
+    &-photo {
+      picture {
+        position: static;
+      }
+
+      &-container {
+        flex: 0 0 50%;
+        max-width: 500px;
+        height: 800px;
+        padding: $padding;
+      }
+    }
   }
 
   &__reviews {
     background-color: $primary-gray;
-    padding-top: 0 !important;
   }
 
   &__features {
-    background-color: $primary-purple;
-    color: $primary-white;
-    padding-top: 0 !important;
   }
 
   &__wave {
@@ -239,13 +284,11 @@
     }
 
     &-description {
-      color: $primary-white;
       font-size: 0.9em;
       line-height: 1.4em;
     }
 
     &-link {
-      color: $primary-white;
       margin-top: $padding * 2;
       line-height: 1em;
 
@@ -278,6 +321,10 @@
 
       &-container {
         flex: 1 0 60%;
+
+        > div {
+          max-height: 700px;
+        }
 
         @include desktop-down {
           flex: 1 0 100%;

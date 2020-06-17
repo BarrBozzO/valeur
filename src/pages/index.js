@@ -16,8 +16,6 @@ import ChevronIcon from "assets/icons/chevron.svg";
 import SectionBorder from "assets/icons/section-border.svg";
 import ChatIcon from "assets/icons/chat.svg";
 import LikeIcon from "assets/icons/heart.svg";
-import WaveBorder from "assets/icons/wave.svg";
-import Wave2Border from "assets/icons/wave-2.svg";
 import Logo from "assets/logo/valeur.svg";
 import vFile from "assets/videos/bg-video.mp4";
 
@@ -99,14 +97,20 @@ const IndexPage = ({ data, location, mount }) => {
   const {
     images: { edges: imagesArr },
   } = data;
-  const onlilneInvitationFeatureImg = imagesArr.find(({ node }) => {
-    return node.base === "macbook.png";
+  const individualStyleImg = imagesArr.find(({ node }) => {
+    return node.base === "1.jpg";
+  }).node.childImageSharp;
+  const qualityFeatureImg = imagesArr.find(({ node }) => {
+    return node.base === "2.jpg";
+  }).node.childImageSharp;
+  const handmadeFeatureImg = imagesArr.find(({ node }) => {
+    return node.base === "3.jpg";
   }).node.childImageSharp;
   const blogFeatureImg = imagesArr.find(({ node }) => {
-    return node.base === "safari-window.png";
+    return node.base === "4.jpg";
   }).node.childImageSharp;
-  const invitationKitsFeature = imagesArr.find(({ node }) => {
-    return node.base === "kits.png";
+  const authorImg = imagesArr.find(({ node }) => {
+    return node.base === "author.jpg";
   }).node.childImageSharp;
 
   const instagramPosts = get(data, "allInstagramPost.edges", []);
@@ -120,27 +124,8 @@ const IndexPage = ({ data, location, mount }) => {
           <Logo className={styles["home__start-logo"]} />
           <h1>Valeur — свадебная полиграфия</h1>
           <div>
-            <p>
-              There’s a voice that keeps on calling me. Down the road, that’s
-              where I’ll always be. Every stop I make, I make a new friend.
-              Can’t stay for long, just turn around and I’m gone again. Maybe
-              tomorrow, I’ll want to settle down, Until tomorrow, I’ll just keep
-              moving on.
-            </p>
-            <p>
-              Knight Rider, a shadowy flight into the dangerous world of a man
-              who does not exist. Michael Knight, a young loner on a crusade to
-              champion the cause of the innocent, the helpless in a world of
-              criminals who operate above the law.
-            </p>
-            <p>
-              This is my boss, Jonathan Hart, a self-made millionaire, he’s
-              quite a guy. This is Mrs H., she’s gorgeous, she’s one lady who
-              knows how to take care of herself. By the way, my name is Max. I
-              take care of both of them, which ain’t easy, ’cause when they met
-              it was MURDER!
-            </p>
-            <Button label="Заказать" />
+            Мы уже придумали ваши идеальные пригласительные
+            {/* <Button label="Заказать" /> */}
           </div>
           <ScrollElement />
         </section>
@@ -155,42 +140,60 @@ const IndexPage = ({ data, location, mount }) => {
         </div>
         <section className={styles["home__about"]}>
           <h2>О проекте</h2>
-          <div className={styles["home__about-description"]}>
-            Мы, студия «Weddings Inc.», занимается разработкой и изготовлением
-            свадебной полиграфии. Профессионализм наших художников и дизайнеров
-            поможет сделать вашу свадьбу незабываемой. Важной частью каждой
-            свадьбы являются пригласительные – именно они сообщают гостям дату,
-            время, место проведения торжества, стиль, предпочтительный стиль в
-            одежде и множество других пожеланий. На нашем сайте вы можете
-            заказать разработку индивидуального дизайна, который будет
-            соответствовать стилистике вашего торжества. Помимо приглашений, у
-            нас можно создать: посадочные карты гостей, свадебное меню, номера
-            столов, конверты и планы рассадки гостей. Мы стремимся быть одними
-            из лучших на рынке свадебной полиграфии и прикладываем для этого
-            большие усилия.. Также, вы можете проверить наш instagram <br />
-            Нам не терпится поработать с вами!
+          <div className={styles["home__about-content"]}>
+            <div className={styles["home__about-photo-container"]}>
+              <Img
+                className={styles["home__about-photo"]}
+                fluid={authorImg.fluid}
+                imgStyle={{ objectFit: "contain" }}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+            <div className={styles["home__about-description"]}>
+              <div className={styles["home__about-intro"]}>
+                <p>Привeт, меня зовут Даша и я создатель студии «VALEUR».</p>
+                <p>
+                  Наша студия – это команда профессионалов. Уже более 2-х лет
+                  воплощаем ваши идеи в реальность.
+                  <br />
+                  Мы берем на себя полный цикл разработки свадебной полиграфии.
+                  У каждой пары своя индивидуальная история любви – именно это
+                  воодушевляет нашу команду и помогает создавать уникальные
+                  работы.
+                </p>
+              </div>
+              <div className={styles["home__about-services"]}>
+                <p>Наши услуги:</p>
+                <ul className={styles["home__about-services-list"]}>
+                  <li>Комплект «Save the Date» для вас и вашей фотосессии</li>
+                  <li>Пригласительные для ваших гостей</li>
+                  <li>Карточки меню</li>
+                  <li>Карточки дресс - кода</li>
+                  <li>Карточки номерков на стол</li>
+                  <li>Карточки рассадки</li>
+                  <li>Холст с рассадкой гостей при входе</li>
+                  <li>Конверты ручной работы</li>
+                  <li>Остальные комплектующие по запросу</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
-        <div className={cx(styles["home__wave"], styles["home__wave--top"])}>
-          <WaveBorder />
-        </div>
         <section className={styles["home__features"]}>
           <h2>Почему стоит выбрать именно нас</h2>
           <div className={styles["features"]}>
             <div className={styles["features__item"]}>
               <div className={styles["features__item-text-container"]}>
                 <div className={styles["features__item-title"]}>
-                  Индивидуальные Пригласительные
+                  Индивидуальный подход
                 </div>
                 <div className={styles["features__item-description"]}>
                   <p>
-                    Valeur — это идеальный способ получить уникальные
-                    пригласительные ручной работы. Для создания по-настоящему
-                    потрясающих проектов, мы используем только люксовые
-                    материалы и современные подходы.
+                    Каждая история любви – индивидуальна.
+                    <br />
+                    При создании дизайна мы учитываем ваши пожелания и опыт
+                    наших специалистов.
                   </p>
-                  <br />
-                  Готовы ли вы начать работу с индивидуальным дизайном?
                   <br />
                   <Link
                     className={styles["features__item-link"]}
@@ -203,7 +206,7 @@ const IndexPage = ({ data, location, mount }) => {
               <div className={styles["features__item-image-container"]}>
                 <Img
                   className={styles["features__item-image"]}
-                  fluid={invitationKitsFeature.fluid}
+                  fluid={individualStyleImg.fluid}
                   imgStyle={{ objectFit: "cover" }}
                 />
               </div>
@@ -212,28 +215,44 @@ const IndexPage = ({ data, location, mount }) => {
               <div className={styles["features__item-image-container"]}>
                 <Img
                   className={styles["features__item-image"]}
-                  fluid={onlilneInvitationFeatureImg.fluid}
+                  fluid={qualityFeatureImg.fluid}
                   imgStyle={{ objectFit: "cover" }}
                 />
               </div>
               <div className={styles["features__item-text-container"]}>
-                <div className={styles["features__item-title"]}>
-                  Электронные пригласительные
-                </div>
+                <div className={styles["features__item-title"]}>Качество</div>
                 <div className={styles["features__item-description"]}>
-                  Отправляйте вашим гостям восхитительные электронные
-                  пригласительные.
+                  Мы используем только качественные материалы люкс – сегмента.
                   <br />
-                  <Link
-                    className={styles["features__item-link"]}
-                    to="/portfolio/online-invitations"
-                  >
-                    Смотреть пригласительные
-                  </Link>
+                  При этом стоимость комплекта начинается от 200 рублей.
                 </div>
               </div>
             </div>
             <div className={styles["features__item"]}>
+              <div className={styles["features__item-text-container"]}>
+                <div className={styles["features__item-title"]}>
+                  Ручная работа
+                </div>
+                <div className={styles["features__item-description"]}>
+                  Каждый наш комплект изготавливается вручную.
+                </div>
+              </div>
+              <div className={styles["features__item-image-container"]}>
+                <Img
+                  className={styles["features__item-image"]}
+                  fluid={handmadeFeatureImg.fluid}
+                  imgStyle={{ objectFit: "cover" }}
+                />
+              </div>
+            </div>
+            <div className={styles["features__item"]}>
+              <div className={styles["features__item-image-container"]}>
+                <Img
+                  className={styles["features__item-image"]}
+                  fluid={blogFeatureImg.fluid}
+                  imgStyle={{ objectFit: "cover" }}
+                />
+              </div>
               <div className={styles["features__item-text-container"]}>
                 <div className={styles["features__item-title"]}>
                   Присоединяйтесь к нам
@@ -247,19 +266,9 @@ const IndexPage = ({ data, location, mount }) => {
                   </Link>
                 </div>
               </div>
-              <div className={styles["features__item-image-container"]}>
-                <Img
-                  className={styles["features__item-image"]}
-                  fluid={blogFeatureImg.fluid}
-                  imgStyle={{ objectFit: "cover" }}
-                />
-              </div>
             </div>
           </div>
         </section>
-        <div className={cx(styles["home__wave"], styles["home__wave--bottom"])}>
-          <Wave2Border />
-        </div>
         <section className={styles["home__reviews"]}>
           <h2>Что думают наши клиенты</h2>
           <div className={styles["reviews"]}>
@@ -429,7 +438,7 @@ export default IndexPage;
 
 export const query = graphql`
   {
-    images: allFile(filter: { relativePath: { regex: "/features/.*/" } }) {
+    images: allFile {
       edges {
         node {
           base
