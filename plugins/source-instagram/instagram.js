@@ -1,7 +1,5 @@
 const axios = require(`axios`);
 
-const STATUS_OK = "ok";
-
 exports.getPosts = async function() {
   const queryParams = {
     variables: {
@@ -25,9 +23,9 @@ exports.getPosts = async function() {
       const userData = data.data.user;
 
       if (userData) {
-        return userData.edge_owner_to_timeline_media.edges.map(post => {
-          return post.node.id;
-        });
+        return userData.edge_owner_to_timeline_media.edges.map(
+          post => post.node
+        );
       }
     } else {
       throw new Error("Something went wrong getting posts");
