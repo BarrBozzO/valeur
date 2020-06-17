@@ -441,33 +441,10 @@ export const query = graphql`
         }
       }
     }
-    allInstaNode {
+    allInstagramPost {
       edges {
         node {
           id
-          likes
-          comments
-          mediaType
-          preview
-          original
-          timestamp
-          caption
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 400, quality: 100) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-            }
-          }
-          thumbnails {
-            src
-            config_width
-            config_height
-          }
-          dimensions {
-            height
-            width
-          }
         }
       }
     }
