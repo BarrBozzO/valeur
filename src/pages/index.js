@@ -377,7 +377,6 @@ const IndexPage = ({ data, location, mount }) => {
                   caption,
                   likes,
                   comments,
-                  timestamp,
                   localFile: { childImageSharp: image },
                 } = node;
 
@@ -395,23 +394,31 @@ const IndexPage = ({ data, location, mount }) => {
                         imgStyle={{ objectFit: "cover" }}
                       />
                       <div className={styles["instagram__grid-item-hover"]}>
-                        <div className={styles["instagram__grid-item-caption"]}>
-                          {truncateText(caption)}
-                        </div>
-                        <div className={styles["instagram__grid-item-icons"]}>
-                          {!!likes && (
-                            <div>
-                              <LikeIcon />
-                              {likes}
+                        {false && (
+                          <React.Fragment>
+                            <div
+                              className={styles["instagram__grid-item-caption"]}
+                            >
+                              {truncateText(caption)}
                             </div>
-                          )}
-                          {!!comments && (
-                            <div>
-                              <ChatIcon />
-                              {comments}
+                            <div
+                              className={styles["instagram__grid-item-icons"]}
+                            >
+                              {!!likes && (
+                                <div>
+                                  <LikeIcon />
+                                  {likes}
+                                </div>
+                              )}
+                              {!!comments && (
+                                <div>
+                                  <ChatIcon />
+                                  {comments}
+                                </div>
+                              )}
                             </div>
-                          )}
-                        </div>
+                          </React.Fragment>
+                        )}
                       </div>
                     </a>
                   </div>

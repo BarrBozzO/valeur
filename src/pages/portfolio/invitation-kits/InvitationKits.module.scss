@@ -92,7 +92,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       font-size: 0.6em;
-      line-height: 1;
+      line-height: 1.2em;
       color: transparentize($color: $primary-text-color, $amount: 0.4);
     }
 
@@ -112,7 +112,7 @@
       justify-content: center;
       align-items: stretch;
 
-      background-color: $gray-1;
+      background-color: $primary-white;
 
       transition: all 0.4s ease-in-out;
       transform: translateY(100%);
