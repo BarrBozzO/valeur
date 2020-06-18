@@ -109,7 +109,7 @@ const IndexPage = ({ data, location, mount }) => {
     return node.base === "kits.png";
   }).node.childImageSharp;
 
-  const instagramPosts = get(data, "allInstaNode.edges", []);
+  const instagramPosts = get(data, "allInstagramPost.edges", []);
 
   return (
     <Layout mount={mount} location={location}>
@@ -441,7 +441,7 @@ export const query = graphql`
         }
       }
     }
-    allInstaNode {
+    allInstagramPost {
       edges {
         node {
           id

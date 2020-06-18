@@ -39,11 +39,15 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
+    // {
+    //   resolve: `gatsby-source-instagram`,
+    //   options: {
+    //     username: `20593822219`,
+    //   },
+    // },
     {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `v_aleur`,
-      },
+      resolve: `source-instagram`,
+      options: {},
     },
     {
       resolve: `gatsby-source-filesystem`,
