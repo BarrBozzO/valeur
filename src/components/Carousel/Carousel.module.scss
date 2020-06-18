@@ -19,48 +19,49 @@
     right: 0;
     left: 0;
 
-    & > div {
+    &--out {
+      .carousel__controls-next {
+        // transform: translateX(100%);
+      }
+    }
+
+    &-default-icon {
+      display: block;
       width: $padding * 2;
-      padding: $padding / 2;
+      fill: $primary-white;
+      stroke: black;
+      stroke-opacity: 0.6;
+      transition: all $transition-default-duration * 0.8;
+      stroke-width: 10px;
+      stroke-dasharray: 2, 2;
+      stroke-linejoin: round;
+    }
+
+    &-next,
+    &-prev {
+      position: absolute;
+      width: max-content;
+      padding: $padding / 2 0;
       box-sizing: content-box;
       top: 50%;
       margin-top: -$padding;
       z-index: 1;
-
-      svg {
-        display: block;
-        fill: $primary-white;
-        stroke: black;
-        stroke-opacity: 0.6;
-        transition: all $transition-default-duration * 0.8;
-        stroke-width: 10px;
-        stroke-dasharray: 2, 2;
-        stroke-linejoin: round;
-      }
+      user-select: none;
 
       &:hover {
         cursor: pointer;
-
-        svg {
-          transform: scale(1.2);
-        }
       }
 
       &:active {
-        svg {
-          transform: scale(0.8);
-        }
       }
     }
 
     &-prev {
       transform: rotate(180deg);
-      margin-left: $padding;
     }
 
     &-next {
-      margin-left: auto;
-      margin-right: $padding;
+      right: 0;
     }
   }
 }
