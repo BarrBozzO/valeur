@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import cx from "classnames";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
+
+import { GlobalStateProvider } from "context/GlobalContextProvider";
 
 import Layout from "components/Layout";
 import Seo from "components/Seo";
@@ -18,6 +20,9 @@ function Post({
   mount,
   data: { contentfulPost },
 }) {
+  const {
+    navigation: { isCollapsed },
+  } = useContext(GlobalStateProvider);
   const { title, article, createdAt, metaDescription } = post;
   const { image } = contentfulPost;
   const postRef = useRef(null);
@@ -51,7 +56,12 @@ function Post({
   return (
     <Layout location={location} mount={mount}>
       <Seo title={title} description={metaDescription} />
-      <ScrollProgressBar ref={postRef} />
+      <ScrollProgressBar
+        className={cx(styles["post__progress-bar"], {
+          [styles["post__progress-bar--collapsed"]]: isCollapsed,
+        })}
+        ref={postRef}
+      />
       <div className={styles["post"]} ref={postRef}>
         {renderImageCover(image)}
         <h1 className={styles["post__header"]}>{title}</h1>

@@ -1,0 +1,19 @@
+{
+  "name": "local-instaagram-source-plugin",
+  "version": "1.0.0",
+  "description": "Provides public instagram scrapping",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"No build script setup\""
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
+  "author": "Constantine Ovchinnikov <barr.develop@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}

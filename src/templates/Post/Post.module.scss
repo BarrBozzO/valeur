@@ -109,6 +109,25 @@
       line-height: 1;
     }
   }
+
+  &__progress-bar {
+    transition: all ease-in-out $transition-navigation-width-duration;
+
+    @include desktop-down {
+      top: calc(#{$topbar-h} - 1px);
+      height: 1px;
+    }
+
+    @include desktop {
+      left: $navigation-w;
+      width: calc(100% - #{$navigation-w});
+
+      &--collapsed {
+        left: $navigation-collapsed-w;
+        width: calc(100% - #{$navigation-collapsed-w});
+      }
+    }
+  }
 }
 
 .article {

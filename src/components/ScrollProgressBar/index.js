@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
+import cx from "classnames";
 import throttle from "lodash/throttle";
 
 import styles from "./ScrollProgressBar.module.scss";
@@ -41,9 +42,13 @@ function ScrollProgressBar(props, ref) {
 
   return (
     <div
-      className={styles["scroll-progress-bar"]}
-      style={{ width: `${progress}%` }}
-    />
+      className={cx(styles["scroll-progress-bar__container"], props.className)}
+    >
+      <div
+        className={styles["scroll-progress-bar"]}
+        style={{ width: `${progress}%` }}
+      />
+    </div>
   );
 }
 
