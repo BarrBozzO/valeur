@@ -482,6 +482,79 @@
   }
 }
 
+.posts {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+
+  max-width: $wide-desktop-width;
+  margin: 0 auto;
+
+  @include desktop-down {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    flex: 0 0 33%;
+
+    max-width: $tablet-width;
+    padding: $padding;
+    margin: 0 auto;
+
+    &-title {
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: 400;
+      margin: $padding * 2 0 $padding;
+      color: $primary-text-color;
+      @include secondary-font;
+
+      @include tablet-down {
+      }
+
+      @include mobile-down {
+      }
+    }
+
+    &-created {
+      text-align: center;
+      font-size: 0.6em;
+      margin-bottom: $padding * 2;
+      color: $gray-2;
+      text-transform: uppercase;
+    }
+
+    &-cover {
+      picture {
+        position: static;
+      }
+
+      &-image {
+        height: 280px;
+        margin: 0;
+
+        @include mobile-down {
+        }
+      }
+    }
+
+    &-description {
+      text-align: center;
+      font-size: 0.75em;
+      line-height: 1.4em;
+      color: $black-1;
+      @include secondary-font;
+      padding: 0 $padding * 2;
+    }
+  }
+}
+
 .instagram {
   &__grid {
     display: grid;

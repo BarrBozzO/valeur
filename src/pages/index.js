@@ -24,6 +24,8 @@ import reviews from "../constants/testimonials";
 
 import styles from "./Home.module.scss";
 
+const MAX_WIDTH = 1024;
+
 const ScrollElement = () => (
   <div className={styles["scroll-down"]}>
     <div className={styles["scroll-down__mousey"]}>
@@ -37,12 +39,6 @@ const IndexPage = ({ data, location, mount }) => {
   const cardsCount = wSize.width > 1024 ? 3 : 1;
   const tabletWidth = wSize.width <= 768;
   const desktopWidth = wSize.width <= 1024;
-
-  const [activeItemIndex, setActiveItemIndex] = useState(!desktopWidth ? 1 : 0);
-
-  const handleSlideBtnClick = index => {
-    return () => setActiveItemIndex(index);
-  };
 
   const {
     images: { edges: imagesArr },
@@ -65,6 +61,7 @@ const IndexPage = ({ data, location, mount }) => {
 
   const instagramPosts = get(data, "allInstagramPost.edges", []);
   const testimonialImages = get(data, "testimonialImages.edges", []);
+  const latestPosts = get(data, "posts.nodes", []);
 
   return (
     <Layout mount={mount} location={location}>
@@ -281,6 +278,57 @@ const IndexPage = ({ data, location, mount }) => {
             </Carousel>
           </div>
         </section>
+        <section className={styles["home__posts"]}>
+          <h2>Что думают наши клиенты</h2>
+          <div className={styles["posts"]}>
+            {latestPosts.map(
+              ({ id, slug, title, image, createdAt, description }) => {
+                let postImage = null;
+                if (image) {
+                  const cover = Array.isArray(image) ? image[0] : image;
+                  if (cover.fluid) {
+                    const {
+                      details: {
+                        image: { width },
+                      },
+                    } = cover.file;
+
+                    postImage = (
+                      <div className={styles["posts__item-cover"]}>
+                        <Img
+                          style={{
+                            maxWidth: width <= MAX_WIDTH ? width : MAX_WIDTH,
+                          }}
+                          fluid={cover.fluid}
+                          className={styles["posts__item-cover-image"]}
+                        />
+                      </div>
+                    );
+                  }
+                }
+
+                return (
+                  <div className={styles["posts__item"]}>
+                    <Link to={`/posts/${slug}`}>
+                      {postImage}
+
+                      <h3 className={styles["posts__item-title"]}>{title}</h3>
+
+                      <div className={styles["posts__item-created"]}>
+                        {createdAt}
+                      </div>
+                      <div className={styles["posts__item-description"]}>
+                        {description &&
+                          description.internal &&
+                          description.internal.content}
+                      </div>
+                    </Link>
+                  </div>
+                );
+              }
+            )}
+          </div>
+        </section>
         <section className={styles["home__order"]}>
           <h2>
             Вы готовы начать?
@@ -410,6 +458,35 @@ export const query = graphql`
           dimensions {
             height
             width
+          }
+        }
+      }
+    }
+    posts: allContentfulPost(
+      limit: 3
+      sort: { order: DESC, fields: createdAt }
+    ) {
+      nodes {
+        id
+        slug
+        title
+        description {
+          internal {
+            content
+          }
+        }
+        createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
+        image {
+          fluid(maxWidth: 1024, quality: 100) {
+            ...GatsbyContentfulFluid_tracedSVG
+          }
+          file {
+            details {
+              image {
+                height
+                width
+              }
+            }
           }
         }
       }
