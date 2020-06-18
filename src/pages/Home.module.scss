@@ -116,6 +116,32 @@
 
   &__reviews {
     background-color: $primary-gray;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      background-image: url("/background/left-flower.jpg");
+      background-repeat: no-repeat;
+      background-size: auto;
+      width: 215px;
+      height: 235px;
+      bottom: 0;
+      left: 0;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      background-image: url("/background/right-flower.jpg");
+      background-repeat: no-repeat;
+      background-size: auto;
+      width: 350px;
+      height: 276px;
+      top: 0;
+      right: 0;
+    }
   }
 
   &__features {
@@ -335,41 +361,22 @@
 }
 
 .reviews {
-  @include desktop {
-    padding: 0 60px;
-  }
+  &__carousel {
+    max-width: $wide-desktop-width;
+    margin: 0 auto;
+    padding: 0 $padding * 6;
 
-  &__button {
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-
-    svg {
+    &-control {
       display: block;
-      width: 32px;
-      height: 32px;
-      fill: $gray-2;
-    }
+      color: #b5b0b0;
+      width: 60px;
 
-    &--left {
-      transform: rotate(180deg);
-    }
+      transition: color 0.2s ease-out;
 
-    div:hover > & {
-      svg {
-        fill: $black-1;
+      &:hover {
+        color: #2b2b2b;
       }
     }
-  }
-
-  &__pagination {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: $padding 0 $padding * 2;
   }
 
   &__to-slide {
@@ -412,11 +419,7 @@
   }
 
   &__card-wrapper {
-    padding-bottom: $padding;
-
-    @include desktop-down {
-      height: 100%;
-    }
+    padding: 0 $padding * 4;
   }
 
   &__card {
@@ -425,45 +428,22 @@
     flex-shrink: 0;
 
     width: 100%;
-    min-height: 120px;
 
     margin: 0;
-    padding: $padding * 2;
-
-    border-radius: $radius;
-    background-color: $primary-white;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1),
-      0 2px 4px 0 rgba(14, 30, 37, 0.12);
-
-    @media only screen and (min-width: ($desktop-width + 1px)) and (max-width: ($wide-desktop-width)) {
-      padding: $padding * 2 $padding * 1.5;
-    }
-
-    @include desktop-down {
-      height: 100%;
-    }
-
-    @include tablet-down {
-      padding: $padding * 2;
-    }
+    text-align: center;
 
     &-text {
-      margin: 0;
-
-      font-size: 18px;
-      line-height: 1.4em;
-      color: $black-1;
+      color: $primary-text-color;
+      font-size: 1em;
+      line-height: 1.5em;
       @include secondary-font;
+      font-style: italic;
 
-      @media only screen and (min-width: ($desktop-width + 1px)) and (max-width: ($wide-desktop-width)) {
-        font-size: 16px;
-      }
+      margin: $padding * 2 0 0 0;
     }
 
     &-author {
-      margin-bottom: $padding;
-
-      font-size: 16px;
+      margin: $padding * 2 0 $padding;
       font-weight: 400;
       font-style: normal;
     }
@@ -471,28 +451,33 @@
     &-name {
       display: inline-block;
       width: 100%;
-
-      color: $black-1;
-      font-weight: 400;
+      color: $primary-text-color;
+      font-size: 0.6em;
+      line-height: 2em;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
-    &-nickname {
+    &-date {
       display: inline-block;
       width: 100%;
-      margin-top: $padding / 2;
-
-      color: $gray-2;
-      font-size: 14px;
-      font-weight: 300;
+      color: $secondary-text-color;
+      font-size: 0.6em;
+      line-height: 1.2em;
     }
 
     &-avatar {
-      float: left;
       background: $primary-white;
       border-radius: 50%;
-      height: 50px;
-      width: 50px;
-      margin-right: $padding;
+      height: 160px;
+      width: 160px;
+      margin: 0 auto;
+      overflow: hidden;
+
+      picture {
+        position: static;
+      }
     }
   }
 }

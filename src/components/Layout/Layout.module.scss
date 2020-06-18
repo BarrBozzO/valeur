@@ -27,7 +27,7 @@
 }
 
 .footer {
-  background-color: #0c0c0e;
+  background-color: $primary-footer-color;
 
   &__mission {
     font-size: 0.8em;
@@ -40,7 +40,7 @@
     display: block;
     width: 180px;
     margin-bottom: $padding * 2;
-    fill: $primary-white;
+    fill: $primary-text-color;
   }
 
   &__content {
@@ -55,7 +55,7 @@
     padding: $padding * 4;
     margin: 0 auto;
 
-    color: $primary-white;
+    color: $primary-text-color;
   }
 
   &__description {
@@ -67,7 +67,7 @@
 
     font-size: 0.6em;
     text-transform: uppercase;
-    color: rgba($primary-white, 0.6);
+    color: $secondary-text-color;
   }
 
   &__developed {
@@ -75,10 +75,10 @@
 
     font-size: 0.6em;
     text-transform: uppercase;
-    color: rgba($primary-white, 0.6);
+    color: $secondary-text-color;
 
     a {
-      color: rgba($primary-white, 0.6);
+      color: $secondary-text-color;
       text-decoration: underline;
     }
   }
@@ -113,7 +113,7 @@
       width: 1em;
       height: 1em;
 
-      fill: $primary-white;
+      fill: $secondary-text-color;
     }
   }
 
@@ -132,7 +132,7 @@
       align-items: flex-start;
 
       a {
-        color: rgba($primary-white, 0.6);
+        color: $secondary-text-color;
         font-size: 0.8em;
         border-bottom: 1px solid transparent;
 
@@ -142,8 +142,8 @@
         transition: all $transition-default-duration;
 
         &:hover {
-          color: $primary-white;
-          border-bottom-color: $primary-white;
+          color: $primary-text-color;
+          border-bottom-color: $primary-text-color;
         }
       }
     }

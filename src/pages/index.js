@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ItemsCarousel from "react-items-carousel";
 import cx from "classnames";
 import Img from "gatsby-image";
 import get from "lodash/get";
@@ -10,14 +9,16 @@ import Button from "components/Button";
 import SEO from "components/Seo";
 import Layout from "components/Layout";
 import Link from "components/Link";
+import Carousel from "components/Carousel";
 import { useWindowSize } from "../hooks";
 
-import ChevronIcon from "assets/icons/chevron.svg";
 import SectionBorder from "assets/icons/section-border.svg";
 import ChatIcon from "assets/icons/chat.svg";
 import LikeIcon from "assets/icons/heart.svg";
 import Logo from "assets/logo/valeur.svg";
 import vFile from "assets/videos/bg-video.mp4";
+import LongArrow from "assets/icons/long-arrow.svg";
+// import paperBG from "assets/background/paper.jpg";
 
 import reviews from "../constants/testimonials";
 
@@ -63,6 +64,7 @@ const IndexPage = ({ data, location, mount }) => {
   }).node.childImageSharp;
 
   const instagramPosts = get(data, "allInstagramPost.edges", []);
+  const testimonialImages = get(data, "testimonialImages.edges", []);
 
   return (
     <Layout mount={mount} location={location}>
@@ -221,42 +223,26 @@ const IndexPage = ({ data, location, mount }) => {
         <section className={styles["home__reviews"]}>
           <h2>Что думают наши клиенты</h2>
           <div className={styles["reviews"]}>
-            <ItemsCarousel
-              activePosition="center"
-              infiniteLoop={false}
-              requestToChangeActive={setActiveItemIndex}
-              activeItemIndex={activeItemIndex}
-              numberOfCards={cardsCount}
-              gutter={desktopWidth ? 16 : 32}
-              leftChevron={
-                !desktopWidth ? (
-                  <button
-                    className={cx(
-                      styles["reviews__button"],
-                      styles["reviews__button--left"]
-                    )}
-                  >
-                    <ChevronIcon />
-                  </button>
-                ) : null
-              }
-              rightChevron={
-                !desktopWidth ? (
-                  <button
-                    className={cx(
-                      styles["reviews__button"],
-                      styles["reviews__button--right"]
-                    )}
-                  >
-                    <ChevronIcon />
-                  </button>
-                ) : null
-              }
-              outsideChevron={!desktopWidth}
-              chevronWidth={!desktopWidth ? 60 : 0}
-              disableSwipe={false}
-              showSlither={desktopWidth}
-              firstAndLastGutter={desktopWidth}
+            <Carousel
+              containerStyle={{
+                width: "100%",
+                height: "100%",
+              }}
+              slideStyle={{
+                width: "100%",
+                height: "100%",
+                overflow: "hidden",
+              }}
+              className={styles["reviews__carousel"]}
+              controlsPosition={"out"}
+              customControl={() => (
+                <LongArrow className={styles["reviews__carousel-control"]} />
+              )}
+              animationConfig={{
+                duration: "0.6s",
+                easeFunction: "ease-in-out",
+                delay: "0s",
+              }}
             >
               {reviews.map(r => (
                 <div className={styles["reviews__card-wrapper"]}>
@@ -264,50 +250,35 @@ const IndexPage = ({ data, location, mount }) => {
                     key={r.author}
                     className={styles["reviews__card"]}
                   >
-                    <cite className={styles["reviews__card-author"]}>
-                      <img
-                        className={styles["reviews__card-avatar"]}
-                        src={r.image}
+                    <div className={styles["reviews__card-avatar"]}>
+                      <Img
+                        style={{ width: "100%", height: "100%" }}
+                        imgStyle={{
+                          objectFit: "cover",
+                          maxHeight: "100%",
+                          maxWidth: "100%",
+                        }}
+                        fluid={
+                          testimonialImages.find(
+                            ({ node }) => node.base === `${r.image}.jpg`
+                          ).node.childImageSharp.fluid
+                        }
+                        loading={"eager"}
                       />
-                      <a href={r.link} className={styles["reviews__card-link"]}>
-                        <span className={styles["reviews__card-name"]}>
-                          {r.author}
-                        </span>
-                        <span className={styles["reviews__card-nickname"]}>
-                          @{r.nickname}
-                        </span>
-                      </a>
-                    </cite>
+                    </div>
                     <p className={styles["reviews__card-text"]}>{r.text}</p>
+                    <cite className={styles["reviews__card-author"]}>
+                      <span className={styles["reviews__card-name"]}>
+                        {r.author}
+                      </span>
+                      <span className={styles["reviews__card-date"]}>
+                        {r.date}
+                      </span>
+                    </cite>
                   </blockquote>
                 </div>
               ))}
-            </ItemsCarousel>
-            <div className={styles["reviews__pagination"]}>
-              {reviews.map((r, index) => {
-                const prev = activeItemIndex - 1;
-                const next = activeItemIndex + 1;
-                const isStart = index === 0;
-                const isFinish = index === reviews.length - 1;
-
-                if (!desktopWidth && (isStart || isFinish)) {
-                  return null;
-                }
-
-                return (
-                  <button
-                    key={index}
-                    className={cx(styles["reviews__to-slide"], {
-                      [styles["reviews__to-slide--active"]]:
-                        index === activeItemIndex,
-                      [styles["reviews__to-slide--adjacent"]]:
-                        index === next || index === prev,
-                    })}
-                    onClick={handleSlideBtnClick(index)}
-                  />
-                );
-              })}
-            </div>
+            </Carousel>
           </div>
         </section>
         <section className={styles["home__order"]}>
@@ -388,6 +359,20 @@ export default IndexPage;
 export const query = graphql`
   {
     images: allFile {
+      edges {
+        node {
+          base
+          childImageSharp {
+            fluid(maxWidth: 1024, quality: 100) {
+              ...GatsbyImageSharpFluid_tracedSVG
+            }
+          }
+        }
+      }
+    }
+    testimonialImages: allFile(
+      filter: { relativePath: { regex: "/testimonials/.*/" } }
+    ) {
       edges {
         node {
           base

@@ -19,32 +19,20 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
-        fonts: [
-          {
-            family: `PT Serif`,
-            variants: [`400`, `700`],
-            subsets: [`cyrillic`, `latin`],
-          },
-          {
-            family: `Open Sans`,
-            variants: [`300`, `400`, `700`],
-            subsets: [`cyrillic`, `latin`],
-          },
-        ],
+        google: {
+          families: [
+            "Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700",
+            "Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1",
+          ],
+        },
       },
     },
     `gatsby-plugin-portal`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
-    // {
-    //   resolve: `gatsby-source-instagram`,
-    //   options: {
-    //     username: `20593822219`,
-    //   },
-    // },
     {
       resolve: `source-instagram`,
       options: {},
