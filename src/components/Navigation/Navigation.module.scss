@@ -26,7 +26,7 @@
   z-index: 999;
 
   &--collapsed {
-    width: $navigation-collapsed-w;
+    transform: translateX(calc(#{$navigation-collapsed-w} - 100%));
     box-shadow: none;
 
     #{$this}__logo,
@@ -47,7 +47,7 @@
     padding: 0;
 
     &--collapsed {
-      width: 0;
+      transform: translateX(-100%);
     }
   }
 
