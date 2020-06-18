@@ -19,60 +19,9 @@ import LikeIcon from "assets/icons/heart.svg";
 import Logo from "assets/logo/valeur.svg";
 import vFile from "assets/videos/bg-video.mp4";
 
-import styles from "./Home.module.scss";
+import reviews from "../constants/testimonials";
 
-const reviews = [
-  {
-    author: "Ольга",
-    link: "",
-    text:
-      "Виджеты Elfsight - просто супер! Четкая структура, понятное описание, легкие настройки. Мне нравятся все их продукты и качество работы поддержки",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-22.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "olga",
-    social: "instagram",
-  },
-  {
-    author: "Александр",
-    link: "",
-    text:
-      "У Elfsight отличные виджеты и действительно оперативная и дружелюбная поддержка. Компетентно и надежно, я рекомендую Elfsight",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-8.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "alexandr",
-    social: "instagram",
-  },
-  {
-    author: "Евгения",
-    link: "",
-    text:
-      "Классный плагин для отзывов на сайт с интуитивным интерфейсом. Очень легко добавить индивидуальные настройки и интеграция прошла мгновенно. Служба поддержки помогла во всех вопросах",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-24.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "evgeniy",
-    social: "instagram",
-  },
-  {
-    author: "Сергей",
-    link: "",
-    text:
-      "У меня возникла проблема с их Instagram виджетом, но мне мгновенно помогли ее решить. Теперь хочу попробовать и другие виджеты этой команды",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-21.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "sergey",
-    social: "instagram",
-  },
-  {
-    author: "Анна",
-    link: "",
-    text:
-      "Прекрасные виджеты за приемлемую цену. Просто использовать, можно настроить под свои потребности, а служба поддержки вежливая и всегда поможет. У меня только положительные впечатления!",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-20.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "anna",
-    social: "instagram",
-  },
-];
+import styles from "./Home.module.scss";
 
 const ScrollElement = () => (
   <div className={styles["scroll-down"]}>
