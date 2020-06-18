@@ -1,0 +1,17 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  padding: $padding * 5.5 $padding * 4;
+
+  &__item {
+    width: 100%;
+    height: 100%;
+
+    picture {
+      position: static;
+    }
+  }
+}

@@ -134,7 +134,6 @@
       display: inline-block;
       width: 100%;
       text-align: center;
-      max-width: $wide-desktop-width;
       font-size: 0.4em;
       font-weight: 400;
       margin-top: $padding;
@@ -495,7 +494,7 @@
         transition: all 0.3s ease;
 
         background-image: none;
-        background-color: rgba(255, 255, 255, 0.68);
+        background-color: rgba(255, 255, 255, 0.2);
         background-size: auto;
         background-position: 0% 0%;
         background-repeat: no-repeat;

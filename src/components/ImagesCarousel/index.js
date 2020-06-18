@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "components/Carousel";
 import Img from "gatsby-image";
 
-import styles from "./InvitationKits.module.scss";
+import styles from "./ImagesCarousel.module.scss";
 
 function ImagesCarousel({ images }) {
   const renderImage = image => {
