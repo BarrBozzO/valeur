@@ -18,6 +18,7 @@ import LikeIcon from "assets/icons/heart.svg";
 import Logo from "assets/logo/valeur.svg";
 import vFile from "assets/videos/bg-video.mp4";
 import LongArrow from "assets/icons/long-arrow.svg";
+import Leaf from "assets/icons/leaf.svg";
 // import paperBG from "assets/background/paper.jpg";
 
 import reviews from "../constants/testimonials";
@@ -93,35 +94,48 @@ const IndexPage = ({ data, location, mount }) => {
               <Img
                 className={styles["home__about-photo"]}
                 fluid={authorImg.fluid}
-                imgStyle={{ objectFit: "contain" }}
+                imgStyle={{ objectFit: "cover" }}
                 style={{ width: "100%", height: "100%" }}
               />
             </div>
             <div className={styles["home__about-description"]}>
               <div className={styles["home__about-intro"]}>
-                <p>Привeт, меня зовут Даша и я создатель студии «VALEUR».</p>
+                <div className={styles["home__about-intro-title"]}>
+                  Привeт, меня зовут Дарья
+                  <br />и я создатель студии{" "}
+                  <span className={styles["home__about-intro-title-highlight"]}>
+                    «VALEUR»
+                  </span>
+                </div>
                 <p>
-                  Наша студия – это команда профессионалов. Уже более 2-х лет
-                  воплощаем ваши идеи в реальность.
-                  <br />
+                  {`Наша студия – это команда профессионалов.
+                  
+                  Уже более 2-х лет воплощаем ваши идеи в реальность.
                   Мы берем на себя полный цикл разработки свадебной полиграфии.
                   У каждой пары своя индивидуальная история любви – именно это
                   воодушевляет нашу команду и помогает создавать уникальные
                   работы.
+                  `}
                 </p>
               </div>
               <div className={styles["home__about-services"]}>
                 <p>Наши услуги:</p>
                 <ul className={styles["home__about-services-list"]}>
-                  <li>Комплект «Save the Date» для вас и вашей фотосессии</li>
-                  <li>Пригласительные для ваших гостей</li>
-                  <li>Карточки меню</li>
-                  <li>Карточки дресс - кода</li>
-                  <li>Карточки номерков на стол</li>
-                  <li>Карточки рассадки</li>
-                  <li>Холст с рассадкой гостей при входе</li>
-                  <li>Конверты ручной работы</li>
-                  <li>Остальные комплектующие по запросу</li>
+                  {[
+                    "Комплект «Save the Date» для вас и вашей фотосессии",
+                    "Пригласительные для ваших гостей",
+                    "Карточки меню",
+                    "Карточки дресс - кода",
+                    "Карточки номерков на стол",
+                    "Карточки рассадки",
+                    "Холст с рассадкой гостей при входе",
+                    "Конверты ручной работы",
+                    "Остальные комплектующие по запросу",
+                  ].map(service => (
+                    <li>
+                      <Leaf width={18} height={18} /> {service}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -132,8 +146,13 @@ const IndexPage = ({ data, location, mount }) => {
           <div className={styles["features"]}>
             <div className={styles["features__item"]}>
               <div className={styles["features__item-text-container"]}>
+                <div className={styles["features__item-number"]}>01</div>
                 <div className={styles["features__item-title"]}>
-                  Индивидуальный подход
+                  Только{" "}
+                  <span className={styles["features__item-title-highlight"]}>
+                    индивидуальный
+                  </span>{" "}
+                  подход
                 </div>
                 <div className={styles["features__item-description"]}>
                   <p>
@@ -149,6 +168,13 @@ const IndexPage = ({ data, location, mount }) => {
                   >
                     Комплекты пригласительных
                   </Link>
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Save the date
+                  </Link>
                 </div>
               </div>
               <div className={styles["features__item-image-container"]}>
@@ -160,7 +186,12 @@ const IndexPage = ({ data, location, mount }) => {
               </div>
             </div>
             <div className={styles["features__item"]}>
-              <div className={styles["features__item-image-container"]}>
+              <div
+                className={cx(
+                  styles["features__item-image-container"],
+                  styles["features__item-image-container--left"]
+                )}
+              >
                 <Img
                   className={styles["features__item-image"]}
                   fluid={qualityFeatureImg.fluid}
@@ -168,51 +199,75 @@ const IndexPage = ({ data, location, mount }) => {
                 />
               </div>
               <div className={styles["features__item-text-container"]}>
-                <div className={styles["features__item-title"]}>Качество</div>
+                <div className={styles["features__item-number"]}>02</div>
+                <div className={styles["features__item-title"]}>
+                  Самое{" "}
+                  <span className={styles["features__item-title-highlight"]}>
+                    высокое
+                  </span>{" "}
+                  качество
+                </div>
                 <div className={styles["features__item-description"]}>
-                  Мы используем только качественные материалы люкс – сегмента.
+                  <p>
+                    Мы используем только качественные материалы люкс – сегмента.
+                    <br />
+                    При этом стоимость комплекта начинается от 200 рублей.
+                  </p>
                   <br />
-                  При этом стоимость комплекта начинается от 200 рублей.
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Комплекты пригласительных
+                  </Link>
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Save the date
+                  </Link>
                 </div>
               </div>
             </div>
             <div className={styles["features__item"]}>
               <div className={styles["features__item-text-container"]}>
                 <div className={styles["features__item-title"]}>
-                  Ручная работа
+                  <span className={styles["features__item-title-highlight"]}>
+                    Ручная
+                  </span>{" "}
+                  работа
                 </div>
+                <div className={styles["features__item-number"]}>03</div>
                 <div className={styles["features__item-description"]}>
-                  Каждый наш комплект изготавливается вручную.
+                  <p>Каждый наш комплект изготавливается вручную.</p>
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Комплекты пригласительных
+                  </Link>
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Save the date
+                  </Link>
                 </div>
               </div>
-              <div className={styles["features__item-image-container"]}>
+              <div
+                className={cx(
+                  styles["features__item-image-container"],
+                  styles["features__item--wc-leaves"]
+                )}
+              >
                 <Img
                   className={styles["features__item-image"]}
                   fluid={handmadeFeatureImg.fluid}
                   imgStyle={{ objectFit: "cover" }}
                 />
-              </div>
-            </div>
-            <div className={styles["features__item"]}>
-              <div className={styles["features__item-image-container"]}>
-                <Img
-                  className={styles["features__item-image"]}
-                  fluid={blogFeatureImg.fluid}
-                  imgStyle={{ objectFit: "cover" }}
-                />
-              </div>
-              <div className={styles["features__item-text-container"]}>
-                <div className={styles["features__item-title"]}>
-                  Присоединяйтесь к нам
-                </div>
-                <div className={styles["features__item-description"]}>
-                  В нашем Блоге мы делимся идеями, рассказываем о процессе
-                  создания проектов, поиске вдохновления и многом другом.
-                  <br />
-                  <Link className={styles["features__item-link"]} to="/posts">
-                    Читать
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
@@ -252,6 +307,7 @@ const IndexPage = ({ data, location, mount }) => {
                         style={{ width: "100%", height: "100%" }}
                         imgStyle={{
                           objectFit: "cover",
+                          objectPosition: "top center",
                           maxHeight: "100%",
                           maxWidth: "100%",
                         }}
@@ -279,7 +335,14 @@ const IndexPage = ({ data, location, mount }) => {
           </div>
         </section>
         <section className={styles["home__posts"]}>
-          <h2>Что думают наши клиенты</h2>
+          <h2>
+            Присоединяйтесь к нам
+            <small>
+              В нашем Блоге мы делимся идеями, рассказываем о процессе создания
+              проектов,
+              <br /> поиске вдохновления и многом другом.
+            </small>
+          </h2>
           <div className={styles["posts"]}>
             {latestPosts.map(
               ({ id, slug, title, image, createdAt, description }) => {
@@ -343,7 +406,7 @@ const IndexPage = ({ data, location, mount }) => {
           <h2>
             Мы в Instagram
             <small className={styles["home__instagram-subheader"]}>
-              Следите за обновлениями на @v_aleur
+              Следите за обновлениями на <mark>@v_aleur</mark>
             </small>
           </h2>
           <div className={styles["instagram"]}>

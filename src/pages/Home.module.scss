@@ -2,14 +2,9 @@
 @import "~styles/__mixins";
 
 .home {
-  // height: 100vh;
-  // color: $primary-white;
-  // background-color: rgba(0, 0, 0, 0.06);
-  // padding: $page-padding;
-
   h2 {
     text-align: center;
-    font-weight: 100;
+    font-weight: 300;
     font-size: 2em;
     margin-bottom: $padding * 4;
 
@@ -23,6 +18,21 @@
 
     @include mobile-down {
       font-size: 1.6em;
+    }
+
+    small {
+      display: inline-block;
+      width: 100%;
+      color: $secondary-text-color;
+      font-size: 0.4em;
+      line-height: 1.4em;
+      font-weight: 400;
+      margin-top: $padding;
+
+      mark {
+        color: $primary-red;
+        background-color: transparent;
+      }
     }
   }
 
@@ -85,19 +95,55 @@
     }
 
     &-description {
-      padding: $padding;
+      padding: $padding 0 $padding $padding * 4;
 
       font-size: 0.9em;
       line-height: 1.4em;
     }
 
     &-services {
+      color: rgb(109, 106, 106);
+      font-size: 0.9em;
+      white-space: pre-line;
+      @include secondary-font;
       margin-top: $padding * 4;
+
+      &-list {
+        margin-bottom: 0;
+        padding-left: $padding/ 2;
+        list-style: none;
+
+        li {
+          margin-bottom: $padding / 2;
+
+          svg {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: $padding / 4;
+          }
+        }
+      }
     }
 
     &-intro {
       flex: 1 0 50%;
       max-width: 750px;
+      color: rgb(109, 106, 106);
+      font-size: 0.9em;
+      white-space: pre-line;
+      @include secondary-font;
+
+      &-title {
+        font-size: 1.8em;
+        line-height: 1.4em;
+        color: $primary-text-color;
+
+        margin-bottom: $padding * 2;
+
+        &-highlight {
+          color: $primary-red;
+        }
+      }
     }
 
     &-photo {
@@ -110,6 +156,17 @@
         max-width: 500px;
         height: 800px;
         padding: $padding;
+
+        border-color: rgba(193, 206, 216, 1);
+        border-width: 1px;
+        border-style: solid;
+        background-color: $primary-white;
+
+        > div {
+          border-color: rgba(193, 206, 216, 0.4);
+          border-width: 1px;
+          border-style: solid;
+        }
       }
     }
   }
@@ -145,6 +202,7 @@
   }
 
   &__features {
+    // background-image: url("/background/paper.jpg");
   }
 
   &__wave {
@@ -220,8 +278,33 @@
     align-items: center;
     justify-content: center;
 
-    color: $primary-white;
-    background: radial-gradient(circle at bottom, #e89883 30%, #e9c7b1 130%);
+    background: #fffaee;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-image: url("/background/order-left-flower.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 200px;
+      height: 268px;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-image: url("/background/order-right-flower.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 260px;
+      height: 241px;
+    }
 
     &-subheader {
       display: inline-block;
@@ -240,17 +323,17 @@
       width: 190px;
       padding: 0;
 
-      font-size: 1em;
+      font-size: 0.75em;
       letter-spacing: 0.1em;
-      font-weight: 700;
       line-height: 50px;
       border: 0;
-      border-radius: 5px;
+      border-radius: 0;
+      text-transform: uppercase;
 
-      background-color: $primary-purple;
+      background-color: $primary-red;
 
       &:hover {
-        background-color: darken($primary-purple, 10);
+        background-color: darken($primary-red, 10);
         border: 0;
       }
     }
@@ -267,6 +350,8 @@
 
   max-width: $wide-desktop-width;
   margin: 0 auto;
+
+  @include secondary-font;
 
   &__item {
     width: 100%;
@@ -291,8 +376,8 @@
     }
 
     &-title {
-      font-size: 1.5em;
-      font-weight: 700;
+      font-size: 1.6em;
+      font-weight: 400;
       line-height: 1.4em;
       margin-bottom: $padding * 2;
       padding-bottom: $padding * 2;
@@ -301,22 +386,38 @@
         content: "";
         position: absolute;
         width: 20%;
-        height: 2px;
+        height: 1px;
         left: 0%;
         bottom: -2px;
         z-index: 999;
-        background-color: transparentize($color: $primary-purple, $amount: 0.4);
+        background-color: rgba(193, 193, 193, 0.3);
       }
+
+      &-highlight {
+        color: $primary-red;
+      }
+    }
+
+    &-number {
+      position: absolute;
+      font-size: 6em;
+      display: block;
+      opacity: 0.04;
+      top: 0;
+      left: 0;
+      transform: translate(0, -25%);
     }
 
     &-description {
       font-size: 0.9em;
       line-height: 1.4em;
+      color: $alternative-text-color;
     }
 
     &-link {
       margin-top: $padding * 2;
       line-height: 1em;
+      color: $primary-text-color;
 
       &::after {
         position: absolute;
@@ -340,6 +441,19 @@
       }
     }
 
+    &--wc-leaves {
+      &::after {
+        display: none;
+        content: "";
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        // background-image: url("/background/wc-leaves.png");
+        left: 0;
+        top: 0;
+      }
+    }
+
     &-image {
       picture {
         position: static;
@@ -349,11 +463,32 @@
         flex: 1 0 60%;
 
         > div {
-          max-height: 700px;
+          max-height: 500px;
         }
 
         @include desktop-down {
           flex: 1 0 100%;
+        }
+
+        &--left {
+          margin-right: $padding * 2;
+
+          &:before {
+            left: -10px !important;
+            box-shadow: -4px 2px 20px 0px rgba(14, 30, 37, 0.16) !important;
+          }
+        }
+
+        &:before {
+          content: "";
+          position: absolute;
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: #d4d4d4;
+          left: 10px;
+          top: 10px;
+          box-shadow: 4px 2px 20px 0px rgba(14, 30, 37, 0.16);
         }
       }
     }
@@ -365,6 +500,7 @@
     max-width: $wide-desktop-width;
     margin: 0 auto;
     padding: 0 $padding * 6;
+    z-index: 1;
 
     &-control {
       display: block;
@@ -451,7 +587,7 @@
     &-name {
       display: inline-block;
       width: 100%;
-      color: $primary-text-color;
+      color: $primary-red;
       font-size: 0.6em;
       line-height: 2em;
       font-weight: 500;
@@ -498,6 +634,8 @@
   }
 
   &__item {
+    $this: &;
+
     display: flex;
     flex-direction: column;
 
@@ -507,8 +645,14 @@
     padding: $padding;
     margin: 0 auto;
 
+    &:hover {
+      #{$this}-cover-image {
+        transform: scale(1.1);
+      }
+    }
+
     &-title {
-      text-align: center;
+      text-align: left;
       font-size: 1.2em;
       font-weight: 400;
       margin: $padding * 2 0 $padding;
@@ -523,7 +667,7 @@
     }
 
     &-created {
-      text-align: center;
+      text-align: left;
       font-size: 0.6em;
       margin-bottom: $padding * 2;
       color: $gray-2;
@@ -535,22 +679,23 @@
         position: static;
       }
 
+      overflow: hidden;
+
       &-image {
         height: 280px;
         margin: 0;
-
+        transition: all 0.3s ease;
         @include mobile-down {
         }
       }
     }
 
     &-description {
-      text-align: center;
+      text-align: left;
       font-size: 0.75em;
       line-height: 1.4em;
       color: $black-1;
       @include secondary-font;
-      padding: 0 $padding * 2;
     }
   }
 }
