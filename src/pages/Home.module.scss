@@ -30,7 +30,7 @@
       margin-top: $padding;
 
       mark {
-        color: $primary-red;
+        color: $primary-color;
         background-color: transparent;
       }
     }
@@ -141,7 +141,7 @@
         margin-bottom: $padding * 2;
 
         &-highlight {
-          color: $primary-red;
+          color: $primary-color;
         }
       }
     }
@@ -209,10 +209,10 @@
     overflow: hidden;
     svg {
       display: block;
-      fill: $primary-purple;
+      fill: $primary-color;
     }
     &--bottom {
-      background-color: $primary-purple;
+      background-color: $primary-color;
 
       svg {
         fill: $primary-gray;
@@ -329,10 +329,10 @@
       border-radius: 0;
       text-transform: uppercase;
 
-      background-color: $primary-red;
+      background-color: $primary-color;
 
       &:hover {
-        background-color: darken($primary-red, 10);
+        background-color: darken($primary-color, 10);
         border: 0;
       }
     }
@@ -393,7 +393,7 @@
       }
 
       &-highlight {
-        color: $primary-red;
+        color: $primary-color;
       }
     }
 
@@ -586,7 +586,7 @@
     &-name {
       display: inline-block;
       width: 100%;
-      color: $primary-red;
+      color: $primary-color;
       font-size: 0.6em;
       line-height: 2em;
       font-weight: 500;

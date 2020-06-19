@@ -8,7 +8,7 @@
 
     ::selection {
       color: $primary-text-color;
-      background-color: transparentize($color: $primary-purple, $amount: 0.75);
+      background-color: transparentize($color: $primary-color, $amount: 0.75);
     }
 
     main {
