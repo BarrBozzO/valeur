@@ -88,7 +88,7 @@ const IndexPage = ({ data, location, mount }) => {
           <SectionBorder />
         </div>
         <section className={styles["home__about"]}>
-          <h2>О проекте</h2>
+          {/* <h2>О проекте</h2> */}
           <div className={styles["home__about-content"]}>
             <div className={styles["home__about-photo-container"]}>
               <Img
@@ -101,8 +101,7 @@ const IndexPage = ({ data, location, mount }) => {
             <div className={styles["home__about-description"]}>
               <div className={styles["home__about-intro"]}>
                 <div className={styles["home__about-intro-title"]}>
-                  Привeт, меня зовут Дарья
-                  <br />и я создатель студии{" "}
+                  Привeт, меня зовут Дарья и я создатель студии{" "}
                   <span className={styles["home__about-intro-title-highlight"]}>
                     «VALEUR»
                   </span>
@@ -273,65 +272,69 @@ const IndexPage = ({ data, location, mount }) => {
           </div>
         </section>
         <section className={styles["home__reviews"]}>
-          <h2>Что думают наши клиенты</h2>
-          <div className={styles["reviews"]}>
-            <Carousel
-              containerStyle={{
-                width: "100%",
-                height: "100%",
-              }}
-              slideStyle={{
-                width: "100%",
-                height: "100%",
-                overflow: "hidden",
-              }}
-              className={styles["reviews__carousel"]}
-              controlsPosition={"out"}
-              customControl={() => (
-                <LongArrow className={styles["reviews__carousel-control"]} />
-              )}
-              animationConfig={{
-                duration: "0.6s",
-                easeFunction: "ease-in-out",
-                delay: "0s",
-              }}
-            >
-              {reviews.map(r => (
-                <div className={styles["reviews__card-wrapper"]}>
-                  <blockquote
-                    key={r.author}
-                    className={styles["reviews__card"]}
-                  >
-                    <div className={styles["reviews__card-avatar"]}>
-                      <Img
-                        style={{ width: "100%", height: "100%" }}
-                        imgStyle={{
-                          objectFit: "cover",
-                          objectPosition: "top center",
-                          maxHeight: "100%",
-                          maxWidth: "100%",
-                        }}
-                        fluid={
-                          testimonialImages.find(
-                            ({ node }) => node.base === `${r.image}.jpg`
-                          ).node.childImageSharp.fluid
-                        }
-                        loading={"eager"}
-                      />
-                    </div>
-                    <p className={styles["reviews__card-text"]}>{r.text}</p>
-                    <cite className={styles["reviews__card-author"]}>
-                      <span className={styles["reviews__card-name"]}>
-                        {r.author}
-                      </span>
-                      <span className={styles["reviews__card-date"]}>
-                        {r.date}
-                      </span>
-                    </cite>
-                  </blockquote>
-                </div>
-              ))}
-            </Carousel>
+          <div className={styles["home__reviews-container"]}>
+            <h2>
+              Что думают <span>наши клиенты</span>
+            </h2>
+            <div className={styles["reviews"]}>
+              <Carousel
+                containerStyle={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                slideStyle={{
+                  width: "100%",
+                  height: "100%",
+                  overflow: "hidden",
+                }}
+                className={styles["reviews__carousel"]}
+                controlsPosition={"out"}
+                customControl={() => (
+                  <LongArrow className={styles["reviews__carousel-control"]} />
+                )}
+                animationConfig={{
+                  duration: "0.6s",
+                  easeFunction: "ease-in-out",
+                  delay: "0s",
+                }}
+              >
+                {reviews.map(r => (
+                  <div className={styles["reviews__card-wrapper"]}>
+                    <blockquote
+                      key={r.author}
+                      className={styles["reviews__card"]}
+                    >
+                      <div className={styles["reviews__card-avatar"]}>
+                        <Img
+                          style={{ width: "100%", height: "100%" }}
+                          imgStyle={{
+                            objectFit: "cover",
+                            objectPosition: "top center",
+                            maxHeight: "100%",
+                            maxWidth: "100%",
+                          }}
+                          fluid={
+                            testimonialImages.find(
+                              ({ node }) => node.base === `${r.image}.jpg`
+                            ).node.childImageSharp.fluid
+                          }
+                          loading={"eager"}
+                        />
+                      </div>
+                      <p className={styles["reviews__card-text"]}>{r.text}</p>
+                      <cite className={styles["reviews__card-author"]}>
+                        <span className={styles["reviews__card-name"]}>
+                          {r.author}
+                        </span>
+                        <span className={styles["reviews__card-date"]}>
+                          {r.date}
+                        </span>
+                      </cite>
+                    </blockquote>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
           </div>
         </section>
         <section className={styles["home__posts"]}>
@@ -393,14 +396,32 @@ const IndexPage = ({ data, location, mount }) => {
           </div>
         </section>
         <section className={styles["home__order"]}>
-          <h2>
-            Вы готовы начать?
-            <small className={styles["home__order-subheader"]}>
-              {`Давайте обсудим ваш будущий проект.
+          <div className={styles["home__order-container"]}>
+            <h2>
+              Вы готовы начать?
+              <small className={styles["home__order-subheader"]}>
+                {`Давайте обсудим ваш будущий проект.
               Вместе мы сможем создать нечто потрясающее!`}
-            </small>
-          </h2>
-          <Button className={styles["home__order-button"]} label="Начать" />
+              </small>
+            </h2>
+            <Button className={styles["home__order-button"]} label="Начать" />
+          </div>
+          <div
+            className={cx(
+              styles["home__order-image"],
+              styles["home__order-image--l"]
+            )}
+          >
+            <div />
+          </div>
+          <div
+            className={cx(
+              styles["home__order-image"],
+              styles["home__order-image--r"]
+            )}
+          >
+            <div />
+          </div>
         </section>
         <section className={styles["home__instagram"]}>
           <h2>

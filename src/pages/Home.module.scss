@@ -34,6 +34,10 @@
         background-color: transparent;
       }
     }
+
+    span {
+      white-space: nowrap;
+    }
   }
 
   section {
@@ -92,6 +96,11 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
+
+      @include tablet-down {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
     }
 
     &-description {
@@ -99,6 +108,10 @@
 
       font-size: 0.9em;
       line-height: 1.4em;
+
+      @include tablet-down {
+        padding: 0 $padding;
+      }
     }
 
     &-services {
@@ -143,6 +156,10 @@
         &-highlight {
           color: $primary-color;
         }
+
+        @include tablet-down {
+          font-size: 1.6em;
+        }
       }
     }
 
@@ -167,42 +184,59 @@
           border-width: 1px;
           border-style: solid;
         }
+
+        @include tablet-down {
+          height: calc(50vh);
+          width: 100%;
+          margin: $padding * 2 auto 0;
+        }
       }
     }
   }
 
   &__reviews {
-    background-color: $primary-gray;
+    background-color: $gray-1;
+
+    &-container {
+      z-index: 1;
+    }
 
     &:before {
       content: "";
       display: block;
       position: absolute;
-      background-image: url("/background/left-flower.jpg");
+      background-image: url("/background/left-flower.png");
       background-repeat: no-repeat;
-      background-size: auto;
-      width: 215px;
-      height: 235px;
+      background-size: contain;
+      width: 284px;
+      height: 297px;
       bottom: 0;
       left: 0;
+
+      @include mobile-down {
+        width: 190px;
+        height: 198px;
+      }
     }
 
     &:after {
       content: "";
       position: absolute;
       display: block;
-      background-image: url("/background/right-flower.jpg");
+      background-image: url("/background/right-flower.png");
       background-repeat: no-repeat;
-      background-size: auto;
-      width: 350px;
-      height: 276px;
+      background-size: contain;
+      width: 233px;
+      height: 164px;
       top: 0;
       right: 0;
-    }
-  }
 
-  &__features {
-    // background-image: url("/background/paper.jpg");
+      @include mobile-down {
+        width: 150px;
+        height: 105px;
+        right: -10px;
+      }
+    }
   }
 
   &__wave {
@@ -233,6 +267,10 @@
 
     @include desktop-down {
       height: 160px;
+    }
+
+    @include mobile-down {
+      height: 60px;
     }
 
     svg {
@@ -272,37 +310,63 @@
   }
 
   &__order {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    background: #fffaee;
-
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      background-image: url("/background/order-left-flower.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-      width: 200px;
-      height: 268px;
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
     }
 
-    &::after {
-      content: "";
-      display: block;
+    background: $gray-1;
+
+    &-image {
       position: absolute;
-      bottom: 0;
-      right: 0;
-      background-image: url("/background/order-right-flower.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-      width: 260px;
-      height: 241px;
+
+      > div {
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      &--l {
+        width: 24%;
+        bottom: 0;
+        left: 0;
+
+        max-width: 440px;
+
+        @include desktop-down {
+          width: 32%;
+        }
+
+        @include mobile-down {
+          width: 32%;
+        }
+
+        > div {
+          background-image: url("/background/order-left-flower.png");
+          padding-bottom: 83.9%;
+        }
+      }
+
+      &--r {
+        width: 21%;
+        top: 0;
+        right: 0;
+
+        @include desktop-down {
+          width: 30%;
+        }
+
+        @include mobile-down {
+          width: 32%;
+        }
+
+        > div {
+          padding-bottom: 81.5%;
+          background-image: url("/background/order-right-flower.png");
+        }
+      }
     }
 
     &-subheader {
@@ -335,6 +399,12 @@
         background-color: darken($primary-color, 10);
         border: 0;
       }
+
+      @include mobile-down {
+        width: 160px;
+        height: 40px;
+        line-height: 40px;
+      }
     }
   }
 
@@ -364,6 +434,10 @@
       flex-direction: column;
     }
 
+    @include mobile-down {
+      margin: $padding * 2 0;
+    }
+
     &-text-container {
       flex: 1 0 40%;
       align-self: flex-start;
@@ -371,6 +445,10 @@
 
       @include desktop-down {
         flex: 1 0 100%;
+      }
+
+      @include mobile-down {
+        padding: $padding;
       }
     }
 
@@ -417,6 +495,10 @@
       margin-top: $padding * 2;
       line-height: 1em;
       color: $primary-text-color;
+
+      @include mobile-down {
+        margin-top: $padding;
+      }
 
       &::after {
         position: absolute;
@@ -465,7 +547,7 @@
           max-height: 500px;
         }
 
-        @include desktop-down {
+        @include tablet-down {
           flex: 1 0 100%;
         }
 
@@ -497,9 +579,13 @@
 .reviews {
   &__carousel {
     max-width: $wide-desktop-width;
-    margin: 0 auto;
+    margin: $padding * 3 auto 0;
     padding: 0 $padding * 6;
     z-index: 1;
+
+    @include tablet-down {
+      padding: 0;
+    }
 
     &-control {
       display: block;
@@ -510,6 +596,10 @@
 
       &:hover {
         color: #2b2b2b;
+      }
+
+      @include tablet-down {
+        display: none;
       }
     }
   }
@@ -555,6 +645,10 @@
 
   &__card-wrapper {
     padding: 0 $padding * 4;
+
+    @include mobile-down {
+      padding: 0 $padding;
+    }
   }
 
   &__card {
@@ -575,6 +669,10 @@
       font-style: italic;
 
       margin: $padding * 2 0 0 0;
+
+      @include mobile-down {
+        font-size: 0.75em;
+      }
     }
 
     &-author {
@@ -610,6 +708,11 @@
       margin: 0 auto;
       overflow: hidden;
 
+      @include mobile-down {
+        width: 120px;
+        height: 120px;
+      }
+
       picture {
         position: static;
       }
@@ -643,6 +746,14 @@
     max-width: $tablet-width;
     padding: $padding;
     margin: 0 auto;
+
+    @include desktop-down {
+      &:not(:last-child) {
+        border-bottom: 1px solid lighten($color: $gray-2, $amount: 30%);
+        padding-bottom: $padding * 2;
+        margin-bottom: $padding;
+      }
+    }
 
     &:hover {
       #{$this}-cover-image {
