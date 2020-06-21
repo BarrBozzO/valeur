@@ -16,9 +16,11 @@ import SectionBorder from "assets/icons/section-border.svg";
 import ChatIcon from "assets/icons/chat.svg";
 import LikeIcon from "assets/icons/heart.svg";
 import Logo from "assets/logo/valeur.svg";
+import Polygraphy from "assets/logo/polygraphy.svg";
 import vFile from "assets/videos/bg-video.mp4";
 import LongArrow from "assets/icons/long-arrow.svg";
 import Leaf from "assets/icons/leaf.svg";
+import InstagramIcon from "assets/icons/instagram.svg";
 // import paperBG from "assets/background/paper.jpg";
 
 import reviews from "../constants/testimonials";
@@ -70,11 +72,22 @@ const IndexPage = ({ data, location, mount }) => {
       <div className={styles["home"]}>
         <section className={styles["home__start"]}>
           <Video className={styles["home__background-video"]} source={vFile} />
-          <Logo className={styles["home__start-logo"]} />
-          <h1>Valeur — свадебная полиграфия</h1>
           <div>
-            Мы уже придумали ваши идеальные пригласительные
-            {/* <Button label="Заказать" /> */}
+            <Logo className={styles["home__start-logo"]} />
+            <Polygraphy className={styles["home__start-polygraphy"]} />
+            <h1>Valeur — свадебная полиграфия</h1>
+            <p className={styles["home__start-text"]}>
+              Мы уже придумали ваши идеальные пригласительные
+            </p>
+            {/* <div className={styles["home__start-link"]}>
+              <Button link>Как заказать?</Button>
+              <Link to={"/portfolio/invitation-kits"}>Посмотреть работы</Link>
+            </div> */}
+          </div>
+          <div className={styles["home__start-instagram"]}>
+            <a href="https://www.instagram.com/v_aleur/" target="_blank">
+              <InstagramIcon /> <span>Мы в Instagram</span>
+            </a>
           </div>
           <ScrollElement />
         </section>
@@ -88,7 +101,6 @@ const IndexPage = ({ data, location, mount }) => {
           <SectionBorder />
         </div>
         <section className={styles["home__about"]}>
-          {/* <h2>О проекте</h2> */}
           <div className={styles["home__about-content"]}>
             <div className={styles["home__about-photo-container"]}>
               <Img
