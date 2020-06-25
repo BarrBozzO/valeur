@@ -165,7 +165,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         index + 1 < invitations.length ? invitations[index + 1].node : null;
 
       createPage({
-        path: `portfolio/online-invitations/${node.slug}`,
+        path: `portfolio/savethedate-kits/${node.slug}`,
         component: onlineInvitationTemplate,
         context: {
           invitation: {

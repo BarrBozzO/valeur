@@ -55,8 +55,8 @@ function Navigation({ location, isCollapsed }) {
               "active-item": styles["navigation__menu-item--active"],
             }}
             items={{
-              "/portfolio/online-invitations": {
-                label: "Электронные пригласительные",
+              "/portfolio/savethedate-kits": {
+                label: "Save The Date",
               },
               "/portfolio/invitation-kits": {
                 label: "Комплекты пригласительных",

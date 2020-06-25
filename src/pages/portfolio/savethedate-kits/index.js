@@ -8,9 +8,9 @@ import Layout from "components/Layout";
 import Portal from "components/Portal";
 import ImagesCarousel from "components/ImagesCarousel";
 
-import styles from "./OnlineInvitations.module.scss";
+import styles from "./SavethedateKits.module.scss";
 
-const OnlineInvitationsPage = ({ data, mount, location }) => {
+const SavethedatePage = ({ data, mount, location }) => {
   const [current, setCurrent] = useState(null);
 
   const handleClick = id => () => setCurrent(id);
@@ -41,7 +41,7 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
   const renderInvitations = () => {
     return (
       <div className={styles["online-invitations__grid"]}>
-        {data.allContentfulOnlineInvitation.nodes.map(
+        {data.allContentfulSaveTheDate.nodes.map(
           ({ id, title, image, shortDescription }) => (
             <div
               className={cx(
@@ -91,22 +91,20 @@ const OnlineInvitationsPage = ({ data, mount, location }) => {
 
   return (
     <Layout mount={mount} location={location}>
-      <SEO title="Электронные пригласительные" />
+      <SEO title="Save the date" />
       <div className={styles["online-invitations"]}>
-        <h1 className={styles["online-invitations__header"]}>
-          Электронные пригласительные
-        </h1>
+        <h1 className={styles["online-invitations__header"]}>Save the date</h1>
         {renderInvitations()}
       </div>
     </Layout>
   );
 };
 
-export default OnlineInvitationsPage;
+export default SavethedatePage;
 
 export const query = graphql`
   {
-    allContentfulOnlineInvitation {
+    allContentfulSaveTheDate {
       nodes {
         id
         slug

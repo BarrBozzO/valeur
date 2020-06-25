@@ -1,5 +1,4 @@
 import React from "react";
-import cx from "classnames";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 
@@ -8,16 +7,16 @@ import Carousel from "components/Carousel";
 import Button from "components/Button";
 import Seo from "components/Seo";
 
-import styles from "./OnlineInvitation.module.scss";
+import styles from "./SaveTheDate.module.scss";
 
-function OnlineInvitation({
+function SaveTheDate({
   pageContext: { invitation },
   location,
   mount,
-  data: { contentfulOnlineInvitation },
+  data: { contentfulSaveTheDate },
 }) {
   const { title, description, metaDescription } = invitation;
-  const { image } = contentfulOnlineInvitation;
+  const { image } = contentfulSaveTheDate;
 
   const renderImage = image => {
     if (image.fluid) {
@@ -90,11 +89,11 @@ function OnlineInvitation({
   );
 }
 
-export default OnlineInvitation;
+export default SaveTheDate;
 
 export const query = graphql`
-  query SingleOnlineInvitation($slug: String!) {
-    contentfulOnlineInvitation(slug: { eq: $slug }) {
+  query SingleSavethedate($slug: String!) {
+    contentfulSaveTheDate(slug: { eq: $slug }) {
       image {
         fluid(maxWidth: 1920, quality: 100) {
           ...GatsbyContentfulFluid_tracedSVG

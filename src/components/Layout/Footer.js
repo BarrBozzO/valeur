@@ -22,9 +22,7 @@ function Footer() {
           <div className={styles["footer__pages-list"]}>
             <Link to="/">Главная</Link>
             <Link to="/posts">Блог</Link>
-            <Link to="/portfolio/online-invitations">
-              Электронные пригласительные
-            </Link>
+            <Link to="/portfolio/savethedate-kits">Save the date</Link>
             <Link to="/portfolio/invitation-kits">
               Комплекты пригласительных
             </Link>
