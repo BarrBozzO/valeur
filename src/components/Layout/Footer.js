@@ -12,20 +12,17 @@ function Footer() {
       <div className={styles["footer__content"]}>
         <div className={styles["footer__mission"]}>
           <Logo className={styles["footer__logo"]} />
-          {`Наша цель — создать уникальные пригласительные, которые порадуют вас
-            и ваших гостей. Мы надеемся, что вы получите удовольствие на каждом этапе
-            процесса проектирования и оформления заказа.
+          {`Наша студия со всей ответственностью подходит к вашему мероприятию.
+          Мы понимаем, насколько для Вас это важно и учтем все Ваши пожелания и комментарии.
 
-            Если есть какие-либо проблемы с вашим заказом, пожалуйста, сообщите нам.`}
+          У нас Вы можете приобрести только качественную свадебную полиграфию из лучших  материалов.`}
         </div>
         <div className={styles["footer__pages"]}>
           <div className={styles["footer__pages-title"]}>Карта</div>
           <div className={styles["footer__pages-list"]}>
             <Link to="/">Главная</Link>
             <Link to="/posts">Блог</Link>
-            <Link to="/portfolio/online-invitations">
-              Электронные пригласительные
-            </Link>
+            <Link to="/portfolio/savethedate-kits">Save the date</Link>
             <Link to="/portfolio/invitation-kits">
               Комплекты пригласительных
             </Link>

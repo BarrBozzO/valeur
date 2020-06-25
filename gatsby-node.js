@@ -1,4 +1,5 @@
 const path = require("path");
+const testimonials = require("./src/constants/testimonials");
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
@@ -164,7 +165,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         index + 1 < invitations.length ? invitations[index + 1].node : null;
 
       createPage({
-        path: `portfolio/online-invitations/${node.slug}`,
+        path: `portfolio/savethedate-kits/${node.slug}`,
         component: onlineInvitationTemplate,
         context: {
           invitation: {
@@ -200,4 +201,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       });
     }
   );
+};
+
+exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
+  const { createNode } = actions;
+  const TESTIMONIAL_NODE_TYPE = "testimonial";
+
+  testimonials.forEach(testimonial => {
+    const nodeContent = JSON.stringify(testimonial);
+    const nodeMeta = {
+      id: createNodeId("testimonial"),
+      parent: null,
+      children: [],
+      internal: {
+        type: TESTIMONIAL_NODE_TYPE,
+        mediaType: `text/html`,
+        content: nodeContent,
+        contentDigest: createContentDigest(testimonial),
+      },
+    };
+    const node = Object.assign({}, testimonial, nodeMeta);
+
+    createNode(node);
+  });
 };

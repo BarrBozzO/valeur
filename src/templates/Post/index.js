@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useRef, useContext } from "react";
 import cx from "classnames";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 
+import { GlobalStateProvider } from "context/GlobalContextProvider";
+
 import Layout from "components/Layout";
 import Seo from "components/Seo";
 import Link from "components/Link";
+import ScrollProgressBar from "components/ScrollProgressBar";
 
 import Article from "./Article";
 
@@ -17,8 +20,12 @@ function Post({
   mount,
   data: { contentfulPost },
 }) {
+  const {
+    navigation: { isCollapsed },
+  } = useContext(GlobalStateProvider);
   const { title, article, createdAt, metaDescription } = post;
   const { image } = contentfulPost;
+  const postRef = useRef(null);
 
   const renderImageCover = image => {
     if (image) {
@@ -49,7 +56,13 @@ function Post({
   return (
     <Layout location={location} mount={mount}>
       <Seo title={title} description={metaDescription} />
-      <div className={styles["post"]}>
+      <ScrollProgressBar
+        className={cx(styles["post__progress-bar"], {
+          [styles["post__progress-bar--collapsed"]]: isCollapsed,
+        })}
+        ref={postRef}
+      />
+      <div className={styles["post"]} ref={postRef}>
         {renderImageCover(image)}
         <h1 className={styles["post__header"]}>{title}</h1>
         <div className={styles["post__createdAt"]}>{createdAt}</div>

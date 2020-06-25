@@ -3,20 +3,21 @@ import { graphql } from "gatsby";
 import cx from "classnames";
 import Img from "gatsby-image";
 
-import Link from "components/Link";
 import SEO from "components/Seo";
 import Layout from "components/Layout";
 import Portal from "components/Portal";
-
-import LinkIcon from "assets/icons/link.svg";
-import FullScreenIcon from "assets/icons/resize.svg";
-
-import ImagesCarousel from "./ImagesCarousel";
+import ImagesCarousel from "components/ImagesCarousel";
 
 import styles from "./InvitationKits.module.scss";
 
 const InvitationKitsPage = ({ data, mount, location }) => {
   const [current, setCurrent] = useState(null);
+
+  const handleClick = id => () => setCurrent(id);
+
+  const handleCloseCarousel = () => {
+    setCurrent(null);
+  };
 
   const renderImageCover = image => {
     if (image) {
@@ -37,45 +38,30 @@ const InvitationKitsPage = ({ data, mount, location }) => {
     return null;
   };
 
-  const handleClick = id => () => setCurrent(id);
-
-  const handleCloseCarousel = () => {
-    setCurrent(null);
-  };
-
   const renderKits = () => {
     return (
       <div className={styles["invitation-kits__grid"]}>
         {data.allContentfulInvitationKit.nodes.map(
-          ({ id, slug, title, image, shortDescription }) => (
+          ({ id, title, image, shortDescription }) => (
             <div
               className={cx(
                 styles["invitation-kits__grid-item"],
-                styles["kit"]
+                styles["kit"],
+                {
+                  [styles["kit--active"]]: current === id,
+                }
               )}
               key={id}
             >
-              <div className={styles["kit__content"]}>
+              <div className={styles["kit__content"]} onClick={handleClick(id)}>
                 {renderImageCover(image)}
-                <div
-                  className={styles["kit__content-hover"]}
-                  onClick={handleClick(id)}
-                >
-                  <h2 className={styles["kit__content-title"]}>{title}</h2>
-                  <span className={styles["kit__content-description"]}>
-                    {shortDescription}
-                  </span>
-                  {/* <div className={styles["kit__fullscreen"]}>
-                    <FullScreenIcon />
-                  </div> */}
-                  <a
-                    target="_blank"
-                    className={styles["kit__link"]}
-                    href={`/portfolio/invitation-kits/${slug}`}
-                    onClick={e => e.stopPropagation()}
-                  >
-                    <LinkIcon />
-                  </a>
+                <div className={styles["kit__content-hover"]}>
+                  <div>
+                    <h2 className={styles["kit__content-title"]}>{title}</h2>
+                    <span className={styles["kit__content-description"]}>
+                      {shortDescription}
+                    </span>
+                  </div>
                 </div>
               </div>
               {renderPopupImages(id, image)}

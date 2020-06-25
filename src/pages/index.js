@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ItemsCarousel from "react-items-carousel";
 import cx from "classnames";
 import Img from "gatsby-image";
 import get from "lodash/get";
@@ -13,69 +12,22 @@ import Link from "components/Link";
 import Order from "components/Order";
 import { useWindowSize } from "../hooks";
 
-import ChevronIcon from "assets/icons/chevron.svg";
 import SectionBorder from "assets/icons/section-border.svg";
 import ChatIcon from "assets/icons/chat.svg";
 import LikeIcon from "assets/icons/heart.svg";
-import WaveBorder from "assets/icons/wave.svg";
-import Wave2Border from "assets/icons/wave-2.svg";
 import Logo from "assets/logo/valeur.svg";
+import Polygraphy from "assets/logo/polygraphy.svg";
 import vFile from "assets/videos/bg-video.mp4";
+import LongArrow from "assets/icons/long-arrow.svg";
+import Leaf from "assets/icons/leaf.svg";
+import InstagramIcon from "assets/icons/instagram.svg";
+// import paperBG from "assets/background/paper.jpg";
+
+import reviews from "../constants/testimonials";
 
 import styles from "./Home.module.scss";
 
-const reviews = [
-  {
-    author: "Ольга",
-    link: "",
-    text:
-      "Виджеты Elfsight - просто супер! Четкая структура, понятное описание, легкие настройки. Мне нравятся все их продукты и качество работы поддержки",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-22.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "olga",
-    social: "instagram",
-  },
-  {
-    author: "Александр",
-    link: "",
-    text:
-      "У Elfsight отличные виджеты и действительно оперативная и дружелюбная поддержка. Компетентно и надежно, я рекомендую Elfsight",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-8.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "alexandr",
-    social: "instagram",
-  },
-  {
-    author: "Евгения",
-    link: "",
-    text:
-      "Классный плагин для отзывов на сайт с интуитивным интерфейсом. Очень легко добавить индивидуальные настройки и интеграция прошла мгновенно. Служба поддержки помогла во всех вопросах",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-24.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "evgeniy",
-    social: "instagram",
-  },
-  {
-    author: "Сергей",
-    link: "",
-    text:
-      "У меня возникла проблема с их Instagram виджетом, но мне мгновенно помогли ее решить. Теперь хочу попробовать и другие виджеты этой команды",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-21.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "sergey",
-    social: "instagram",
-  },
-  {
-    author: "Анна",
-    link: "",
-    text:
-      "Прекрасные виджеты за приемлемую цену. Просто использовать, можно настроить под свои потребности, а служба поддержки вежливая и всегда поможет. У меня только положительные впечатления!",
-    image:
-      "https://casper.imgix.net/home/social/instagram/ig-avatar-20.jpg?auto=compress%2Cformat&q=65&w=50",
-    nickname: "anna",
-    social: "instagram",
-  },
-];
+const MAX_WIDTH = 1024;
 
 const ScrollElement = () => (
   <div className={styles["scroll-down"]}>
@@ -91,31 +43,28 @@ const IndexPage = ({ data, location, mount }) => {
   const tabletWidth = wSize.width <= 768;
   const desktopWidth = wSize.width <= 1024;
 
-  const [activeItemIndex, setActiveItemIndex] = useState(!desktopWidth ? 1 : 0);
-  const [displayOrder, setDisplayOrder] = useState(false);
-
-  const handleSlideBtnClick = index => {
-    return () => setActiveItemIndex(index);
-  };
-
-  const handleDisplayOrder = () => {
-    setDisplayOrder(true);
-  };
-
   const {
     images: { edges: imagesArr },
   } = data;
-  const onlilneInvitationFeatureImg = imagesArr.find(({ node }) => {
-    return node.base === "macbook.png";
+  const individualStyleImg = imagesArr.find(({ node }) => {
+    return node.base === "1.jpg";
+  }).node.childImageSharp;
+  const qualityFeatureImg = imagesArr.find(({ node }) => {
+    return node.base === "2.jpg";
+  }).node.childImageSharp;
+  const handmadeFeatureImg = imagesArr.find(({ node }) => {
+    return node.base === "3.jpg";
   }).node.childImageSharp;
   const blogFeatureImg = imagesArr.find(({ node }) => {
-    return node.base === "safari-window.png";
+    return node.base === "4.jpg";
   }).node.childImageSharp;
-  const invitationKitsFeature = imagesArr.find(({ node }) => {
-    return node.base === "kits.png";
+  const authorImg = imagesArr.find(({ node }) => {
+    return node.base === "author.jpg";
   }).node.childImageSharp;
 
-  const instagramPosts = get(data, "allInstaNode.edges", []);
+  const instagramPosts = get(data, "allInstagramPost.edges", []);
+  const testimonialImages = get(data, "testimonialImages.edges", []);
+  const latestPosts = get(data, "posts.nodes", []);
 
   return (
     <Layout mount={mount} location={location}>
@@ -124,30 +73,22 @@ const IndexPage = ({ data, location, mount }) => {
         <Order visible={displayOrder} onClose={() => setDisplayOrder(false)} />
         <section className={styles["home__start"]}>
           <Video className={styles["home__background-video"]} source={vFile} />
-          <Logo className={styles["home__start-logo"]} />
-          <h1>Valeur — свадебная полиграфия</h1>
           <div>
-            <p>
-              There’s a voice that keeps on calling me. Down the road, that’s
-              where I’ll always be. Every stop I make, I make a new friend.
-              Can’t stay for long, just turn around and I’m gone again. Maybe
-              tomorrow, I’ll want to settle down, Until tomorrow, I’ll just keep
-              moving on.
+            <Logo className={styles["home__start-logo"]} />
+            <Polygraphy className={styles["home__start-polygraphy"]} />
+            <h1>Valeur — свадебная полиграфия</h1>
+            <p className={styles["home__start-text"]}>
+              Мы уже придумали ваши идеальные пригласительные
             </p>
-            <p>
-              Knight Rider, a shadowy flight into the dangerous world of a man
-              who does not exist. Michael Knight, a young loner on a crusade to
-              champion the cause of the innocent, the helpless in a world of
-              criminals who operate above the law.
-            </p>
-            <p>
-              This is my boss, Jonathan Hart, a self-made millionaire, he’s
-              quite a guy. This is Mrs H., she’s gorgeous, she’s one lady who
-              knows how to take care of herself. By the way, my name is Max. I
-              take care of both of them, which ain’t easy, ’cause when they met
-              it was MURDER!
-            </p>
-            <Button label="Заказать" />
+            {/* <div className={styles["home__start-link"]}>
+              <Button link>Как заказать?</Button>
+              <Link to={"/portfolio/invitation-kits"}>Посмотреть работы</Link>
+            </div> */}
+          </div>
+          <div className={styles["home__start-instagram"]}>
+            <a href="https://www.instagram.com/v_aleur/" target="_blank">
+              <InstagramIcon /> <span>Мы в Instagram</span>
+            </a>
           </div>
           <ScrollElement />
         </section>
@@ -161,43 +102,77 @@ const IndexPage = ({ data, location, mount }) => {
           <SectionBorder />
         </div>
         <section className={styles["home__about"]}>
-          <h2>О проекте</h2>
-          <div className={styles["home__about-description"]}>
-            Мы, студия «Weddings Inc.», занимается разработкой и изготовлением
-            свадебной полиграфии. Профессионализм наших художников и дизайнеров
-            поможет сделать вашу свадьбу незабываемой. Важной частью каждой
-            свадьбы являются пригласительные – именно они сообщают гостям дату,
-            время, место проведения торжества, стиль, предпочтительный стиль в
-            одежде и множество других пожеланий. На нашем сайте вы можете
-            заказать разработку индивидуального дизайна, который будет
-            соответствовать стилистике вашего торжества. Помимо приглашений, у
-            нас можно создать: посадочные карты гостей, свадебное меню, номера
-            столов, конверты и планы рассадки гостей. Мы стремимся быть одними
-            из лучших на рынке свадебной полиграфии и прикладываем для этого
-            большие усилия.. Также, вы можете проверить наш instagram <br />
-            Нам не терпится поработать с вами!
+          <div className={styles["home__about-content"]}>
+            <div className={styles["home__about-photo-container"]}>
+              <Img
+                className={styles["home__about-photo"]}
+                fluid={authorImg.fluid}
+                imgStyle={{ objectFit: "cover" }}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+            <div className={styles["home__about-description"]}>
+              <div className={styles["home__about-intro"]}>
+                <div className={styles["home__about-intro-title"]}>
+                  Привeт, меня зовут Дарья и я создатель студии{" "}
+                  <span className={styles["home__about-intro-title-highlight"]}>
+                    «VALEUR»
+                  </span>
+                </div>
+                <p>
+                  {`Наша студия – это команда профессионалов.
+                  
+                  Уже более 2-х лет воплощаем ваши идеи в реальность.
+                  Мы берем на себя полный цикл разработки свадебной полиграфии.
+                  У каждой пары своя индивидуальная история любви – именно это
+                  воодушевляет нашу команду и помогает создавать уникальные
+                  работы.
+                  `}
+                </p>
+              </div>
+              <div className={styles["home__about-services"]}>
+                <p>Наши услуги:</p>
+                <ul className={styles["home__about-services-list"]}>
+                  {[
+                    "Комплект «Save the Date» для вас и вашей фотосессии",
+                    "Пригласительные для ваших гостей",
+                    "Карточки меню",
+                    "Карточки дресс - кода",
+                    "Карточки номерков на стол",
+                    "Карточки рассадки",
+                    "Холст с рассадкой гостей при входе",
+                    "Конверты ручной работы",
+                    "Остальные комплектующие по запросу",
+                  ].map(service => (
+                    <li>
+                      <Leaf width={18} height={18} /> {service}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
-        <div className={cx(styles["home__wave"], styles["home__wave--top"])}>
-          <WaveBorder />
-        </div>
         <section className={styles["home__features"]}>
           <h2>Почему стоит выбрать именно нас</h2>
           <div className={styles["features"]}>
             <div className={styles["features__item"]}>
               <div className={styles["features__item-text-container"]}>
+                <div className={styles["features__item-number"]}>01</div>
                 <div className={styles["features__item-title"]}>
-                  Индивидуальные Пригласительные
+                  Только{" "}
+                  <span className={styles["features__item-title-highlight"]}>
+                    индивидуальный
+                  </span>{" "}
+                  подход
                 </div>
                 <div className={styles["features__item-description"]}>
                   <p>
-                    Valeur — это идеальный способ получить уникальные
-                    пригласительные ручной работы. Для создания по-настоящему
-                    потрясающих проектов, мы используем только люксовые
-                    материалы и современные подходы.
+                    Каждая история любви – индивидуальна.
+                    <br />
+                    При создании дизайна мы учитываем ваши пожелания и опыт
+                    наших специалистов.
                   </p>
-                  <br />
-                  Готовы ли вы начать работу с индивидуальным дизайном?
                   <br />
                   <Link
                     className={styles["features__item-link"]}
@@ -205,37 +180,64 @@ const IndexPage = ({ data, location, mount }) => {
                   >
                     Комплекты пригласительных
                   </Link>
-                </div>
-              </div>
-              <div className={styles["features__item-image-container"]}>
-                <Img
-                  className={styles["features__item-image"]}
-                  fluid={invitationKitsFeature.fluid}
-                  imgStyle={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-            <div className={styles["features__item"]}>
-              <div className={styles["features__item-image-container"]}>
-                <Img
-                  className={styles["features__item-image"]}
-                  fluid={onlilneInvitationFeatureImg.fluid}
-                  imgStyle={{ objectFit: "cover" }}
-                />
-              </div>
-              <div className={styles["features__item-text-container"]}>
-                <div className={styles["features__item-title"]}>
-                  Электронные пригласительные
-                </div>
-                <div className={styles["features__item-description"]}>
-                  Отправляйте вашим гостям восхитительные электронные
-                  пригласительные.
                   <br />
                   <Link
                     className={styles["features__item-link"]}
-                    to="/portfolio/online-invitations"
+                    to="/portfolio/invitation-kits"
                   >
-                    Смотреть пригласительные
+                    Save the date
+                  </Link>
+                </div>
+              </div>
+              <div className={styles["features__item-image-container"]}>
+                <Img
+                  className={styles["features__item-image"]}
+                  fluid={individualStyleImg.fluid}
+                  imgStyle={{ objectFit: "cover" }}
+                />
+              </div>
+            </div>
+            <div className={styles["features__item"]}>
+              <div
+                className={cx(
+                  styles["features__item-image-container"],
+                  styles["features__item-image-container--left"]
+                )}
+              >
+                <Img
+                  className={styles["features__item-image"]}
+                  fluid={qualityFeatureImg.fluid}
+                  imgStyle={{ objectFit: "cover" }}
+                />
+              </div>
+              <div className={styles["features__item-text-container"]}>
+                <div className={styles["features__item-number"]}>02</div>
+                <div className={styles["features__item-title"]}>
+                  Самое{" "}
+                  <span className={styles["features__item-title-highlight"]}>
+                    высокое
+                  </span>{" "}
+                  качество
+                </div>
+                <div className={styles["features__item-description"]}>
+                  <p>
+                    Мы используем только качественные материалы люкс – сегмента.
+                    <br />
+                    При этом стоимость комплекта начинается от 200 рублей.
+                  </p>
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Комплекты пригласительных
+                  </Link>
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Save the date
                   </Link>
                 </div>
               </div>
@@ -243,141 +245,202 @@ const IndexPage = ({ data, location, mount }) => {
             <div className={styles["features__item"]}>
               <div className={styles["features__item-text-container"]}>
                 <div className={styles["features__item-title"]}>
-                  Присоединяйтесь к нам
+                  <span className={styles["features__item-title-highlight"]}>
+                    Ручная
+                  </span>{" "}
+                  работа
                 </div>
+                <div className={styles["features__item-number"]}>03</div>
                 <div className={styles["features__item-description"]}>
-                  В нашем Блоге мы делимся идеями, рассказываем о процессе
-                  создания проектов, поиске вдохновления и многом другом.
+                  <p>Каждый наш комплект изготавливается вручную.</p>
                   <br />
-                  <Link className={styles["features__item-link"]} to="/posts">
-                    Читать
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Комплекты пригласительных
+                  </Link>
+                  <br />
+                  <Link
+                    className={styles["features__item-link"]}
+                    to="/portfolio/invitation-kits"
+                  >
+                    Save the date
                   </Link>
                 </div>
               </div>
-              <div className={styles["features__item-image-container"]}>
+              <div
+                className={cx(
+                  styles["features__item-image-container"],
+                  styles["features__item--wc-leaves"]
+                )}
+              >
                 <Img
                   className={styles["features__item-image"]}
-                  fluid={blogFeatureImg.fluid}
+                  fluid={handmadeFeatureImg.fluid}
                   imgStyle={{ objectFit: "cover" }}
                 />
               </div>
             </div>
           </div>
         </section>
-        <div className={cx(styles["home__wave"], styles["home__wave--bottom"])}>
-          <Wave2Border />
-        </div>
         <section className={styles["home__reviews"]}>
-          <h2>Что думают наши клиенты</h2>
-          <div className={styles["reviews"]}>
-            <ItemsCarousel
-              activePosition="center"
-              infiniteLoop={false}
-              requestToChangeActive={setActiveItemIndex}
-              activeItemIndex={activeItemIndex}
-              numberOfCards={cardsCount}
-              gutter={desktopWidth ? 16 : 32}
-              leftChevron={
-                !desktopWidth ? (
-                  <button
-                    className={cx(
-                      styles["reviews__button"],
-                      styles["reviews__button--left"]
-                    )}
-                  >
-                    <ChevronIcon />
-                  </button>
-                ) : null
-              }
-              rightChevron={
-                !desktopWidth ? (
-                  <button
-                    className={cx(
-                      styles["reviews__button"],
-                      styles["reviews__button--right"]
-                    )}
-                  >
-                    <ChevronIcon />
-                  </button>
-                ) : null
-              }
-              outsideChevron={!desktopWidth}
-              chevronWidth={!desktopWidth ? 60 : 0}
-              disableSwipe={false}
-              showSlither={desktopWidth}
-              firstAndLastGutter={desktopWidth}
-            >
-              {reviews.map(r => (
-                <div className={styles["reviews__card-wrapper"]}>
-                  <blockquote
-                    key={r.author}
-                    className={styles["reviews__card"]}
-                  >
-                    <cite className={styles["reviews__card-author"]}>
-                      <img
-                        className={styles["reviews__card-avatar"]}
-                        src={r.image}
-                      />
-                      <a href={r.link} className={styles["reviews__card-link"]}>
+          <div className={styles["home__reviews-container"]}>
+            <h2>
+              Что думают <span>наши клиенты</span>
+            </h2>
+            <div className={styles["reviews"]}>
+              <Carousel
+                containerStyle={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                slideStyle={{
+                  width: "100%",
+                  height: "100%",
+                  overflow: "hidden",
+                }}
+                className={styles["reviews__carousel"]}
+                controlsPosition={"out"}
+                customControl={() => (
+                  <LongArrow className={styles["reviews__carousel-control"]} />
+                )}
+                animationConfig={{
+                  duration: "0.6s",
+                  easeFunction: "ease-in-out",
+                  delay: "0s",
+                }}
+              >
+                {reviews.map(r => (
+                  <div className={styles["reviews__card-wrapper"]}>
+                    <blockquote
+                      key={r.author}
+                      className={styles["reviews__card"]}
+                    >
+                      <div className={styles["reviews__card-avatar"]}>
+                        <Img
+                          style={{ width: "100%", height: "100%" }}
+                          imgStyle={{
+                            objectFit: "cover",
+                            objectPosition: "top center",
+                            maxHeight: "100%",
+                            maxWidth: "100%",
+                          }}
+                          fluid={
+                            testimonialImages.find(
+                              ({ node }) => node.base === `${r.image}.jpg`
+                            ).node.childImageSharp.fluid
+                          }
+                          loading={"eager"}
+                        />
+                      </div>
+                      <p className={styles["reviews__card-text"]}>{r.text}</p>
+                      <cite className={styles["reviews__card-author"]}>
                         <span className={styles["reviews__card-name"]}>
                           {r.author}
                         </span>
-                        <span className={styles["reviews__card-nickname"]}>
-                          @{r.nickname}
+                        <span className={styles["reviews__card-date"]}>
+                          {r.date}
                         </span>
-                      </a>
-                    </cite>
-                    <p className={styles["reviews__card-text"]}>{r.text}</p>
-                  </blockquote>
-                </div>
-              ))}
-            </ItemsCarousel>
-            <div className={styles["reviews__pagination"]}>
-              {reviews.map((r, index) => {
-                const prev = activeItemIndex - 1;
-                const next = activeItemIndex + 1;
-                const isStart = index === 0;
-                const isFinish = index === reviews.length - 1;
-
-                if (!desktopWidth && (isStart || isFinish)) {
-                  return null;
-                }
-
-                return (
-                  <button
-                    key={index}
-                    className={cx(styles["reviews__to-slide"], {
-                      [styles["reviews__to-slide--active"]]:
-                        index === activeItemIndex,
-                      [styles["reviews__to-slide--adjacent"]]:
-                        index === next || index === prev,
-                    })}
-                    onClick={handleSlideBtnClick(index)}
-                  />
-                );
-              })}
+                      </cite>
+                    </blockquote>
+                  </div>
+                ))}
+              </Carousel>
             </div>
           </div>
         </section>
-        <section className={styles["home__order"]}>
+        <section className={styles["home__posts"]}>
           <h2>
-            Вы готовы начать?
-            <small className={styles["home__order-subheader"]}>
-              {`Давайте обсудим ваш будущий проект.
-              Вместе мы сможем создать нечто потрясающее!`}
+            Присоединяйтесь к нам
+            <small>
+              В нашем Блоге мы делимся идеями, рассказываем о процессе создания
+              проектов,
+              <br /> поиске вдохновления и многом другом.
             </small>
           </h2>
-          <Button
-            className={styles["home__order-button"]}
-            label="Начать"
-            onClick={handleDisplayOrder}
-          />
+          <div className={styles["posts"]}>
+            {latestPosts.map(
+              ({ id, slug, title, image, createdAt, description }) => {
+                let postImage = null;
+                if (image) {
+                  const cover = Array.isArray(image) ? image[0] : image;
+                  if (cover.fluid) {
+                    const {
+                      details: {
+                        image: { width },
+                      },
+                    } = cover.file;
+
+                    postImage = (
+                      <div className={styles["posts__item-cover"]}>
+                        <Img
+                          style={{
+                            maxWidth: width <= MAX_WIDTH ? width : MAX_WIDTH,
+                          }}
+                          fluid={cover.fluid}
+                          className={styles["posts__item-cover-image"]}
+                        />
+                      </div>
+                    );
+                  }
+                }
+
+                return (
+                  <div className={styles["posts__item"]}>
+                    <Link to={`/posts/${slug}`}>
+                      {postImage}
+
+                      <h3 className={styles["posts__item-title"]}>{title}</h3>
+
+                      <div className={styles["posts__item-created"]}>
+                        {createdAt}
+                      </div>
+                      <div className={styles["posts__item-description"]}>
+                        {description &&
+                          description.internal &&
+                          description.internal.content}
+                      </div>
+                    </Link>
+                  </div>
+                );
+              }
+            )}
+          </div>
+        </section>
+        <section className={styles["home__order"]}>
+          <div className={styles["home__order-container"]}>
+            <h2>
+              Вы готовы начать?
+              <small className={styles["home__order-subheader"]}>
+                {`Давайте обсудим ваш будущий проект.
+              Вместе мы сможем создать нечто потрясающее!`}
+              </small>
+            </h2>
+            <Button className={styles["home__order-button"]} label="Начать" />
+          </div>
+          <div
+            className={cx(
+              styles["home__order-image"],
+              styles["home__order-image--l"]
+            )}
+          >
+            <div />
+          </div>
+          <div
+            className={cx(
+              styles["home__order-image"],
+              styles["home__order-image--r"]
+            )}
+          >
+            <div />
+          </div>
         </section>
         <section className={styles["home__instagram"]}>
           <h2>
             Мы в Instagram
             <small className={styles["home__instagram-subheader"]}>
-              Следите за обновлениями на @v_aleur
+              Следите за обновлениями на <mark>@v_aleur</mark>
             </small>
           </h2>
           <div className={styles["instagram"]}>
@@ -388,7 +451,6 @@ const IndexPage = ({ data, location, mount }) => {
                   caption,
                   likes,
                   comments,
-                  timestamp,
                   localFile: { childImageSharp: image },
                 } = node;
 
@@ -406,23 +468,31 @@ const IndexPage = ({ data, location, mount }) => {
                         imgStyle={{ objectFit: "cover" }}
                       />
                       <div className={styles["instagram__grid-item-hover"]}>
-                        <div className={styles["instagram__grid-item-caption"]}>
-                          {truncateText(caption)}
-                        </div>
-                        <div className={styles["instagram__grid-item-icons"]}>
-                          {!!likes && (
-                            <div>
-                              <LikeIcon />
-                              {likes}
+                        {false && (
+                          <React.Fragment>
+                            <div
+                              className={styles["instagram__grid-item-caption"]}
+                            >
+                              {truncateText(caption)}
                             </div>
-                          )}
-                          {!!comments && (
-                            <div>
-                              <ChatIcon />
-                              {comments}
+                            <div
+                              className={styles["instagram__grid-item-icons"]}
+                            >
+                              {!!likes && (
+                                <div>
+                                  <LikeIcon />
+                                  {likes}
+                                </div>
+                              )}
+                              {!!comments && (
+                                <div>
+                                  <ChatIcon />
+                                  {comments}
+                                </div>
+                              )}
                             </div>
-                          )}
-                        </div>
+                          </React.Fragment>
+                        )}
                       </div>
                     </a>
                   </div>
@@ -440,7 +510,7 @@ export default IndexPage;
 
 export const query = graphql`
   {
-    images: allFile(filter: { relativePath: { regex: "/features/.*/" } }) {
+    images: allFile {
       edges {
         node {
           base
@@ -452,7 +522,21 @@ export const query = graphql`
         }
       }
     }
-    allInstaNode {
+    testimonialImages: allFile(
+      filter: { relativePath: { regex: "/testimonials/.*/" } }
+    ) {
+      edges {
+        node {
+          base
+          childImageSharp {
+            fluid(maxWidth: 1024, quality: 100) {
+              ...GatsbyImageSharpFluid_tracedSVG
+            }
+          }
+        }
+      }
+    }
+    allInstagramPost {
       edges {
         node {
           id
@@ -478,6 +562,35 @@ export const query = graphql`
           dimensions {
             height
             width
+          }
+        }
+      }
+    }
+    posts: allContentfulPost(
+      limit: 3
+      sort: { order: DESC, fields: createdAt }
+    ) {
+      nodes {
+        id
+        slug
+        title
+        description {
+          internal {
+            content
+          }
+        }
+        createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
+        image {
+          fluid(maxWidth: 1024, quality: 100) {
+            ...GatsbyContentfulFluid_tracedSVG
+          }
+          file {
+            details {
+              image {
+                height
+                width
+              }
+            }
           }
         }
       }

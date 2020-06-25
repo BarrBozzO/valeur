@@ -4,21 +4,15 @@
 .layout {
   &__content {
     height: 100%;
-    margin-left: $navigation-w;
+    margin-left: $navigation-collapsed-w;
 
     ::selection {
       color: $primary-text-color;
-      background-color: transparentize($color: $primary-purple, $amount: 0.75);
+      background-color: transparentize($color: $primary-color, $amount: 0.75);
     }
-
-    transition: margin ease-in-out $transition-navigation-width-duration;
 
     main {
       min-height: 100vh;
-    }
-
-    &--collapsed {
-      margin-left: $navigation-collapsed-w;
     }
 
     &--home {
@@ -33,7 +27,7 @@
 }
 
 .footer {
-  background-color: #0c0c0e;
+  background-color: $primary-footer-color;
 
   &__mission {
     font-size: 0.8em;
@@ -44,7 +38,7 @@
 
   &__logo {
     display: block;
-    width: 180px;
+    height: $padding * 2;
     margin-bottom: $padding * 2;
     fill: $primary-white;
   }
@@ -71,20 +65,20 @@
   &__copyright {
     grid-area: copyright;
 
-    font-size: 0.6em;
+    font-size: 0.54em;
     text-transform: uppercase;
-    color: rgba($primary-white, 0.6);
+    color: transparentize($color: $primary-white, $amount: 0.6);
   }
 
   &__developed {
     grid-area: developed;
 
-    font-size: 0.6em;
+    font-size: 0.54em;
     text-transform: uppercase;
-    color: rgba($primary-white, 0.6);
+    color: transparentize($color: $primary-white, $amount: 0.6);
 
     a {
-      color: rgba($primary-white, 0.6);
+      color: transparentize($color: $primary-white, $amount: 0.6);
       text-decoration: underline;
     }
   }
@@ -93,7 +87,9 @@
     grid-area: contacts;
 
     &-title {
-      font-size: 0.9em;
+      font-size: 1em;
+      line-height: $padding * 2;
+      letter-spacing: 4px;
       text-transform: uppercase;
       margin-bottom: $padding * 2;
     }
@@ -119,7 +115,11 @@
       width: 1em;
       height: 1em;
 
-      fill: $primary-white;
+      fill: transparentize($color: $primary-white, $amount: 0.4);
+
+      &:hover {
+        fill: $primary-white;
+      }
     }
   }
 
@@ -127,7 +127,9 @@
     grid-area: pages;
 
     &-title {
-      font-size: 0.9em;
+      line-height: $padding * 2;
+      font-size: 1em;
+      letter-spacing: 4px;
       text-transform: uppercase;
       margin-bottom: $padding * 2;
     }
@@ -138,9 +140,11 @@
       align-items: flex-start;
 
       a {
-        color: rgba($primary-white, 0.6);
+        color: transparentize($color: $primary-white, $amount: 0.4);
         font-size: 0.8em;
         border-bottom: 1px solid transparent;
+        font-weight: 300;
+        letter-spacing: 1px;
 
         padding-bottom: $padding / 4;
         margin-bottom: $padding / 2;

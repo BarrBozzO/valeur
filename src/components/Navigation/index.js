@@ -40,7 +40,11 @@ function Navigation({ location, isCollapsed }) {
           onClick={onToggle}
         />
         <div className={cx(styles["navigation__logo"])}>
-          <Link className={styles["navigation__logo-link"]} to="/">
+          <Link
+            className={styles["navigation__logo-link"]}
+            to="/"
+            onClick={onClose}
+          >
             <Logo className={styles["navigation__logo-image"]} />
           </Link>
         </div>
@@ -51,8 +55,8 @@ function Navigation({ location, isCollapsed }) {
               "active-item": styles["navigation__menu-item--active"],
             }}
             items={{
-              "/portfolio/online-invitations": {
-                label: "Электронные пригласительные",
+              "/portfolio/savethedate-kits": {
+                label: "Save The Date",
               },
               "/portfolio/invitation-kits": {
                 label: "Комплекты пригласительных",
