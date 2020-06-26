@@ -10,12 +10,12 @@ import Seo from "components/Seo";
 import styles from "./SaveTheDate.module.scss";
 
 function SaveTheDate({
-  pageContext: { invitation },
+  pageContext: { kit },
   location,
   mount,
   data: { contentfulSaveTheDate },
 }) {
-  const { title, description, metaDescription } = invitation;
+  const { title, description, metaDescription } = kit;
   const { image } = contentfulSaveTheDate;
 
   const renderImage = image => {

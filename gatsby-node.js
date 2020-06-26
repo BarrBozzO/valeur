@@ -155,20 +155,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 
-  const onlineInvitationTemplate = path.resolve(
-    `src/templates/OnlineInvitation/index.js`
+  const saveTheDateTemplate = path.resolve(
+    `src/templates/SaveTheDate/index.js`
   );
-  result.data.allContentfulOnlineInvitation.edges.forEach(
-    ({ node }, index, invitations) => {
-      const next = index > 0 ? invitations[index - 1].node : null;
+  result.data.allContentfulSaveTheDate.edges.forEach(
+    ({ node }, index, kits) => {
+      const next = index > 0 ? kits[index - 1].node : null;
       const prev =
-        index + 1 < invitations.length ? invitations[index + 1].node : null;
+        index + 1 < kits.length ? invikitstations[index + 1].node : null;
 
       createPage({
         path: `portfolio/savethedate-kits/${node.slug}`,
-        component: onlineInvitationTemplate,
+        component: saveTheDateTemplate,
         context: {
-          invitation: {
+          kit: {
             ...node,
           },
           slug: node.slug,
