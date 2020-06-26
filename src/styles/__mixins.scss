@@ -38,6 +38,10 @@
   }
 }
 
+@mixin primary-font {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
 @mixin secondary-font {
   font-family: "Lora", serif;
 }

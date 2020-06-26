@@ -77,7 +77,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
-        allContentfulOnlineInvitation {
+        allContentfulSaveTheDate {
           edges {
             node {
               id
