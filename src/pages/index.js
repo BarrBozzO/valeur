@@ -10,6 +10,7 @@ import SEO from "components/Seo";
 import Layout from "components/Layout";
 import Link from "components/Link";
 import Order from "components/Order";
+import Carousel from "components/Carousel";
 import { useWindowSize } from "../hooks";
 
 import SectionBorder from "assets/icons/section-border.svg";
@@ -38,10 +39,8 @@ const ScrollElement = () => (
 );
 
 const IndexPage = ({ data, location, mount }) => {
+  const [displayOrder, setDisplayOrder] = useState(false);
   const wSize = useWindowSize();
-  const cardsCount = wSize.width > 1024 ? 3 : 1;
-  const tabletWidth = wSize.width <= 768;
-  const desktopWidth = wSize.width <= 1024;
 
   const {
     images: { edges: imagesArr },
@@ -65,6 +64,10 @@ const IndexPage = ({ data, location, mount }) => {
   const instagramPosts = get(data, "allInstagramPost.edges", []);
   const testimonialImages = get(data, "testimonialImages.edges", []);
   const latestPosts = get(data, "posts.nodes", []);
+
+  const handleDisplayOrder = () => {
+    return setDisplayOrder(!displayOrder);
+  };
 
   return (
     <Layout mount={mount} location={location}>
@@ -417,7 +420,11 @@ const IndexPage = ({ data, location, mount }) => {
               Вместе мы сможем создать нечто потрясающее!`}
               </small>
             </h2>
-            <Button className={styles["home__order-button"]} label="Начать" />
+            <Button
+              className={styles["home__order-button"]}
+              onClick={handleDisplayOrder}
+              label="Начать"
+            />
           </div>
           <div
             className={cx(

@@ -9,16 +9,22 @@ import styles from "./Portal.module.scss";
 function Portal(props) {
   const portal = document.getElementById("portal");
   const wrapper = document.createElement("div");
-  const body = document.getElementsByTagName("body")[0];
   let content = null;
 
   useEffect(() => {
     portal.appendChild(wrapper);
-    body.style.overflow = "hidden";
+    const scrollY = window.scrollY;
+    const body = document.body;
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
 
     return () => {
+      const body = document.body;
+      const scrollY = body.style.top;
+      body.style.position = "";
+      body.style.top = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
       portal.removeChild(wrapper);
-      body.style.overflow = "auto";
     };
   }, [portal, wrapper]);
 

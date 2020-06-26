@@ -15,6 +15,15 @@
         width: $padding * 1.5;
         fill: $primary-white;
       }
+
+      @include mobile-down {
+        top: $padding;
+        right: $padding;
+
+        svg {
+          width: $padding;
+        }
+      }
     }
 
     &--modal {
