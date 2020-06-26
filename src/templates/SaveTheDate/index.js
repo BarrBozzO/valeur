@@ -96,7 +96,7 @@ export const query = graphql`
     contentfulSaveTheDate(slug: { eq: $slug }) {
       image {
         fluid(maxWidth: 1920, quality: 100) {
-          ...GatsbyContentfulFluid_tracedSVG
+          ...GatsbyContentfulFluid
         }
         file {
           url

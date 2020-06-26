@@ -116,7 +116,7 @@ export const query = graphql`
     contentfulPost(slug: { eq: $slug }) {
       image {
         fluid(maxWidth: 1280, quality: 100) {
-          ...GatsbyContentfulFluid_tracedSVG
+          ...GatsbyContentfulFluid
         }
         file {
           details {

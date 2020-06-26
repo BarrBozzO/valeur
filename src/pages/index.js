@@ -523,7 +523,7 @@ export const query = graphql`
           base
           childImageSharp {
             fluid(maxWidth: 1024, quality: 100) {
-              ...GatsbyImageSharpFluid_tracedSVG
+              ...GatsbyImageSharpFluid
             }
           }
         }
@@ -537,7 +537,7 @@ export const query = graphql`
           base
           childImageSharp {
             fluid(maxWidth: 1024, quality: 100) {
-              ...GatsbyImageSharpFluid_tracedSVG
+              ...GatsbyImageSharpFluid
             }
           }
         }
@@ -557,7 +557,7 @@ export const query = graphql`
           localFile {
             childImageSharp {
               fluid(maxWidth: 400, quality: 100) {
-                ...GatsbyImageSharpFluid_tracedSVG
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -589,7 +589,7 @@ export const query = graphql`
         createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
           fluid(maxWidth: 1024, quality: 100) {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid
           }
           file {
             details {

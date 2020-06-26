@@ -97,7 +97,7 @@ export const query = graphql`
     contentfulInvitationKit(slug: { eq: $slug }) {
       image {
         fluid(maxWidth: 1920, quality: 100) {
-          ...GatsbyContentfulFluid_tracedSVG
+          ...GatsbyContentfulFluid
         }
         file {
           url

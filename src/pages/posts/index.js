@@ -125,7 +125,7 @@ export const query = graphql`
         createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
           fluid(maxWidth: 1024, quality: 100) {
-            ...GatsbyContentfulFluid_tracedSVG
+            ...GatsbyContentfulFluid
           }
           file {
             details {
