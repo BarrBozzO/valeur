@@ -37,7 +37,7 @@ const ContactsPage = ({ mount, location }) => (
         <div className={styles["contacts__form-title"]}>
           Оставьте контакты и мы с вами свяжемся
         </div>
-        <form method="post" netlify-honeypot="bot-field" data-netlify="true">
+        <form method="post" data-netlify="true">
           <input type="hidden" name="bot-field" />
           <div className={styles["contacts__form-row"]}>
             <div className={styles["contacts__form-row-cell"]}>
