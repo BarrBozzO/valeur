@@ -186,7 +186,7 @@ const IndexPage = ({ data, location, mount }) => {
                   <br />
                   <Link
                     className={styles["features__item-link"]}
-                    to="/portfolio/invitation-kits"
+                    to="/portfolio/savethedate-kits"
                   >
                     Save the date
                   </Link>
@@ -238,7 +238,7 @@ const IndexPage = ({ data, location, mount }) => {
                   <br />
                   <Link
                     className={styles["features__item-link"]}
-                    to="/portfolio/invitation-kits"
+                    to="/portfolio/savethedate-kits"
                   >
                     Save the date
                   </Link>
@@ -266,7 +266,7 @@ const IndexPage = ({ data, location, mount }) => {
                   <br />
                   <Link
                     className={styles["features__item-link"]}
-                    to="/portfolio/invitation-kits"
+                    to="/portfolio/savethedate-kits"
                   >
                     Save the date
                   </Link>
