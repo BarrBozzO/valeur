@@ -183,3 +183,31 @@
     }
   }
 }
+
+.contacts-success {
+  padding: 80px $navigation-collapsed-w;
+  color: $primary-text-color;
+
+  @include tablet-down {
+    padding: $padding * 2 $padding;
+  }
+
+  &__header {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: $padding * 4;
+    text-transform: uppercase;
+
+    @include tablet-down {
+      margin-bottom: $padding * 2;
+    }
+
+    @include tablet-down {
+      font-size: 1.8em;
+    }
+
+    @include mobile-down {
+      font-size: 1.6em;
+    }
+  }
+}
