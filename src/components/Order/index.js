@@ -95,8 +95,7 @@ function Order({ visible, onClose }) {
                 href="https://www.instagram.com/v_aleur/"
                 target="_blank"
               >
-                <InstagramIcon />
-                @v_aleur
+                <InstagramIcon />@ v_aleur
               </a>
               <a
                 className={styles["order__whatsapp"]}

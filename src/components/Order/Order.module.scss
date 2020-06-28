@@ -41,6 +41,11 @@
       fill: $primary-color;
 
       margin-right: $padding / 2;
+
+      @include mobile-down {
+        width: 1.2em;
+        height: 1.2em;
+      }
     }
   }
 
@@ -133,6 +138,10 @@
           font-size: 1em;
           padding: $padding * 2 $padding * 2 $padding * 2 0;
           cursor: pointer;
+
+          &:focus {
+            outline: unset;
+          }
 
           &::after {
             content: "+";
