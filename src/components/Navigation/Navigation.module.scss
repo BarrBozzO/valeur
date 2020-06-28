@@ -217,6 +217,7 @@
   }
 
   &__title {
+    color: $primary-text-color;
     font-size: 1.4em;
     font-weight: 300;
     line-height: 1;
@@ -276,6 +277,7 @@
 
       &::before {
         right: auto;
+        top: auto;
         left: 0;
       }
     }
