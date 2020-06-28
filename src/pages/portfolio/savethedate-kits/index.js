@@ -71,7 +71,7 @@ const SavethedatePage = ({ data, mount, location }) => {
                   </div>
                 </div>
               </div>
-              {renderPopupImages(id, image)}
+              {renderPopupImages(id, image, title)}
             </div>
           )
         )}
@@ -79,12 +79,22 @@ const SavethedatePage = ({ data, mount, location }) => {
     );
   };
 
-  const renderPopupImages = (id, images) => {
+  const renderPopupImages = (id, images, title) => {
     if (current === null || current !== id) return null;
 
     return (
       <Portal isModal onClose={handleCloseCarousel}>
-        <ImagesCarousel images={Array.isArray(images) ? images : [images]} />
+        <div className={styles["o-invitation__popup"]}>
+          <div className={styles["o-invitation__popup-title"]}>{title}</div>
+          <ImagesCarousel
+            carouselClassNames={{
+              controls: styles["o-invitation__popup-carousel-controls"],
+              controlElement:
+                styles["o-invitation__popup-carousel-controls-element"],
+            }}
+            images={Array.isArray(images) ? images : [images]}
+          />
+        </div>
       </Portal>
     );
   };

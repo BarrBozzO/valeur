@@ -16,6 +16,7 @@ function Carousel({
   className,
   animationConfig,
   controlsPosition,
+  classNames,
 }) {
   const [current, setCurrent] = useState(0);
   const Views = autoPlay ? autoPlayUtil(SwipeableViews) : SwipeableViews;
@@ -35,15 +36,26 @@ function Carousel({
         className={cx(styles["carousel__controls"], {
           [styles["carousel__controls--in"]]: controlsPosition === "in",
           [styles["carousel__controls--out"]]: controlsPosition === "out",
+          [classNames.controls]: Boolean(classNames.controls),
         })}
       >
         {current + 1 < total && (
-          <div className={styles["carousel__controls-next"]} onClick={onNext}>
+          <div
+            className={cx(styles["carousel__controls-next"], {
+              [classNames.controlElement]: Boolean(classNames.controlElement),
+            })}
+            onClick={onNext}
+          >
             <ControlElement />
           </div>
         )}
         {current > 0 && (
-          <div className={styles["carousel__controls-prev"]} onClick={onPrev}>
+          <div
+            className={cx(styles["carousel__controls-prev"], {
+              [classNames.controlElement]: Boolean(classNames.controlElement),
+            })}
+            onClick={onPrev}
+          >
             <ControlElement />
           </div>
         )}
@@ -80,6 +92,7 @@ function Carousel({
 
 Carousel.defaultProps = {
   autoPlay: false,
+  classNames: {},
   controlsPosition: "in",
 };
 

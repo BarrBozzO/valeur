@@ -64,7 +64,7 @@ const InvitationKitsPage = ({ data, mount, location }) => {
                   </div>
                 </div>
               </div>
-              {renderPopupImages(id, image)}
+              {renderPopupImages(id, image, title)}
             </div>
           )
         )}
@@ -72,12 +72,21 @@ const InvitationKitsPage = ({ data, mount, location }) => {
     );
   };
 
-  const renderPopupImages = (id, images) => {
+  const renderPopupImages = (id, images, title) => {
     if (current === null || current !== id) return null;
 
     return (
       <Portal isModal onClose={handleCloseCarousel}>
-        <ImagesCarousel images={Array.isArray(images) ? images : [images]} />
+        <div className={styles["kit__popup"]}>
+          <div className={styles["kit__popup-title"]}>{title}</div>
+          <ImagesCarousel
+            carouselClassNames={{
+              controls: styles["kit__popup-carousel-controls"],
+              controlElement: styles["kit__popup-carousel-controls-element"],
+            }}
+            images={Array.isArray(images) ? images : [images]}
+          />
+        </div>
       </Portal>
     );
   };

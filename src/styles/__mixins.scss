@@ -6,6 +6,12 @@
   }
 }
 
+@mixin tablet {
+  @media only screen and (min-width: $tablet-width + 1px) {
+    @content;
+  }
+}
+
 @mixin desktop-down {
   @media only screen and (max-width: ($desktop-width)) {
     @content;

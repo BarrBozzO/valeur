@@ -4,7 +4,7 @@ import Img from "gatsby-image";
 
 import styles from "./ImagesCarousel.module.scss";
 
-function ImagesCarousel({ images }) {
+function ImagesCarousel({ images, carouselClassNames }) {
   const renderImage = image => {
     if (image.fluid) {
       const {
@@ -42,6 +42,8 @@ function ImagesCarousel({ images }) {
           height: "100%",
           overflow: "hidden",
         }}
+        controlsPosition={"out"}
+        classNames={carouselClassNames}
       >
         {images.map((i, index) => (
           <div key={index} className={styles["carousel__item"]}>
@@ -52,5 +54,9 @@ function ImagesCarousel({ images }) {
     </div>
   );
 }
+
+ImagesCarousel.defaultProps = {
+  classNames: {},
+};
 
 export default ImagesCarousel;
