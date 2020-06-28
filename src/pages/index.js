@@ -60,6 +60,9 @@ const IndexPage = ({ data, location, mount }) => {
   const authorImg = imagesArr.find(({ node }) => {
     return node.base === "author.jpg";
   }).node.childImageSharp;
+  const startImg = imagesArr.find(({ node }) => {
+    return node.base === "start.jpg";
+  }).node.childImageSharp;
 
   const instagramPosts = get(data, "allInstagramPost.edges", []);
   const testimonialImages = get(data, "testimonialImages.edges", []);
@@ -75,6 +78,18 @@ const IndexPage = ({ data, location, mount }) => {
       <div className={styles["home"]}>
         <Order visible={displayOrder} onClose={() => setDisplayOrder(false)} />
         <section className={styles["home__start"]}>
+          <Img
+            className={styles["home__start-placeholder"]}
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
+            }}
+            fluid={startImg.fluid}
+            imgStyle={{ objectFit: "cover" }}
+          />
           <Video className={styles["home__background-video"]} source={vFile} />
           <div>
             <Logo className={styles["home__start-logo"]} />

@@ -54,6 +54,22 @@
 
     box-shadow: inset 0px 5vh 10vh 2vh rgba(0, 0, 0, 0.4);
 
+    &-placeholder {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+
+      background-color: $primary-black;
+
+      z-index: -101; // video first fram placeholder
+
+      picture {
+        position: static;
+      }
+    }
+
     h1 {
       visibility: hidden;
     }
@@ -148,20 +164,23 @@
       }
 
       @include mobile-down {
-        top: auto;
-        right: 0;
-        bottom: 0;
+        right: $padding / 2;
 
         a {
-          font-size: 0.5em;
+          font-size: 0.75em;
           padding: $padding / 2;
 
           span {
+            display: none;
             border-bottom: none;
             &:hover {
               border-bottom: none;
             }
           }
+        }
+
+        svg {
+          margin-right: 0;
         }
       }
     }
