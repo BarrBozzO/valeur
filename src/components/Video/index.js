@@ -26,9 +26,14 @@ class Video extends Component {
 
   componentDidMount() {
     if (this.video) {
-      this.video.addEventListener("loadeddata", () => {
+      if (this.video.readyState === 4) {
+        // already loaded
         this.setState({ loading: false });
-      });
+      } else {
+        this.video.addEventListener("loadeddata", () => {
+          this.setState({ loading: false });
+        });
+      }
     }
   }
 
@@ -56,6 +61,7 @@ class Video extends Component {
             opacity: this.state.loading ? 0 : 1,
           }}
           className={styles["video__player"]}
+          preload="auto"
         >
           <source src={source} type={type} />
         </video>
