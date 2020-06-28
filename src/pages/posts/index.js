@@ -75,7 +75,6 @@ const Posts = ({ data, mount, location }) => {
               <div className={styles["post__read"]}>
                 <Button
                   className={styles["post__read-button"]}
-                  secondary
                   onClick={onClick(slug)}
                 >
                   Читать далее

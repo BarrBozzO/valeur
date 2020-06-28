@@ -410,6 +410,11 @@ const IndexPage = ({ data, location, mount }) => {
               }
             )}
           </div>
+          <div className={styles["posts__read-more"]}>
+            <Link className={styles["features__item-link"]} to="/posts">
+              Читать больше
+            </Link>
+          </div>
         </section>
         <section className={styles["home__order"]}>
           <div className={styles["home__order-container"]}>

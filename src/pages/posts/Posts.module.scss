@@ -112,11 +112,12 @@
     margin: $padding * 2 0 0;
 
     &-button {
-      color: $primary-text-color;
-      font-size: 0.68em;
+      font-size: 0.6em;
       text-transform: uppercase;
-      border-width: 2px;
-      border-color: $primary-color;
+
+      &:hover {
+        background-color: darken($primary-color, 10);
+      }
     }
   }
 }

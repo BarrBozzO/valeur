@@ -111,34 +111,6 @@
       }
     }
 
-    // &-link {
-    //   display: flex;
-    //   flex-direction: row;
-    //   align-items: center;
-    //   justify-content: center;
-    //   margin: $padding 0;
-
-    //   > * {
-    //     display: inline-block;
-    //     color: $primary-white;
-    //     background-color: transparent;
-    //     font-size: 0.8em;
-    //     padding: 0;
-    //     margin: 0 $padding;
-    //     border: 0;
-
-    //     &::content {
-    //       content: "\203A";
-    //       position: absolute;
-    //       top: 0;
-    //       right: 0;
-    //       transform: translate(160%, -1px);
-    //       line-height: inherit;
-    //       font-size: 1.3em;
-    //     }
-    //   }
-    // }
-
     &-instagram {
       position: absolute;
       top: $padding / 2;
@@ -600,15 +572,19 @@
         margin-top: $padding;
       }
 
-      &::after {
-        position: absolute;
-        margin: 0 auto;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        content: "";
-        background-color: $primary-white;
+      transition: all $transition-default-duration;
+
+      &:hover {
+        &::after {
+          position: absolute;
+          margin: 0 auto;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          content: "";
+          background-color: $primary-text-color;
+        }
       }
 
       &::before {
@@ -873,6 +849,7 @@
       }
 
       @include mobile-down {
+        font-size: 1em;
       }
     }
 
@@ -906,6 +883,56 @@
       line-height: 1.4em;
       color: $black-1;
       @include secondary-font;
+    }
+
+    @include mobile-down {
+      &-created {
+        margin-bottom: 0;
+      }
+
+      &-description {
+        display: none;
+      }
+    }
+  }
+
+  &__read-more {
+    text-align: center;
+
+    > a {
+      margin-top: $padding * 2;
+      line-height: 1em;
+      color: $primary-text-color;
+
+      @include secondary-font;
+      @include mobile-down {
+        margin-top: $padding;
+      }
+
+      transition: all $transition-default-duration;
+
+      &:hover {
+        &::after {
+          position: absolute;
+          margin: 0 auto;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          content: "";
+          background-color: $primary-text-color;
+        }
+      }
+
+      &::before {
+        content: "›";
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(160%, -1px);
+        line-height: inherit;
+        font-size: 1.3em;
+      }
     }
   }
 }
