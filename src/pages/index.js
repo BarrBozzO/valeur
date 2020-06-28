@@ -91,10 +91,10 @@ const IndexPage = ({ data, location, mount }) => {
             imgStyle={{ objectFit: "cover" }}
           />
           <Video className={styles["home__background-video"]} source={vFile} />
-          <div>
+          <div className={styles["home__start-content"]}>
+            <h1>Valeur — свадебная полиграфия</h1>
             <Logo className={styles["home__start-logo"]} />
             <Polygraphy className={styles["home__start-polygraphy"]} />
-            <h1>Valeur — свадебная полиграфия</h1>
             <p className={styles["home__start-text"]}>
               Мы уже придумали ваши идеальные пригласительные
             </p>

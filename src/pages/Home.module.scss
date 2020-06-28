@@ -54,6 +54,10 @@
 
     box-shadow: inset 0px 5vh 10vh 2vh rgba(0, 0, 0, 0.4);
 
+    @include mobile-down {
+      padding: 0 !important;
+    }
+
     &-placeholder {
       position: absolute;
       top: 0;
@@ -72,6 +76,11 @@
 
     h1 {
       visibility: hidden;
+      font-size: 12px;
+    }
+
+    &-content {
+      height: 100%;
     }
 
     &-logo {
@@ -87,7 +96,8 @@
       stroke-opacity: 0.26;
 
       @include mobile-down {
-        display: none;
+        top: 40%;
+        transform: translateY(-100%);
       }
     }
 
@@ -104,7 +114,10 @@
       stroke-opacity: 0.16;
 
       @include mobile-down {
-        display: none;
+        width: 80%;
+        top: 40%;
+        transform: translateY(-100%);
+        margin: 0 auto;
       }
     }
 
@@ -123,7 +136,7 @@
       }
 
       @include mobile-down {
-        font-size: 1.2em;
+        display: none;
       }
     }
 
