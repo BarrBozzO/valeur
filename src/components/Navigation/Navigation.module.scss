@@ -75,6 +75,12 @@
       overflow: hidden;
       white-space: nowrap;
 
+      transition: color $transition-default-duration;
+
+      &:hover {
+        color: $primary-color;
+      }
+
       padding: $padding / 2 0;
 
       &--active {
@@ -221,6 +227,12 @@
     white-space: nowrap;
 
     padding: $padding / 2 0;
+
+    transition: color $transition-default-duration;
+
+    &:hover {
+      color: $primary-color;
+    }
   }
 
   &__items {
@@ -234,13 +246,39 @@
   }
 
   &__item {
-    font-size: 0.8em;
+    color: $primary-text-color;
+    font-size: 0.75em;
     font-weight: 300;
     line-height: 1;
     text-align: right;
     overflow: hidden;
 
+    transition: color $transition-default-duration;
+
     padding: $padding / 4 0;
+    padding-right: $padding;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &:before {
+      content: "\2022";
+      position: absolute;
+      top: calc(50% - 7px);
+      right: 0;
+    }
+
+    @include desktop-down {
+      padding-right: 0;
+      padding-left: $padding;
+      margin-top: $padding / 2;
+
+      &::before {
+        right: auto;
+        left: 0;
+      }
+    }
   }
 
   @include desktop-down {
