@@ -2,6 +2,12 @@
 @import "~styles/__mixins";
 
 .order {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: $primary-white;
+
   width: 100%;
   height: 100%;
   overflow-y: auto;
@@ -12,12 +18,25 @@
     padding: $padding * 4 $padding;
   }
 
-  &__portal {
-    background-color: $primary-white;
+  &__close {
+    position: absolute;
+    top: $padding * 2;
+    right: $padding * 2;
+    cursor: pointer;
+    z-index: 1;
 
-    &-close {
+    svg {
+      display: block;
+      width: $padding * 1.5;
+      fill: $primary-black;
+    }
+
+    @include mobile-down {
+      top: $padding;
+      right: $padding;
+
       svg {
-        fill: $primary-black;
+        width: $padding;
       }
     }
   }
@@ -41,8 +60,12 @@
       fill: $primary-color;
 
       margin-right: $padding / 2;
+    }
 
-      @include mobile-down {
+    @include mobile-down {
+      margin: $padding 0;
+
+      svg {
         width: 1.2em;
         height: 1.2em;
       }

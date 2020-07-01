@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
 import cx from "classnames";
 
 import Navigation from "../Navigation";
@@ -14,16 +13,6 @@ const Layout = ({ location, children, mount }) => {
   const {
     navigation: { isCollapsed },
   } = useContext(GlobalStateProvider);
-
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
 
   return (
     <div className={styles["layout"]}>

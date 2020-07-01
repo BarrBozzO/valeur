@@ -76,7 +76,7 @@ const IndexPage = ({ data, location, mount }) => {
     <Layout mount={mount} location={location}>
       <SEO title="Главная" />
       <div className={styles["home"]}>
-        <Order visible={displayOrder} onClose={() => setDisplayOrder(false)} />
+        {displayOrder && <Order onClose={() => setDisplayOrder(false)} />}
         <section className={styles["home__start"]}>
           <Img
             className={styles["home__start-placeholder"]}

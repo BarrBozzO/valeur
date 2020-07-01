@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Collapsible from "react-collapsible";
-import Portal from "components/Portal";
 import cx from "classnames";
 import Collaboration from "assets/order/collaboration.svg";
 import MailIcon from "assets/icons/mail.svg";
 import InstagramIcon from "assets/icons/instagram.svg";
 import WhatsAppIcon from "assets/icons/whatsapp.svg";
+import CloseIcon from "assets/icons/close.svg";
 
 import styles from "./Order.module.scss";
 
@@ -71,81 +71,85 @@ const QUESTIONS = [
   },
 ];
 
-function Order({ visible, onClose }) {
-  return visible ? (
-    <Portal
-      classNames={{
-        content: styles["order__portal"],
-        close: styles["order__portal-close"],
-      }}
-      isModal
-      onClose={onClose}
-    >
-      <div className={styles["order"]}>
-        <div className={styles["order__title"]}>
-          Давайте воплотим ваш проект в жизнь
-        </div>
-        <div className={styles["order__main"]}>
+function Order({ onClose }) {
+  useEffect(() => {
+    const scrollY = window.scrollY;
+    const body = document.body;
+    body.style.position = "fixed";
+    body.style.top = "0";
+
+    return () => {
+      body.style.position = "";
+      body.style.top = "";
+      window.scrollTo(0, parseInt(scrollY || "0"));
+    };
+  }, []);
+
+  return (
+    <div className={styles["order"]}>
+      <div className={cx(styles["order__close"])} onClick={onClose}>
+        <CloseIcon />
+      </div>
+      <div className={styles["order__title"]}>
+        Давайте воплотим ваш проект в жизнь
+      </div>
+      <div className={styles["order__main"]}>
+        <div>
+          <p>Мы рады, что вы заинтерисовались именно нами.</p>
+          <p>Давайте обсудим ваши идеи:</p>
           <div>
-            <p>Мы рады, что вы заинтерисовались именно нами.</p>
-            <p>Давайте обсудим ваши идеи:</p>
-            <div>
-              <a
-                className={styles["order__instagram"]}
-                href="https://www.instagram.com/v_aleur/"
-                target="_blank"
-              >
-                <InstagramIcon />@ v_aleur
-              </a>
-              <a
-                className={styles["order__whatsapp"]}
-                href="https://wa.me/79053357749"
-                target="_blank"
-              >
-                <WhatsAppIcon />
-                +7 (905) 335-77-49
-              </a>
-              <a
-                className={styles["order__email"]}
-                href="mailto:v_aleur@mail.ru"
-              >
-                <MailIcon />
-                v_aleur@mail.ru
-              </a>
-            </div>
-          </div>
-          <div className={styles["order__illustration"]}>
-            <Collaboration />
+            <a
+              className={styles["order__instagram"]}
+              href="https://www.instagram.com/v_aleur/"
+              target="_blank"
+            >
+              <InstagramIcon />@ v_aleur
+            </a>
+            <a
+              className={styles["order__whatsapp"]}
+              href="https://wa.me/79053357749"
+              target="_blank"
+            >
+              <WhatsAppIcon />
+              +7 (905) 335-77-49
+            </a>
+            <a className={styles["order__email"]} href="mailto:v_aleur@mail.ru">
+              <MailIcon />
+              v_aleur@mail.ru
+            </a>
           </div>
         </div>
-        <div className={styles["order__faq"]}>
-          <div className={styles["order__faq-title"]}>Частые вопросы</div>
-          <div className={styles["order__faq-list"]}>
-            {QUESTIONS.map(({ question, answer }) => {
-              return (
-                <Collapsible
-                  className={styles["order__faq-list-item"]}
-                  openedClassName={styles["order__faq-list-item"]}
-                  trigger={question}
-                  triggerClassName={styles["order__faq-list-item-header"]}
-                  triggerOpenedClassName={cx(
-                    styles["order__faq-list-item-header"],
-                    styles["order__faq-list-item-header--opened"]
-                  )}
-                  triggerTagName={"div"}
-                  transitionTime={250}
-                >
-                  <div className={styles["order__faq-list-item-content"]}>
-                    {answer}
-                  </div>
-                </Collapsible>
-              );
-            })}
-          </div>
+        <div className={styles["order__illustration"]}>
+          <Collaboration />
         </div>
       </div>
-    </Portal>
-  ) : null;
+      <div className={styles["order__faq"]}>
+        <div className={styles["order__faq-title"]}>Частые вопросы</div>
+        <div className={styles["order__faq-list"]}>
+          {QUESTIONS.map(({ question, answer }) => {
+            return (
+              <Collapsible
+                className={styles["order__faq-list-item"]}
+                openedClassName={styles["order__faq-list-item"]}
+                trigger={question}
+                triggerClassName={styles["order__faq-list-item-header"]}
+                triggerOpenedClassName={cx(
+                  styles["order__faq-list-item-header"],
+                  styles["order__faq-list-item-header--opened"]
+                )}
+                triggerTagName={"div"}
+                transitionTime={250}
+              >
+                <div className={styles["order__faq-list-item-content"]}>
+                  {answer}
+                </div>
+              </Collapsible>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Order;

@@ -26,7 +26,7 @@ function Portal(props) {
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
       portal.removeChild(wrapper);
     };
-  }, [portal, wrapper]);
+  }, []);
 
   const handleClose = () => {
     props.onClose();
