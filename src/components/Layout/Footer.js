@@ -32,7 +32,7 @@ function Footer() {
           <div className={styles["footer__contacts-title"]}>Контакты</div>
           <div className={styles["footer__contacts-list"]}>
             <div className={styles["footer__contacts-email"]}>
-              mail.me@valeur.com
+              v_aleur@mail.ru
             </div>
             <div className={styles["footer__contacts-socials"]}>
               <a href="https://www.instagram.com/v_aleur/" target="_blank">
