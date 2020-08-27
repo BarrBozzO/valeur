@@ -34,17 +34,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                     marks {
                       type
                     }
-                    content {
-                      value
-                      nodeType
-                      content {
-                        value
-                        nodeType
-                      }
-                    }
-                    data {
-                      uri
-                    }
                   }
                   nodeType
                   data {
@@ -77,7 +66,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
-        allContentfulSaveTheDate {
+        allContentfulSaveDate {
           edges {
             node {
               id
@@ -98,7 +87,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
-        allContentfulInvitationKit {
+        allContentfulInvitationPackage {
           edges {
             node {
               id
@@ -158,31 +147,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const saveTheDateTemplate = path.resolve(
     `src/templates/SaveTheDate/index.js`
   );
-  result.data.allContentfulSaveTheDate.edges.forEach(
-    ({ node }, index, kits) => {
-      const next = index > 0 ? kits[index - 1].node : null;
-      const prev =
-        index + 1 < kits.length ? invikitstations[index + 1].node : null;
+  result.data.allContentfulSaveDate.edges.forEach(({ node }, index, kits) => {
+    const next = index > 0 ? kits[index - 1].node : null;
+    const prev =
+      index + 1 < kits.length ? invikitstations[index + 1].node : null;
 
-      createPage({
-        path: `portfolio/savethedate-kits/${node.slug}`,
-        component: saveTheDateTemplate,
-        context: {
-          kit: {
-            ...node,
-          },
-          slug: node.slug,
-          next: next ? { slug: next.slug, title: next.title } : null,
-          prev: prev ? { slug: prev.slug, title: prev.title } : null,
+    createPage({
+      path: `portfolio/savethedate-kits/${node.slug}`,
+      component: saveTheDateTemplate,
+      context: {
+        kit: {
+          ...node,
         },
-      });
-    }
-  );
+        slug: node.slug,
+        next: next ? { slug: next.slug, title: next.title } : null,
+        prev: prev ? { slug: prev.slug, title: prev.title } : null,
+      },
+    });
+  });
 
   const invitationKitTemplate = path.resolve(
     "src/templates/InvitationKit/index.js"
   );
-  result.data.allContentfulInvitationKit.edges.forEach(
+  result.data.allContentfulInvitationPackage.edges.forEach(
     ({ node }, index, kits) => {
       const next = index > 0 ? kits[index - 1].node : null;
       const prev = index + 1 < kits.length ? kits[index + 1].node : null;

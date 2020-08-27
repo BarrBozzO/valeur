@@ -41,7 +41,7 @@ const SavethedatePage = ({ data, mount, location }) => {
   const renderInvitations = () => {
     return (
       <div className={styles["online-invitations__grid"]}>
-        {data.allContentfulSaveTheDate.nodes.map(
+        {data.allContentfulSaveDate.nodes.map(
           ({ id, title, image, shortDescription }) => (
             <div
               className={cx(
@@ -114,7 +114,7 @@ export default SavethedatePage;
 
 export const query = graphql`
   {
-    allContentfulSaveTheDate {
+    allContentfulSaveDate {
       nodes {
         id
         slug

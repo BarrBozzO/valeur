@@ -14,10 +14,10 @@ function InvitationKit({
   pageContext: { kit },
   location,
   mount,
-  data: { contentfulInvitationKit },
+  data: { contentfulInvitationPackage },
 }) {
   const { title, description, metaDescription } = kit;
-  const { image } = contentfulInvitationKit;
+  const { image } = contentfulInvitationPackage;
 
   const renderImage = image => {
     if (image.fluid) {
@@ -94,7 +94,7 @@ export default InvitationKit;
 
 export const query = graphql`
   query SingleInvitationKit($slug: String!) {
-    contentfulInvitationKit(slug: { eq: $slug }) {
+    contentfulInvitationPackage(slug: { eq: $slug }) {
       image {
         fluid(maxWidth: 1920, quality: 100) {
           ...GatsbyContentfulFluid

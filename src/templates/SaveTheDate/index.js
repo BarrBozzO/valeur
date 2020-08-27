@@ -13,10 +13,10 @@ function SaveTheDate({
   pageContext: { kit },
   location,
   mount,
-  data: { contentfulSaveTheDate },
+  data: { contentfulSaveDate },
 }) {
   const { title, description, metaDescription } = kit;
-  const { image } = contentfulSaveTheDate;
+  const { image } = contentfulSaveDate;
 
   const renderImage = image => {
     if (image.fluid) {
@@ -93,7 +93,7 @@ export default SaveTheDate;
 
 export const query = graphql`
   query SingleSavethedate($slug: String!) {
-    contentfulSaveTheDate(slug: { eq: $slug }) {
+    contentfulSaveDate(slug: { eq: $slug }) {
       image {
         fluid(maxWidth: 1920, quality: 100) {
           ...GatsbyContentfulFluid

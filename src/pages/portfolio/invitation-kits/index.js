@@ -41,7 +41,7 @@ const InvitationKitsPage = ({ data, mount, location }) => {
   const renderKits = () => {
     return (
       <div className={styles["invitation-kits__grid"]}>
-        {data.allContentfulInvitationKit.nodes.map(
+        {data.allContentfulInvitationPackage.nodes.map(
           ({ id, title, image, shortDescription }) => (
             <div
               className={cx(
@@ -108,7 +108,7 @@ export default InvitationKitsPage;
 
 export const query = graphql`
   {
-    allContentfulInvitationKit {
+    allContentfulInvitationPackage {
       nodes {
         id
         slug
