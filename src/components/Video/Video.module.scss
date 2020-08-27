@@ -1,0 +1,29 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.video {
+  &__player {
+    width: 100%;
+    height: calc(100% + 2px);
+    min-height: 100%;
+    object-position: center;
+    object-fit: cover;
+    transform: translateZ(1px); // fix fps
+    padding: 1px 0 0 0;
+
+    transition: opacity 400ms ease-in;
+
+    @include mobile-down {
+      width: 200%;
+      transform: translate(-40px, -1px) translateZ(1px);
+    }
+  }
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+}

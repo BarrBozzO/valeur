@@ -1,0 +1,53 @@
+@import "~styles/__variables.scss";
+
+@mixin desktop {
+  @media only screen and (min-width: $desktop-width + 1px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: $tablet-width + 1px) {
+    @content;
+  }
+}
+
+@mixin desktop-down {
+  @media only screen and (max-width: ($desktop-width)) {
+    @content;
+  }
+}
+
+@mixin wide-desktop {
+  @media only screen and (min-width: ($wide-desktop-width + 1px)) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media only screen and (max-width: ($tablet-width)) {
+    @content;
+  }
+}
+
+@mixin mobile-down {
+  @media only screen and (max-width: ($mobile-width)) {
+    @content;
+  }
+}
+
+@mixin page {
+  padding: $page-padding;
+
+  @include tablet-down {
+    padding: $tablet-page-padding;
+  }
+}
+
+@mixin primary-font {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+@mixin secondary-font {
+  font-family: "Lora", serif;
+}

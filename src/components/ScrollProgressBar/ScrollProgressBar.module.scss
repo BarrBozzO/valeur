@@ -1,0 +1,17 @@
+@import "~styles/__variables";
+@import "~styles/__mixins";
+
+.scroll-progress-bar {
+  &__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 1000;
+  }
+
+  height: 100%;
+  background-color: $primary-color;
+  transition: width 250ms ease-in-out;
+}
