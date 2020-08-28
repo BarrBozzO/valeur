@@ -83,6 +83,7 @@ const ContactsPage = ({ mount, location }) => (
               />
             </div>
           </div>
+          <div data-netlify-recaptcha="true"></div>
           <div className={styles["contacts__form-row"]}>
             <Button secondary type="submit">
               Отправить
