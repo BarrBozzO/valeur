@@ -48,7 +48,7 @@ const ContactsPage = ({ mount, location }) => (
           <input type="hidden" name="form-name" value="contact" />
           <input
             type="hidden"
-            name="form-subject"
+            name="subject"
             value="Valeur - заявка от клиента"
           />
           <input type="hidden" name="bot-field" />
