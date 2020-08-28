@@ -44,12 +44,11 @@ const ContactsPage = ({ mount, location }) => (
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           data-netlify-recaptcha="true"
-          subject
         >
           <input type="hidden" name="form-name" value="contact" />
           <input
             type="hidden"
-            name="subject"
+            name="form-subject"
             value="Valeur - заявка от клиента"
           />
           <input type="hidden" name="bot-field" />
