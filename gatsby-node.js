@@ -149,8 +149,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   );
   result.data.allContentfulSaveDate.edges.forEach(({ node }, index, kits) => {
     const next = index > 0 ? kits[index - 1].node : null;
-    const prev =
-      index + 1 < kits.length ? invikitstations[index + 1].node : null;
+    const prev = index + 1 < kits.length ? kits[index + 1].node : null;
 
     createPage({
       path: `portfolio/savethedate-kits/${node.slug}`,
