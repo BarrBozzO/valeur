@@ -43,8 +43,14 @@ const ContactsPage = ({ mount, location }) => (
           action="/contacts/success"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
+          // data-netlify-recaptcha="true"
         >
           <input type="hidden" name="form-name" value="contact" />
+          <input
+            type="hidden"
+            name="subject"
+            value="Valeur - заявка от клиента"
+          />
           <input type="hidden" name="bot-field" />
           <div className={styles["contacts__form-row"]}>
             <div className={styles["contacts__form-row-cell"]}>
@@ -77,6 +83,7 @@ const ContactsPage = ({ mount, location }) => (
               />
             </div>
           </div>
+          {/* <div data-netlify-recaptcha="true"></div> */}
           <div className={styles["contacts__form-row"]}>
             <Button secondary type="submit">
               Отправить
