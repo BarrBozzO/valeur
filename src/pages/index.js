@@ -95,9 +95,6 @@ const IndexPage = ({ data, location, mount }) => {
             <h1>Valeur — свадебная полиграфия</h1>
             <Logo className={styles["home__start-logo"]} />
             <Polygraphy className={styles["home__start-polygraphy"]} />
-            <p className={styles["home__start-text"]}>
-              Мы уже придумали ваши идеальные пригласительные
-            </p>
             {/* <div className={styles["home__start-link"]}>
               <Button link>Как заказать?</Button>
               <Link to={"/portfolio/invitation-kits"}>Посмотреть работы</Link>
