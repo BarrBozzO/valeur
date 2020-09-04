@@ -22,7 +22,6 @@ import vFile from "assets/videos/bg-video.mp4";
 import LongArrow from "assets/icons/long-arrow.svg";
 import Leaf from "assets/icons/leaf.svg";
 import InstagramIcon from "assets/icons/instagram.svg";
-// import paperBG from "assets/background/paper.jpg";
 
 import reviews from "../constants/testimonials";
 
@@ -53,9 +52,6 @@ const IndexPage = ({ data, location, mount }) => {
   }).node.childImageSharp;
   const handmadeFeatureImg = imagesArr.find(({ node }) => {
     return node.base === "3.jpg";
-  }).node.childImageSharp;
-  const blogFeatureImg = imagesArr.find(({ node }) => {
-    return node.base === "4.jpg";
   }).node.childImageSharp;
   const authorImg = imagesArr.find(({ node }) => {
     return node.base === "author.jpg";
