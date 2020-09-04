@@ -29,6 +29,11 @@
 .footer {
   background-color: $primary-footer-color;
 
+  ::selection {
+    background-color: $primary-white;
+    color: $primary-text-color;
+  }
+
   &__mission {
     font-size: 0.8em;
     line-height: 1.2em;
