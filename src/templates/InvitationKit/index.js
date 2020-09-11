@@ -96,7 +96,7 @@ export const query = graphql`
   query SingleInvitationKit($slug: String!) {
     contentfulInvitationPackage(slug: { eq: $slug }) {
       image {
-        fluid(maxWidth: 1920, quality: 100) {
+        fluid(maxWidth: 1280) {
           ...GatsbyContentfulFluid
         }
         file {

@@ -33,6 +33,7 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-smoothscroll`,
     {
       resolve: `source-instagram`,
       options: {},

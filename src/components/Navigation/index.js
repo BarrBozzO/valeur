@@ -7,7 +7,8 @@ import TopBar from "./TopBar";
 import SubMenu from "./SubMenu";
 import ToggleButton from "./ToggleButton";
 import Link from "components/Link";
-import Logo from "assets/logo/logo.svg";
+import Polygraphy from "assets/logo/polygraphy.svg";
+import Valeur from "assets/logo/valeur.svg";
 
 import styles from "./Navigation.module.scss";
 
@@ -45,7 +46,10 @@ function Navigation({ location, isCollapsed }) {
             to="/"
             onClick={onClose}
           >
-            <Logo className={styles["navigation__logo-image"]} />
+            <Valeur className={styles["navigation__logo-image--valeur"]} />
+            <Polygraphy
+              className={styles["navigation__logo-image--polygraphy"]}
+            />
           </Link>
         </div>
         <nav className={styles["navigation__menu"]}>

@@ -97,7 +97,7 @@
   }
 
   &__logo {
-    width: 180px;
+    width: 220px;
     transition: opacity ease-in-out $transition-default-duration
         $transition-navigation-width-duration,
       visibility ease-in-out $transition-default-duration
@@ -116,14 +116,18 @@
     }
 
     &-image {
-      display: block;
-      width: 100%;
-      fill: #000;
+      &--valeur {
+        display: block;
+        width: 100%;
+        fill: $primary-text-color;
+      }
 
-      &--secondary {
-        width: 160px;
-        margin: 8px auto 0;
-        fill: rgba(0, 0, 0, 0.6);
+      &--polygraphy {
+        width: 100%;
+        margin: $padding auto $padding;
+        display: block;
+        fill: $primary-text-color;
+        opacity: 0.6;
       }
     }
   }
@@ -212,9 +216,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-
-  &--opened {
-  }
 
   &__title {
     color: $primary-text-color;

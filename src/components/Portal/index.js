@@ -17,12 +17,16 @@ function Portal(props) {
     const body = document.body;
     body.style.position = "fixed";
     body.style.top = `-${scrollY}px`;
+    body.style.left = `0`;
+    body.style.right = `0`;
 
     return () => {
       const body = document.body;
       const scrollY = body.style.top;
       body.style.position = "";
       body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
       portal.removeChild(wrapper);
     };

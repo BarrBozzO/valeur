@@ -2,6 +2,7 @@ import React, { useRef, useContext } from "react";
 import cx from "classnames";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 import { GlobalStateProvider } from "context/GlobalContextProvider";
 
@@ -13,6 +14,10 @@ import ScrollProgressBar from "components/ScrollProgressBar";
 import Article from "./Article";
 
 import styles from "./Post.module.scss";
+
+function handlePostRedirect() {
+  scrollTo("body");
+}
 
 function Post({
   pageContext: { post, prev, next, assetsMap },
@@ -80,7 +85,7 @@ function Post({
           >
             {prev && (
               <>
-                <Link to={`/posts/${prev.slug}`}>
+                <Link to={`/posts/${prev.slug}`} onClick={handlePostRedirect}>
                   <span>Предыдущий</span>
                   <div className={styles["post__nav-title"]}>{prev.title}</div>
                 </Link>
@@ -96,7 +101,7 @@ function Post({
           >
             {next && (
               <>
-                <Link to={`/posts/${next.slug}`}>
+                <Link to={`/posts/${next.slug}`} onClick={handlePostRedirect}>
                   <span>Следующий</span>
                   <div className={styles["post__nav-title"]}>{next.title}</div>
                 </Link>
