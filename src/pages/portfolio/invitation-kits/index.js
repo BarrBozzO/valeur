@@ -116,8 +116,8 @@ export const query = graphql`
         shortDescription
         createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
         image {
-          fluid(maxWidth: 1920, quality: 100) {
-            ...GatsbyContentfulFluid
+          fluid(maxWidth: 1280, maxHeight: 1280, quality: 100) {
+            ...GatsbyContentfulFluid_withWebp
           }
           file {
             url
