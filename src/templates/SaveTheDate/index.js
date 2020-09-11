@@ -95,7 +95,7 @@ export const query = graphql`
   query SingleSavethedate($slug: String!) {
     contentfulSaveDate(slug: { eq: $slug }) {
       image {
-        fluid(maxWidth: 1920, quality: 100) {
+        fluid(maxWidth: 1280, maxHeight: 1280, quality: 100) {
           ...GatsbyContentfulFluid
         }
         file {
