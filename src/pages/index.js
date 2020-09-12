@@ -325,6 +325,9 @@ const IndexPage = ({ data, location, mount }) => {
                   easeFunction: "ease-in-out",
                   delay: "0s",
                 }}
+                classNames={{
+                  controlElement: styles["reviews__carousel-control-wrapper"],
+                }}
               >
                 {reviews.map(r => (
                   <div className={styles["reviews__card-wrapper"]}>
