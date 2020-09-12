@@ -138,8 +138,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         },
         slug: node.slug,
         assetsMap,
-        next: next ? { slug: next.slug, title: next.title } : null,
-        prev: prev ? { slug: prev.slug, title: prev.title } : null,
+        next: next ? next.id : undefined,
+        prev: prev ? prev.id : undefined,
       },
     });
   });

@@ -11,6 +11,7 @@ import Layout from "components/Layout";
 import Link from "components/Link";
 import Order from "components/Order";
 import Carousel from "components/Carousel";
+import PostItem from "components/PostItem";
 import { useWindowSize } from "../hooks";
 
 import SectionBorder from "assets/icons/section-border.svg";
@@ -26,8 +27,6 @@ import InstagramIcon from "assets/icons/instagram.svg";
 import reviews from "../constants/testimonials";
 
 import styles from "./Home.module.scss";
-
-const MAX_WIDTH = 1024;
 
 const ScrollElement = () => (
   <div className={styles["scroll-down"]}>
@@ -371,52 +370,9 @@ const IndexPage = ({ data, location, mount }) => {
             </small>
           </h2>
           <div className={styles["posts"]}>
-            {latestPosts.map(
-              ({ id, slug, title, image, createdAt, description }) => {
-                let postImage = null;
-                if (image) {
-                  const cover = Array.isArray(image) ? image[0] : image;
-                  if (cover.fluid) {
-                    const {
-                      details: {
-                        image: { width },
-                      },
-                    } = cover.file;
-
-                    postImage = (
-                      <div className={styles["posts__item-cover"]}>
-                        <Img
-                          style={{
-                            maxWidth: width <= MAX_WIDTH ? width : MAX_WIDTH,
-                          }}
-                          fluid={cover.fluid}
-                          className={styles["posts__item-cover-image"]}
-                        />
-                      </div>
-                    );
-                  }
-                }
-
-                return (
-                  <div className={styles["posts__item"]}>
-                    <Link to={`/posts/${slug}`}>
-                      {postImage}
-
-                      <h3 className={styles["posts__item-title"]}>{title}</h3>
-
-                      <div className={styles["posts__item-created"]}>
-                        {createdAt}
-                      </div>
-                      <div className={styles["posts__item-description"]}>
-                        {description &&
-                          description.internal &&
-                          description.internal.content}
-                      </div>
-                    </Link>
-                  </div>
-                );
-              }
-            )}
+            {latestPosts.map(post => (
+              <PostItem post={post} className={styles["posts__item"]} />
+            ))}
           </div>
           <div className={styles["posts__read-more"]}>
             <Link className={styles["features__item-link"]} to="/posts">

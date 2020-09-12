@@ -9,6 +9,7 @@ import { GlobalStateProvider } from "context/GlobalContextProvider";
 import Layout from "components/Layout";
 import Seo from "components/Seo";
 import Link from "components/Link";
+import PostItem from "components/PostItem";
 import ScrollProgressBar from "components/ScrollProgressBar";
 
 import Article from "./Article";
@@ -20,10 +21,10 @@ function handlePostRedirect() {
 }
 
 function Post({
-  pageContext: { post, prev, next, assetsMap },
+  pageContext: { post, assetsMap },
   location,
   mount,
-  data: { contentfulPost },
+  data: { contentfulPost, nextPost, prevPost },
 }) {
   const {
     navigation: { isCollapsed },
@@ -58,6 +59,8 @@ function Post({
     return null;
   };
 
+  const readMorePosts = [prevPost, nextPost].filter(post => !!post);
+
   return (
     <Layout location={location} mount={mount}>
       <Seo title={title} description={metaDescription} />
@@ -76,39 +79,21 @@ function Post({
           data={article}
           assets={assetsMap}
         />
-        <div className={styles["post__nav"]}>
-          <div
-            className={cx(
-              styles["post__nav-item"],
-              styles["post__nav-item--prev"]
-            )}
-          >
-            {prev && (
-              <>
-                <Link to={`/posts/${prev.slug}`} onClick={handlePostRedirect}>
-                  <span>Предыдущий</span>
-                  <div className={styles["post__nav-title"]}>{prev.title}</div>
-                </Link>
-              </>
-            )}
+        {readMorePosts.length && (
+          <div className={styles["post__nav"]}>
+            <h2>Читайте также</h2>
+            <div className={styles["post__nav-items"]}>
+              {readMorePosts.map(post => (
+                <PostItem
+                  key={post.id}
+                  className={styles["post__nav-item"]}
+                  post={post}
+                  onClick={handlePostRedirect}
+                />
+              ))}
+            </div>
           </div>
-          <div className={styles["post__nav-divider"]} />
-          <div
-            className={cx(
-              styles["post__nav-item"],
-              styles["post__nav-item--next"]
-            )}
-          >
-            {next && (
-              <>
-                <Link to={`/posts/${next.slug}`} onClick={handlePostRedirect}>
-                  <span>Следующий</span>
-                  <div className={styles["post__nav-title"]}>{next.title}</div>
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
+        )}
       </div>
     </Layout>
   );
@@ -117,10 +102,58 @@ function Post({
 export default Post;
 
 export const query = graphql`
-  query SinglePost($slug: String!) {
+  query SinglePost($slug: String!, $next: String = "", $prev: String = "") {
     contentfulPost(slug: { eq: $slug }) {
       image {
         fluid(maxWidth: 1280, quality: 100) {
+          ...GatsbyContentfulFluid
+        }
+        file {
+          details {
+            image {
+              height
+              width
+            }
+          }
+        }
+      }
+    }
+    nextPost: contentfulPost(id: { eq: $next }) {
+      id
+      slug
+      title
+      description {
+        internal {
+          content
+        }
+      }
+      createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
+      image {
+        fluid(maxWidth: 600) {
+          ...GatsbyContentfulFluid
+        }
+        file {
+          details {
+            image {
+              height
+              width
+            }
+          }
+        }
+      }
+    }
+    prevPost: contentfulPost(id: { eq: $prev }) {
+      id
+      slug
+      title
+      description {
+        internal {
+          content
+        }
+      }
+      createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
+      image {
+        fluid(maxWidth: 600) {
           ...GatsbyContentfulFluid
         }
         file {
