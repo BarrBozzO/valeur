@@ -89,7 +89,7 @@
     &-logo {
       display: block;
       width: 80%;
-      max-width: $tablet-width;
+      max-width: $desktop-width;
 
       margin: 0 auto;
 
@@ -140,6 +140,34 @@
 
       @include mobile-down {
         display: none;
+      }
+    }
+
+    &-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+      align-items: center;
+
+      @include mobile-down {
+        top: 40%;
+      }
+    }
+
+    &-book {
+      color: $primary-white;
+      border-color: $primary-white;
+      font-size: 16px;
+      padding: 12px 20px;
+
+      &:hover {
+        background-color: transparent;
+        border-color: $primary-white;
+      }
+
+      @include mobile-down {
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, 0.16);
       }
     }
 

@@ -91,10 +91,14 @@ const IndexPage = ({ data, location, mount }) => {
             <h1>Valeur — свадебная полиграфия</h1>
             <Logo className={styles["home__start-logo"]} />
             <Polygraphy className={styles["home__start-polygraphy"]} />
-            {/* <div className={styles["home__start-link"]}>
-              <Button link>Как заказать?</Button>
-              <Link to={"/portfolio/invitation-kits"}>Посмотреть работы</Link>
-            </div> */}
+            <div className={styles["home__start-buttons"]}>
+              <Button
+                secondary
+                className={styles["home__start-book"]}
+                onClick={handleDisplayOrder}
+                label="Как заказать?"
+              />
+            </div>
           </div>
           <div className={styles["home__start-instagram"]}>
             <a href="https://www.instagram.com/v_aleur/" target="_blank">
