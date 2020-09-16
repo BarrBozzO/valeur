@@ -100,7 +100,7 @@ const SavethedatePage = ({ data, mount, location }) => {
   };
 
   return (
-    <Layout mount={mount} location={location}>
+    <Layout mount={mount} location={location} title={"Save the date"}>
       <SEO title="Save the date" />
       <div className={styles["online-invitations"]}>
         <h1 className={styles["online-invitations__header"]}>Save the date</h1>

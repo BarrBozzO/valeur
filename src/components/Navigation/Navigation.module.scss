@@ -395,4 +395,47 @@
       }
     }
   }
+
+  &__transition {
+    display: block;
+
+    &--appear {
+      opacity: 0;
+    }
+
+    &--appear-active {
+      opacity: 1;
+      transition: opacity 300ms;
+    }
+
+    &--appear-done {
+      opacity: 1;
+    }
+
+    &--enter {
+      opacity: 0;
+    }
+
+    &--enter-active {
+      opacity: 1;
+      transition: opacity 300ms;
+    }
+
+    &--enter-done {
+      opacity: 1;
+    }
+
+    &--exit {
+      opacity: 1;
+    }
+
+    &--exit-active {
+      opacity: 0;
+      transition: opacity 300ms;
+    }
+
+    &--exit-done {
+      opacity: 0;
+    }
+  }
 }

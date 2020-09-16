@@ -88,12 +88,9 @@ const Posts = ({ data, mount, location }) => {
   };
 
   return (
-    <Layout location={location} mount={mount}>
+    <Layout location={location} mount={mount} title={"Блог"}>
       <SEO title="Блог" />
-      <div className={styles["posts"]}>
-        <h1 className={styles["posts__header"]}>Блог</h1>
-        {renderPosts()}
-      </div>
+      <div className={styles["posts"]}>{renderPosts()}</div>
     </Layout>
   );
 };

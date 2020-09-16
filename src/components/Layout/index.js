@@ -9,14 +9,19 @@ import { GlobalStateProvider } from "context/GlobalContextProvider";
 
 import styles from "./Layout.module.scss";
 
-const Layout = ({ location, children, mount }) => {
+const Layout = ({ location, children, mount, title }) => {
   const {
     navigation: { isCollapsed },
   } = useContext(GlobalStateProvider);
 
   return (
     <div className={styles["layout"]}>
-      <Navigation isCollapsed={isCollapsed} location={location} />
+      <Navigation
+        mount={mount}
+        isCollapsed={isCollapsed}
+        location={location}
+        title={title}
+      />
       <div
         className={cx(styles["layout__content"], {
           [styles["layout__content--collapsed"]]: isCollapsed,

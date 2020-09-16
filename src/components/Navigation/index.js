@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 
@@ -12,7 +12,7 @@ import Valeur from "assets/logo/valeur.svg";
 
 import styles from "./Navigation.module.scss";
 
-function Navigation({ location, isCollapsed }) {
+function Navigation({ location, isCollapsed, title, mount }) {
   const dispatch = useContext(GlobalDispatchProvider);
 
   const onToggle = () => {
@@ -29,7 +29,12 @@ function Navigation({ location, isCollapsed }) {
 
   return (
     <>
-      <TopBar onClick={onToggle} isCollapsed={isCollapsed} />
+      <TopBar
+        title={title}
+        mount={mount}
+        onClick={onToggle}
+        isCollapsed={isCollapsed}
+      />
       <div
         className={cx(styles["navigation"], {
           [styles["navigation--collapsed"]]: isCollapsed,
