@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import cx from "classnames";
 import Img from "gatsby-image";
+import { graphql } from "gatsby";
 import get from "lodash/get";
 import { truncateText } from "utils";
 
@@ -89,11 +90,18 @@ const IndexPage = ({ data, location, mount }) => {
           <div className={styles["home__start-content"]}>
             <h1>Valeur — свадебная полиграфия</h1>
             <Logo className={styles["home__start-logo"]} />
-            <Polygraphy className={styles["home__start-polygraphy"]} />
-            {/* <div className={styles["home__start-link"]}>
-              <Button link>Как заказать?</Button>
-              <Link to={"/portfolio/invitation-kits"}>Посмотреть работы</Link>
-            </div> */}
+            <Polygraphy
+              id="polygraphy"
+              className={styles["home__start-polygraphy"]}
+            />
+            <div className={styles["home__start-buttons"]}>
+              <Button
+                secondary
+                className={styles["home__start-book"]}
+                onClick={handleDisplayOrder}
+                label="Как заказать?"
+              />
+            </div>
           </div>
           <div className={styles["home__start-instagram"]}>
             <a href="https://www.instagram.com/v_aleur/" target="_blank">
@@ -319,6 +327,9 @@ const IndexPage = ({ data, location, mount }) => {
                   duration: "0.6s",
                   easeFunction: "ease-in-out",
                   delay: "0s",
+                }}
+                classNames={{
+                  controlElement: styles["reviews__carousel-control-wrapper"],
                 }}
               >
                 {reviews.map(r => (

@@ -54,7 +54,7 @@ const ContactsPage = ({ mount, location }) => (
           <input type="hidden" name="bot-field" />
           <div className={styles["contacts__form-row"]}>
             <div className={styles["contacts__form-row-cell"]}>
-              <label for="name">Имя</label>
+              <label htmlFor="name">Имя</label>
               <input
                 type="text"
                 id="name"
@@ -64,17 +64,17 @@ const ContactsPage = ({ mount, location }) => (
               />
             </div>
             <div className={styles["contacts__form-row-cell"]}>
-              <label for="email">Электронная почта</label>
+              <label htmlFor="email">Электронная почта</label>
               <input id="email" type="email" name="email" />
             </div>
             <div className={styles["contacts__form-row-cell"]}>
-              <label for="phone">Номер телефона</label>
+              <label htmlFor="phone">Номер телефона</label>
               <input id="phone" type="tel" name="phone" />
             </div>
           </div>
           <div className={styles["contacts__form-row"]}>
             <div className={styles["contacts__form-row-cell"]}>
-              <label for="message">Сообщение</label>
+              <label htmlFor="message">Сообщение</label>
               <textarea
                 rows="4"
                 id="message"

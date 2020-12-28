@@ -218,7 +218,7 @@
   align-items: stretch;
 
   &__title {
-    color: $primary-text-color;
+    color: $black-1;
     font-size: 1.4em;
     font-weight: 300;
     line-height: 1;
@@ -248,7 +248,7 @@
   }
 
   &__item {
-    color: $primary-text-color;
+    color: $black-1;
     font-size: 0.75em;
     font-weight: 300;
     line-height: 1;
@@ -298,6 +298,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  overflow: hidden;
 
   display: flex;
   justify-content: center;
@@ -325,6 +326,16 @@
   }
 
   &__logo {
+    transform: translateY(42px);
+    opacity: 0;
+    transition: opacity $transition-default-duration,
+      transform $transition-default-duration;
+
+    &--display {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     &-link {
       display: block;
     }
