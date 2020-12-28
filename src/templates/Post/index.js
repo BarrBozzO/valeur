@@ -122,11 +122,6 @@ export const query = graphql`
       id
       slug
       title
-      description {
-        internal {
-          content
-        }
-      }
       createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
       image {
         fluid(maxWidth: 600) {
@@ -146,11 +141,6 @@ export const query = graphql`
       id
       slug
       title
-      description {
-        internal {
-          content
-        }
-      }
       createdAt(formatString: "MMMM DD, YYYY", locale: "ru")
       image {
         fluid(maxWidth: 600) {
