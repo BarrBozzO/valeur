@@ -63,5 +63,12 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: "Valeur",
+        icon: "static/favicon/favicon.png",
+      },
+    },
   ],
 };
