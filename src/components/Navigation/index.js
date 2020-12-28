@@ -29,7 +29,12 @@ function Navigation({ location, isCollapsed }) {
 
   return (
     <>
-      <TopBar onClick={onToggle} isCollapsed={isCollapsed} />
+      <TopBar
+        location={location}
+        onClick={onToggle}
+        isCollapsed={isCollapsed}
+        onClose={onClose}
+      />
       <div
         className={cx(styles["navigation"], {
           [styles["navigation--collapsed"]]: isCollapsed,
