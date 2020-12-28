@@ -855,86 +855,13 @@
   }
 
   &__item {
-    $this: &;
-
-    display: flex;
-    flex-direction: column;
-
     flex: 0 0 33%;
-
-    max-width: $tablet-width;
-    padding: $padding;
-    margin: 0 auto;
 
     @include desktop-down {
       &:not(:last-child) {
         border-bottom: 1px solid lighten($color: $gray-2, $amount: 30%);
         padding-bottom: $padding * 2;
         margin-bottom: $padding;
-      }
-    }
-
-    &:hover {
-      #{$this}-cover-image {
-        transform: scale(1.1);
-      }
-    }
-
-    &-title {
-      text-align: left;
-      font-size: 1.2em;
-      font-weight: 400;
-      margin: $padding * 2 0 $padding;
-      color: $primary-text-color;
-      @include secondary-font;
-
-      @include tablet-down {
-      }
-
-      @include mobile-down {
-        font-size: 1em;
-      }
-    }
-
-    &-created {
-      text-align: left;
-      font-size: 0.6em;
-      margin-bottom: $padding * 2;
-      color: $gray-2;
-      text-transform: uppercase;
-    }
-
-    &-cover {
-      picture {
-        position: static;
-      }
-
-      overflow: hidden;
-
-      &-image {
-        height: 280px;
-        margin: 0;
-        transition: all 0.3s ease;
-        @include mobile-down {
-        }
-      }
-    }
-
-    &-description {
-      text-align: left;
-      font-size: 0.75em;
-      line-height: 1.4em;
-      color: $black-1;
-      @include secondary-font;
-    }
-
-    @include mobile-down {
-      &-created {
-        margin-bottom: 0;
-      }
-
-      &-description {
-        display: none;
       }
     }
   }
