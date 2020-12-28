@@ -3,11 +3,11 @@ const axios = require(`axios`);
 exports.getPosts = async function() {
   const queryParams = {
     variables: {
-      id: "20593822219",
+      id: process.env.INSTAGRAM_QUERY_ID, // "20593822219",
       after: null,
       first: 12,
     },
-    query_hash: "7c8a1055f69ff97dc201e752cf6f0093",
+    query_hash: process.env.INSTAGRAM_QUERY_HASH, // "7c8a1055f69ff97dc201e752cf6f0093",
   };
 
   try {
