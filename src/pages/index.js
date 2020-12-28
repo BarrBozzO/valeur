@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import cx from "classnames";
 import Img from "gatsby-image";
+import { graphql } from "gatsby";
 import get from "lodash/get";
 import { truncateText } from "utils";
 
